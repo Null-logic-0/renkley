@@ -1,0 +1,30 @@
+<div>
+
+  <%= render "landing/header",
+    brand_name: "Renkley",
+    cta_label: "Start free trial",
+    cta_href: "/",
+    nav_links: LandingHelper::DEFAULT_NAV_LINKS %>
+
+
+  <%= render "landing/hero",
+    visibility_score: @visibility_score,
+    hero_platforms: @hero_platforms %>
+
+
+  <%= render "landing/features", features: @features %>
+
+  <%= render "landing/dashboard_preview",
+    preview_tabs: @preview_tabs,
+    chart_data: @chart_data,
+    preview_stats: @preview_stats %>
+
+  <%= render "landing/pricing", pricing_plans: @pricing_plans %>
+
+  <%= render "landing/faq", faqs: @faqs %>
+
+  <%= render "landing/cta" %>
+
+  <%= render "landing/footer" %>
+
+</div>

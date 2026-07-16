@@ -1,0 +1,74 @@
+// Cross-component primitives reused by several landing page sections
+// (kicker pills, eyebrow labels, bordered panels, section headings, the
+// brand logomark). Section-specific styling lives in its own file.
+
+// Kicker pill above section headings, e.g. "PLATFORM" / "PRICING"
+.rk-kicker {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  background: var(--rk-accent-100);
+  color: var(--rk-accent-800);
+}
+
+// Square logomark — used in both the header and the footer
+.rk-logomark {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  background: var(--rk-accent);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+
+}
+.rk-logomark.is-sm { width: 24px; height: 24px; }
+.rk-logomark.is-sm span { font-size: 14px; }
+
+// Small status badge, e.g. the hero's "Now tracking ChatGPT" pill
+.rk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--rk-line);
+  padding: 5px 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--rk-muted);
+}
+.rk-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--rk-success);
+  flex: none;
+}
+
+// Uppercase micro-labels used in the dashboard mockup and preview panels
+.rk-eyebrow { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rk-muted); }
+.rk-eyebrow-md { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rk-muted); }
+.rk-eyebrow-wide { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--rk-muted); }
+
+// Bordered content panel used inside the dashboard mockup and preview
+.rk-panel { padding: 14px 16px; }
+.rk-panel .rk-eyebrow, .rk-panel .rk-eyebrow-md { margin-bottom: 12px; }
+.rk-panel-lg { padding: 18px 20px; }
+
+// Section heading chrome shared by Features / Dashboard preview / Pricing / FAQ
+.rk-content-section { padding-top: 72px; padding-bottom: 72px; }
+.rk-section-head { max-width: 640px; margin-bottom: 40px; }
+.rk-section-head-lg { max-width: 640px; margin-bottom: 36px; }
+.rk-section-title { font-size: 36px; letter-spacing: -0.025em; margin: 16px 0 12px; }
+.rk-section-title.is-tight { margin-bottom: 0; }
+.rk-section-lead { font-size: 16px; line-height: 1.6; color: var(--rk-muted); margin: 0; }
+
+@media (max-width: 640px) {
+  .rk-section-title { font-size: 27px; }
+}

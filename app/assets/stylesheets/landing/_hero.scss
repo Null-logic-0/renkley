@@ -1,0 +1,57 @@
+.rk-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.rk-hero-section { padding-top: 64px; padding-bottom: 72px; }
+
+.rk-hero-title { font-size: 52px; line-height: 1.02; letter-spacing: -0.03em; margin: 0 0 20px; }
+.rk-hero-lead { font-size: 17px; line-height: 1.6; color: var(--rk-muted); margin: 0 0 30px; max-width: 520px; }
+.rk-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; }
+.rk-hero-meta { display: flex; align-items: center; gap: 18px; font-size: 12.5px; color: var(--rk-faint); }
+.rk-hero-meta-item { display: flex; align-items: center; gap: 6px; }
+
+// ── Dashboard mockup ──────────────────────────────────────────────────
+.rk-mockup-body { padding: 18px; }
+.rk-window-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 14px;
+  border-bottom: 1.5px solid var(--rk-line);
+}
+.rk-window-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--rk-line);
+}
+.rk-window-url { margin-left: 8px; font-size: 11px; color: var(--rk-faint); font-weight: 600; }
+
+.rk-score-card { display: flex; align-items: center; gap: 16px; padding: 16px 18px; margin-bottom: 14px; }
+.rk-score-card .rk-eyebrow { margin-bottom: 4px; }
+.rk-score-value-row { display: flex; align-items: flex-end; gap: 6px; line-height: 1; }
+.rk-score-value { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.03em; }
+.rk-score-suffix { font-size: 13px; color: var(--rk-faint); font-weight: 600; margin-bottom: 6px; }
+.rk-score-delta { font-size: 11.5px; color: var(--rk-success); font-weight: 700; margin-top: 4px; }
+
+.rk-platform-list { display: flex; flex-direction: column; gap: 11px; }
+.rk-platform-row-head { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px; }
+.rk-platform-name { display: flex; align-items: center; gap: 7px; }
+.rk-swatch { width: 8px; height: 8px; }
+.rk-bar-track { height: 6px; background: var(--rk-line-soft); }
+.rk-bar-fill { height: 100%; }
+
+// Grid items default to min-width:auto, which is their content's min-content
+// size — the mockup's donut ring/platform bars can then be wider than their
+// track and blow the whole grid out past the viewport. Force them to shrink.
+.rk-hero-grid > * { min-width: 0; }
+
+@media (max-width: 900px) {
+  .rk-hero-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 640px) {
+  .rk-hero-title { font-size: 36px; }
+  .rk-score-value { font-size: 30px; }
+}
+@media (max-width: 400px) {
+  .rk-hero-title { font-size: 30px; }
+  .rk-hero-actions { flex-direction: column; align-items: stretch; }
+  .rk-hero-actions .button { width: 100%; }
+}

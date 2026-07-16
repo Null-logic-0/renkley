@@ -1,0 +1,147 @@
+// Fixed, translucent header. Being `position: fixed` (rather than sticky)
+// takes it out of normal flow entirely, so its wrapper no longer reserves
+// any space for it — without this, everything below renders underneath it.
+body {
+  padding-top: var(--rk-header-height);
+}
+
+.rk-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  background: color-mix(in srgb, var(--bulma-scheme-main) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--rk-line);
+}
+.rk-header-bar { display: flex; align-items: center; gap: 28px; padding-top: 14px; padding-bottom: 14px; }
+.rk-brand { display: flex; align-items: center; gap: 9px; margin-right: auto; color: var(--bulma-text); }
+.rk-brand-name { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.02em; }
+.rk-nav-link { color: var(--bulma-text); font-size: 14px; font-weight: 500; }
+.rk-nav-link:hover { color: var(--rk-accent); }
+.rk-header-cta { height: 38px; }
+
+// Desktop nav / mobile burger swap
+.rk-navlinks { display: flex; align-items: center; gap: 26px; }
+.rk-burger {
+  display: none;
+  background: transparent;
+  border: 1.5px solid var(--rk-line);
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex: none;
+}
+
+// Animated hamburger — three lines that fold into an X when .is-active
+.rk-burger-icon,
+.rk-burger-icon::before,
+.rk-burger-icon::after {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+  transition: transform 220ms ease, opacity 220ms ease, background 220ms ease;
+}
+.rk-burger-icon { position: relative; }
+.rk-burger-icon::before,
+.rk-burger-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+.rk-burger-icon::before { top: -6px; }
+.rk-burger-icon::after { top: 6px; }
+.rk-burger.is-active .rk-burger-icon { background: transparent; }
+.rk-burger.is-active .rk-burger-icon::before { top: 0; transform: rotate(45deg); }
+.rk-burger.is-active .rk-burger-icon::after { top: 0; transform: rotate(-45deg); }
+
+// Backdrop behind the slide-in drawer
+.rk-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: color-mix(in srgb, #000 45%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 240ms ease;
+}
+.rk-menu-backdrop.is-active { opacity: 1; pointer-events: auto; }
+
+// Slide-in drawer. Rendered as a sibling of <header> in the DOM — .rk-header's
+// backdrop-filter would otherwise become the containing block for this
+// fixed-position drawer and collapse it to the header's own height.
+.rk-mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  width: min(320px, 86vw);
+  display: flex;
+  flex-direction: column;
+  background: var(--bulma-scheme-main);
+  border-left: 1.5px solid var(--rk-line);
+  box-shadow: var(--rk-shadow-lg);
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 260ms ease, visibility 0s linear 260ms;
+}
+.rk-mobile-menu.is-active {
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform 260ms ease, visibility 0s linear 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rk-mobile-menu, .rk-menu-backdrop, .rk-burger-icon, .rk-burger-icon::before, .rk-burger-icon::after {
+    transition-duration: 1ms;
+  }
+}
+
+.rk-mobile-menu-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 2px solid var(--rk-line);
+  flex: none;
+}
+.rk-mobile-menu-close {
+  background: transparent;
+  border: 1.5px solid var(--rk-line);
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: var(--bulma-text);
+}
+.rk-mobile-menu-inner {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 20px 24px;
+  overflow-y: auto;
+}
+.rk-mobile-nav-link {
+  display: block;
+  font-family: "Archivo", sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--bulma-text);
+  padding: 14px 2px;
+  border-bottom: 1px solid var(--rk-line-soft);
+}
+.rk-mobile-nav-link:hover { color: var(--rk-accent); }
+.rk-mobile-menu-cta { width: 100%; height: 46px; margin-top: 20px; }
+
+// Prevents background scroll while the drawer is open
+body.rk-scroll-lock { overflow: hidden; }
+
+@media (max-width: 900px) {
+  .rk-navlinks { display: none !important; }
+  .rk-header-cta { display: none !important; }
+  .rk-burger { display: inline-flex !important; }
+}

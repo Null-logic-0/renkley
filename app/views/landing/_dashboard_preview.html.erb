@@ -1,0 +1,33 @@
+ <section class="rk-divide rk-surface">
+   <div class="rk-container rk-content-section">
+     <div class="rk-section-head-lg">
+       <span class="rk-kicker">The product</span>
+       <h2 class="rk-section-title">Your entire AI presence, in one view</h2>
+       <p class="rk-section-lead">From a single visibility score down to the exact prompt where a competitor beats you.</p>
+     </div>
+     <div class="rk-border rk-shadow rk-scheme-bg">
+       <div class="rk-preview-tabs rk-divide rk-surface">
+         <% preview_tabs.each_with_index do |t, i| %>
+           <span class="rk-preview-tab<%= ' is-active' if i.zero? %>"><%= t %></span>
+         <% end %>
+       </div>
+       <div class="rk-preview-grid rk-preview-body">
+         <div class="rk-border rk-surface rk-panel-lg">
+           <div class="rk-eyebrow-md">Visibility over time</div>
+           <%= rk_mini_area_chart(chart_data) %>
+         </div>
+         <div class="rk-preview-stats">
+           <% preview_stats.each do |s| %>
+             <div class="rk-border rk-surface rk-panel">
+               <div class="rk-stat-head">
+                 <span class="rk-eyebrow-wide"><%= s[:label] %></span>
+                 <span class="rk-stat-delta"><%= s[:delta] %></span>
+               </div>
+               <div class="rk-stat-value"><%= s[:value] %></div>
+             </div>
+           <% end %>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>

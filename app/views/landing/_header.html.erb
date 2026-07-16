@@ -1,0 +1,42 @@
+<%
+  brand_name = local_assigns.fetch(:brand_name, "Renkley")
+  cta_label  = local_assigns.fetch(:cta_label, "Start free trial")
+  cta_href   = local_assigns.fetch(:cta_href, "")
+  nav_links  = local_assigns.fetch(:nav_links, LandingHelper::DEFAULT_NAV_LINKS)
+%>
+<div data-controller="navbar">
+  <header class="rk-header">
+    <div class="rk-container rk-header-bar">
+
+      <a class="rk-brand" href="<%= root_path %>">
+        <div class="rk-logomark"><span><%= brand_name.first %></span></div>
+        <span class="rk-brand-name"><%= brand_name %></span>
+      </a>
+
+      <nav class="rk-navlinks">
+        <%= render "landing/nav_links", nav_links: nav_links %>
+      </nav>
+
+      <%= link_to cta_label, cta_href, class: "button is-primary rk-header-cta" %>
+
+      <button class="rk-burger" data-navbar-target="burger" data-action="navbar#toggle" aria-expanded="false" aria-controls="rk-mobile-menu" aria-label="Open menu">
+        <span class="rk-burger-icon"></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="rk-menu-backdrop" data-navbar-target="backdrop" data-action="click->navbar#close"></div>
+
+  <nav id="rk-mobile-menu" class="rk-mobile-menu" data-navbar-target="menu" aria-label="Mobile">
+    <div class="rk-mobile-menu-head">
+      <span class="rk-brand-name">Menu</span>
+      <button class="rk-mobile-menu-close" data-action="navbar#close" aria-label="Close menu">
+        <%= rk_icon(:x, size: 18) %>
+      </button>
+    </div>
+    <div class="rk-mobile-menu-inner">
+      <%= render "landing/nav_links", nav_links: nav_links, link_class: "rk-mobile-nav-link", link_data: { action: "navbar#close" } %>
+      <%= link_to cta_label, cta_href, class: "button is-primary rk-mobile-menu-cta", data: { action: "navbar#close" } %>
+    </div>
+  </nav>
+</div>

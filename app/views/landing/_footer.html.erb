@@ -1,0 +1,29 @@
+<footer class="rk-surface">
+    <div class="rk-container rk-footer-top">
+      <div class="rk-foot-grid">
+        <div class="rk-foot-brand">
+          <div class="rk-footer-brand-row">
+            <div class="rk-logomark is-sm"><span>R</span></div>
+            <span class="rk-brand-name-sm">Renkley</span>
+          </div>
+          <p class="rk-footer-desc">AI visibility &amp; SEO optimization for the age of AI search.</p>
+        </div>
+        <div class="rk-foot-col">
+          <div class="rk-footer-title">Navigate</div>
+          <div class="rk-footer-links">
+            <%= render "landing/nav_links", nav_links: LandingHelper::DEFAULT_NAV_LINKS, link_class: "rk-footer-link" %>
+          </div>
+        </div>
+        <div class="rk-foot-col">
+          <div class="rk-footer-title">Legal</div>
+          <div class="rk-footer-links">
+            <%= render "landing/nav_links", nav_links: LandingHelper::DEFAULT_LEGAL_LINKS, link_class: "rk-footer-link" %>
+          </div>
+        </div>
+
+      </div>
+      <div class="rk-footer-bottom">
+        <span class="rk-footer-copy">&copy; <%= Date.current.year %> Renkley, Inc. All rights reserved.</span>
+      </div>
+    </div>
+</footer>

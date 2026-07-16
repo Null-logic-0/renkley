@@ -1,2 +1,31 @@
-@import "bulma";
+@use "bulma_sass" with (
+  $primary: #5b41f0,
+  $link: #5b41f0,
+  $family-primary: '"Archivo", system-ui, sans-serif',
+  $family-secondary: '"Archivo", system-ui, sans-serif',
+  $weight-bold: 700,
+  $radius-small: 0,
+  $radius: 0,
+  $radius-medium: 0,
+  $radius-large: 0,
+  $radius-rounded: 0
+);
 
+// ── Base — cross-page tokens, resets and primitives ────────────────────
+@use "base/fonts";
+@use "base/tokens";
+@use "base/reset";
+@use "base/layout";
+@use "base/buttons";
+
+// ── Landing page — one file per section/component ──────────────────────
+@use "landing/shared";
+@use "landing/header";
+@use "landing/hero";
+@use "landing/trusted_by";
+@use "landing/features";
+@use "landing/dashboard_preview";
+@use "landing/pricing";
+@use "landing/faq";
+@use "landing/cta";
+@use "landing/footer";

@@ -1,0 +1,9 @@
+// Generic layout/surface primitives shared by every section on every page.
+.rk-container { max-width: 1160px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+.rk-container-narrow { max-width: 820px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+
+.rk-divide { border-bottom: 2px solid var(--rk-line); }
+.rk-surface { background: var(--bulma-background); }
+.rk-scheme-bg { background: var(--bulma-scheme-main); }
+.rk-border { border: 1.5px solid var(--rk-line); }
+.rk-shadow { box-shadow: var(--rk-shadow-lg); }

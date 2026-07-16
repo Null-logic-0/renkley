@@ -1,0 +1,30 @@
+.rk-faq-head { margin-bottom: 36px; }
+
+// Plain <details>/<summary> accordion, no JS required
+.rk-faq-item {
+  border-bottom: 1px solid var(--rk-line-soft);
+}
+.rk-faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--bulma-text);
+}
+.rk-faq-item summary::-webkit-details-marker { display: none; }
+.rk-faq-item summary:hover { color: var(--rk-accent); }
+.rk-faq-chevron { color: var(--rk-faint); flex: none; transition: transform 180ms ease; }
+.rk-faq-item[open] .rk-faq-chevron { transform: rotate(180deg); }
+.rk-faq-body {
+  padding: 0 22px 20px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--rk-muted);
+  max-width: 680px;
+}

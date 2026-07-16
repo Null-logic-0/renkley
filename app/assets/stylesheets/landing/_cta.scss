@@ -1,0 +1,12 @@
+.rk-cta-section { padding-top: 80px; padding-bottom: 80px; }
+.rk-cta-title { font-size: 44px; letter-spacing: -0.03em; margin: 0 auto 16px; max-width: 640px; line-height: 1.05; }
+.rk-cta-lead { font-size: 17px; line-height: 1.6; color: var(--rk-muted); margin: 0 auto 30px; max-width: 520px; }
+.rk-cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+@media (max-width: 640px) {
+  .rk-cta-title { font-size: 30px; }
+}
+@media (max-width: 400px) {
+  .rk-cta-actions { flex-direction: column; align-items: stretch; }
+  .rk-cta-actions .button { width: 100%; }
+}

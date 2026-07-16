@@ -1,0 +1,19 @@
+ <section id="faq" class="rk-divide rk-surface">
+   <div class="rk-container-narrow rk-content-section">
+     <div class="has-text-centered rk-faq-head">
+       <span class="rk-kicker">FAQ</span>
+       <h2 class="rk-section-title is-tight">Frequently asked questions</h2>
+     </div>
+     <div class="rk-border rk-scheme-bg">
+       <% faqs.each do |faq| %>
+         <details class="rk-faq-item">
+           <summary>
+             <span><%= faq[:q] %></span>
+             <span class="rk-faq-chevron"><%= rk_icon(:chevron_down, size: 18) %></span>
+           </summary>
+           <div class="rk-faq-body"><%= faq[:a] %></div>
+         </details>
+       <% end %>
+     </div>
+   </div>
+ </section>

@@ -1,0 +1,18 @@
+ <section id="features" class="rk-divide">
+   <div class="rk-container rk-content-section">
+     <div class="rk-section-head">
+       <span class="rk-kicker">Platform</span>
+       <h2 class="rk-section-title">Everything you need to win AI search</h2>
+       <p class="rk-section-lead">One platform to monitor, benchmark and improve how AI assistants talk about your brand.</p>
+     </div>
+     <div class="rk-border rk-feat-grid">
+       <% features.each do |f| %>
+         <div class="rk-feat-cell">
+           <div class="rk-icon-tile"><%= rk_icon(f[:icon], size: 20) %></div>
+           <h3 class="rk-feat-title"><%= f[:title] %></h3>
+           <p class="rk-feat-desc"><%= f[:desc] %></p>
+         </div>
+       <% end %>
+     </div>
+   </div>
+ </section>

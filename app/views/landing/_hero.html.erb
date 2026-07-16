@@ -1,0 +1,24 @@
+<section class="rk-divide">
+  <div class="rk-container rk-hero-grid rk-hero-section">
+    <div>
+      <div class="rk-badge mb-5">
+        <span class="rk-dot"></span>
+        <span>Now tracking ChatGPT</span>
+      </div>
+      <h1 class="rk-hero-title">Your competitors are showing up in ChatGPT. Are you?</h1>
+      <p class="rk-hero-lead">Renkley tracks how often your brand appears across ChatGPT, Claude, Google AI, Gemini and Perplexity. Benchmark competitors, find optimization gaps, and grow your AI search visibility with actionable recommendations.</p>
+      <div class="rk-hero-actions">
+        <%= link_to "Start free trial", "/sign_up", class: "button is-primary rk-btn-lg" %>
+        <%= link_to "Book a demo", "/book_demo", class: "button rk-btn-lg rk-btn-outline" %>
+      </div>
+      <div class="rk-hero-meta">
+        <span class="rk-hero-meta-item"><%= rk_icon(:check, size: 14) %>7-day free trial</span>
+      </div>
+    </div>
+
+    <%# dashboard mockup %>
+    <%= render "landing/dashboard_mockup",
+      visibility_score: visibility_score,
+      hero_platforms: hero_platforms %>
+  </div>
+</section>

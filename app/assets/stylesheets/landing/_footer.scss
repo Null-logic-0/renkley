@@ -1,0 +1,14 @@
+.rk-footer-top { padding-top: 56px; padding-bottom: 32px; }
+.rk-foot-grid { display: flex; flex-wrap: wrap; gap: 32px; margin-bottom: 44px; }
+.rk-foot-brand { flex: 1 1 240px; }
+.rk-foot-col { flex: 1 1 130px; }
+
+.rk-footer-brand-row { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; }
+.rk-brand-name-sm { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 17px; letter-spacing: -0.02em; }
+.rk-footer-desc { font-size: 13px; color: var(--rk-muted); margin: 0; max-width: 240px; line-height: 1.55; }
+.rk-footer-title { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rk-faint); font-weight: 700; margin-bottom: 12px; }
+.rk-footer-links { display: flex; flex-direction: column; gap: 9px; }
+.rk-footer-link { font-size: 13.5px; color: var(--rk-muted); }
+.rk-footer-link:hover { color: var(--rk-accent); }
+.rk-footer-bottom { display: flex; align-items: center; justify-content: space-between; border-top: 2px solid var(--rk-line); padding-top: 22px; flex-wrap: wrap; gap: 14px; }
+.rk-footer-copy { font-size: 12.5px; color: var(--rk-faint); }

@@ -1,0 +1,40 @@
+.rk-preview-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; }
+
+.rk-preview-tabs {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 8px;
+  border-bottom-width: 2px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.rk-preview-tab {
+  display: inline-block;
+  padding: 12px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--rk-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  white-space: nowrap;
+}
+.rk-preview-tab.is-active { font-weight: 700; color: var(--rk-accent); border-bottom-color: var(--rk-accent); }
+.rk-preview-body { padding: 26px; }
+.rk-preview-stats { display: flex; flex-direction: column; gap: 14px; }
+.rk-stat-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.rk-stat-value { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.02em; }
+.rk-stat-delta { font-size: 11.5px; font-weight: 700; color: var(--rk-success); }
+
+// The mini area chart's width="100%" HTML attribute doesn't reliably
+// resolve against an auto-sized grid/flex ancestor and falls back to its
+// viewBox's intrinsic width — a real CSS width property does resolve
+// correctly, so it gets one explicitly instead.
+.rk-chart-svg { display: block; width: 100%; }
+
+// See landing/_hero.scss for why grid items need an explicit min-width: 0.
+.rk-preview-grid > * { min-width: 0; }
+
+@media (max-width: 900px) {
+  .rk-preview-grid { grid-template-columns: 1fr !important; }
+}

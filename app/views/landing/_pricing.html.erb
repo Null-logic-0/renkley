@@ -1,0 +1,44 @@
+<section id="pricing" class="rk-divide" data-controller="billing">
+  <div class="rk-container rk-content-section">
+    <div class="has-text-centered rk-price-toggle-wrap">
+      <span class="rk-kicker">Pricing</span>
+      <h2 class="rk-section-title">Simple, transparent pricing</h2>
+      <p class="rk-pricing-lead">Start free. Upgrade as your AI visibility program grows.</p>
+      <div class="rk-seg">
+        <button type="button" class="rk-seg-opt" data-billing-target="monthlyBtn" data-action="billing#setMonthly">Monthly</button>
+        <button type="button" class="rk-seg-opt is-active" data-billing-target="annualBtn" data-action="billing#setAnnual">Annual &middot; save 20%</button>
+      </div>
+    </div>
+
+    <div class="rk-price-grid">
+      <% pricing_plans.each do |plan| %>
+        <div class="rk-price-card<%= ' is-highlight' if plan[:highlight] %>">
+          <% if plan[:highlight] %>
+            <div class="rk-price-ribbon">Most popular</div>
+          <% end %>
+          <div class="rk-price-body">
+            <h3 class="rk-price-name"><%= plan[:name] %></h3>
+            <p class="rk-price-blurb"><%= plan[:blurb] %></p>
+            <div class="rk-price-amount-row">
+              <% if plan[:monthly].nil? %>
+                <span data-billing-target="price" data-monthly="Custom" data-annual="Custom" class="rk-price-amount">Custom</span>
+              <% else %>
+                <span data-billing-target="price" data-monthly="$<%= plan[:monthly] %>" data-annual="$<%= plan[:annual] %>" class="rk-price-amount">$<%= plan[:annual] %></span>
+                <span class="rk-price-period">/mo</span>
+              <% end %>
+            </div>
+            <%= link_to plan[:cta], (plan[:monthly].nil? ? "/contact_sales" : "/sign_up"), class: "button rk-price-cta #{plan[:highlight] ? 'is-primary' : 'rk-btn-outline'}" %>
+            <div class="rk-price-feature-list">
+              <% plan[:features].each do |feat| %>
+                <div class="rk-price-feature">
+                  <span class="rk-price-feature-icon"><%= rk_icon(:check, size: 16) %></span>
+                  <span><%= feat %></span>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

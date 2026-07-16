@@ -1,0 +1,35 @@
+ <div class="rk-border rk-shadow rk-surface">
+   <div class="rk-window-bar">
+     <span class="rk-window-dot"></span>
+     <span class="rk-window-dot"></span>
+     <span class="rk-window-dot"></span>
+     <span class="rk-window-url">app.renkley.com/overview</span>
+   </div>
+   <div class="rk-mockup-body">
+     <div class="rk-border rk-surface rk-score-card">
+       <div><%= rk_donut_ring(visibility_score, "B+") %></div>
+       <div>
+         <div class="rk-eyebrow">AI Visibility Score</div>
+         <div class="rk-score-value-row">
+           <span class="rk-score-value"><%= visibility_score %></span>
+           <span class="rk-score-suffix">/100</span>
+         </div>
+         <div class="rk-score-delta">&uarr; 12% this month</div>
+       </div>
+     </div>
+     <div class="rk-border rk-surface rk-panel">
+       <div class="rk-eyebrow">Platform breakdown</div>
+       <div class="rk-platform-list">
+         <% hero_platforms.each do |p| %>
+           <div>
+             <div class="rk-platform-row-head">
+               <span class="rk-platform-name"><span class="rk-swatch" style="background:<%= p[:color] %>"></span><%= p[:name] %></span>
+               <span class="has-text-weight-bold"><%= p[:vis] %>%</span>
+             </div>
+             <div class="rk-bar-track"><div class="rk-bar-fill" style="width:<%= p[:vis] %>%;background:<%= p[:color] %>"></div></div>
+           </div>
+         <% end %>
+       </div>
+     </div>
+   </div>
+</div>

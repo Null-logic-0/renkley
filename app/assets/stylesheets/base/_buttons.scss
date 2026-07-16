@@ -1,0 +1,18 @@
+// Buttons — square corners, brand accent, plus the size/outline variants
+// used across the landing page's various CTA rows.
+.button {
+  font-weight: 700;
+}
+.button.is-primary {
+  background-color: var(--rk-accent);
+}
+.button.is-primary:hover {
+  background-color: var(--rk-accent-hover);
+}
+.button.is-primary:active {
+  background-color: var(--rk-accent-active);
+}
+
+.rk-btn-lg { height: 46px; font-size: 15px; padding: 0 22px; }
+.rk-btn-xl { height: 48px; font-size: 15px; padding: 0 24px; }
+.rk-btn-outline { border-color: var(--rk-line); }
