@@ -1,0 +1,19 @@
+<%
+  # Initials-in-a-square avatar — topbar, account dropdown, testimonials.
+  #
+  # Locals:
+  #   initials: e.g. "KV" (required)
+  #   size:     :md (default) | :sm | :lg
+  #   variant:  :brand (default, accent tint) | :on_accent (translucent white,
+  #             for use on an accent-colored panel) | :neutral
+  #   html:     {} — extra attributes merged onto the avatar element
+  initials = local_assigns.fetch(:initials)
+  size     = local_assigns.fetch(:size, :md)
+  variant  = local_assigns.fetch(:variant, :brand)
+  html     = local_assigns.fetch(:html, {})
+
+  size_class = { md: nil, sm: "is-sm", lg: "is-lg" }.fetch(size.to_sym)
+  variant_class = { brand: nil, on_accent: "is-on-accent", neutral: "is-neutral" }.fetch(variant.to_sym)
+  css_class = ["rk-avatar", size_class, variant_class, html[:class]].compact.join(" ")
+%>
+<span class="<%= css_class %>" <%= tag.attributes(html.except(:class)) %>><%= initials %></span>

@@ -1,0 +1,48 @@
+// Toggle switch — a button[role=switch] rather than a styled checkbox, so
+// the on/off visual is driven entirely by the aria-checked attribute (see
+// javascript/controllers/toggle_controller.js for the state change).
+.rk-switch {
+  width: 40px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  flex: none;
+  border-radius: 11px;
+  background: var(--rk-neutral-400);
+  position: relative;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+.rk-switch[aria-checked="true"] {
+  background: var(--rk-accent);
+}
+.rk-switch:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.rk-switch-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: left 150ms ease;
+}
+.rk-switch[aria-checked="true"] .rk-switch-knob {
+  left: 20px;
+}
+
+// A labeled toggle row, e.g. one line of Settings → Notifications
+.rk-toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+}
+.rk-toggle-row + .rk-toggle-row {
+  border-top: 1px solid var(--rk-line-soft);
+}
+.rk-toggle-row-label { flex: 1; min-width: 0; font-size: 13.5px; font-weight: 600; }
+.rk-toggle-row-desc { font-size: 12px; color: var(--rk-muted); }

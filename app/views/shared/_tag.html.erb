@@ -1,0 +1,35 @@
+<%
+  # Pill/tag — wraps Bulma's own .tag/.tags/.is-delete.
+  #
+  # Locals:
+  #   label:       tag text (required unless variant: :counter, where it's the count)
+  #   variant:     :accent_soft (default) | :neutral_soft | :accent_outline | :counter
+  #   removable:   false — appends a Bulma .is-delete affix inside a .tags.has-addons group.
+  #                Renders the affordance only; wire remove_html[:data] to your own
+  #                controller/action if the host screen needs to actually remove it.
+  #   remove_html: {} — extra attributes merged onto the delete button
+  #   html:        {} — extra attributes merged onto the tag itself
+  label     = local_assigns[:label]
+  variant   = local_assigns.fetch(:variant, :accent_soft)
+  removable = local_assigns.fetch(:removable, false)
+  remove_html = local_assigns.fetch(:remove_html, {})
+  html      = local_assigns.fetch(:html, {})
+
+  variant_class = {
+    accent_soft: "is-accent-soft",
+    neutral_soft: "is-neutral-soft",
+    accent_outline: "is-accent-outline",
+    counter: "is-counter"
+  }.fetch(variant.to_sym)
+
+  css_class = ["tag", variant_class, html[:class]].compact.join(" ")
+  html_rest = html.except(:class)
+%>
+<% if removable %>
+  <div class="tags has-addons">
+    <span class="<%= css_class %>" <%= tag.attributes(html_rest) %>><%= label %></span>
+    <button type="button" class="tag is-delete" aria-label="Remove <%= label %>" <%= tag.attributes(remove_html) %>></button>
+  </div>
+<% else %>
+  <span class="<%= css_class %>" <%= tag.attributes(html_rest) %>><%= label %></span>
+<% end %>

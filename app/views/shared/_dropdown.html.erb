@@ -1,0 +1,27 @@
+<%
+  # Generic dropdown/popover shell — open/close, outside-click and Escape
+  # all come from the one shared javascript/controllers/dropdown_controller.js.
+  # Build the trigger and menu content as captured strings (see
+  # dev/components/index.html.erb for a worked example using `capture`),
+  # then pass them in as the trigger: and menu: locals below.
+  #
+  # Locals:
+  #   trigger: captured HTML for the clickable trigger (required)
+  #   menu:    captured HTML for the dropdown content, typically shared/dropdown_item rows (required)
+  #   align:   :left (default) | :right
+  #   wide:    false — use the wider identity-menu content width (e.g. account menu)
+  trigger = local_assigns.fetch(:trigger)
+  menu    = local_assigns.fetch(:menu)
+  align   = local_assigns.fetch(:align, :left)
+  wide    = local_assigns.fetch(:wide, false)
+%>
+<div class="dropdown<%= ' is-right' if align.to_sym == :right %>" data-controller="dropdown">
+  <div class="dropdown-trigger">
+    <%= tag.div trigger, "aria-haspopup": "true", data: { action: "click->dropdown#toggle" } %>
+  </div>
+  <div class="dropdown-menu<%= ' is-wide' if wide %>" role="menu">
+    <div class="dropdown-content">
+      <%= menu %>
+    </div>
+  </div>
+</div>

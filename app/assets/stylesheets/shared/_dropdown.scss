@@ -1,0 +1,52 @@
+// Dropdown/popover — skins Bulma's own .dropdown/.dropdown-menu/
+// .dropdown-content/.dropdown-item/.dropdown-divider. Opening/closing,
+// outside-click and Escape are handled by the one shared
+// javascript/controllers/dropdown_controller.js — this file is visuals only.
+.dropdown-content {
+  border: 1.5px solid var(--rk-line);
+  box-shadow: var(--rk-shadow-lg);
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.dropdown-item {
+  padding: 9px 14px;
+  font-size: 13.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+.dropdown-item:hover {
+  background: color-mix(in srgb, var(--bulma-text) 6%, transparent);
+}
+.dropdown-item.is-danger {
+  color: var(--rk-error);
+  font-weight: 600;
+}
+.dropdown-item.is-danger:hover {
+  background: var(--rk-error-bg);
+}
+.dropdown-divider {
+  background: var(--rk-line-soft);
+  margin: 0;
+}
+
+// Wider content variants for identity-style menus (account menu)
+.dropdown-menu.is-wide .dropdown-content {
+  width: 224px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.rk-dropdown-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 14px;
+  border-bottom: 2px solid var(--rk-line);
+}
+.rk-dropdown-items {
+  padding: 5px 0;
+}
+.rk-dropdown-items + .rk-dropdown-items {
+  border-top: 1px solid var(--rk-line-soft);
+}

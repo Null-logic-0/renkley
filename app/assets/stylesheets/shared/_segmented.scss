@@ -1,0 +1,51 @@
+// Segmented control — radio-driven, so the selected option's visual state
+// comes from plain CSS (:has()) with no JS required to render correctly.
+// Used for "scan frequency" in Settings and anywhere else a small exclusive
+// choice needs to sit inline rather than as a full field of radio dots.
+.seg {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1.5px solid var(--rk-line);
+}
+.seg-opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--rk-muted);
+}
+.seg-opt input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.seg-opt + .seg-opt {
+  border-left: 1.5px solid var(--rk-line);
+}
+.seg-opt:has(input:checked) {
+  background: var(--rk-accent);
+  color: #fff;
+  font-weight: 700;
+}
+.seg-opt:not(:has(input:checked)):hover {
+  background: color-mix(in srgb, var(--bulma-text) 6%, transparent);
+}
+.seg-opt:has(input:focus-visible) {
+  outline: 2px solid var(--rk-accent);
+  outline-offset: -2px;
+}
+
+// Full-width variant — each option shares the row equally
+.seg.is-fullwidth {
+  display: flex;
+  width: 100%;
+}
+.seg.is-fullwidth .seg-opt {
+  flex: 1 1 0;
+  justify-content: center;
+}

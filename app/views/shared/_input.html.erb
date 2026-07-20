@@ -1,0 +1,40 @@
+<%
+  # Text input with label, error state, and helper text — wraps Bulma's own
+  # .field/.label/.control/.input/.help, it doesn't replace them.
+  #
+  # Locals:
+  #   label:       label text (optional)
+  #   name:        input name/id (required)
+  #   type:        "text" (default), "email", "password", etc.
+  #   placeholder: placeholder text
+  #   value:       current value
+  #   error:       error message — shown instead of helper, marks the input invalid
+  #   helper:      helper text shown below the input when there's no error
+  #   required:    false
+  #   disabled:    false
+  #   html:        {} — extra attributes merged onto the <input> (data-*, autocomplete, etc.)
+  label       = local_assigns[:label]
+  name        = local_assigns.fetch(:name)
+  type        = local_assigns.fetch(:type, "text")
+  placeholder = local_assigns[:placeholder]
+  value       = local_assigns[:value]
+  error       = local_assigns[:error]
+  helper      = local_assigns[:helper]
+  required    = local_assigns.fetch(:required, false)
+  disabled    = local_assigns.fetch(:disabled, false)
+  html        = local_assigns.fetch(:html, {})
+
+  input_class = ["input", ("is-danger" if error.present?), html[:class]].compact.join(" ")
+%>
+<div class="field">
+  <% if label.present? %><label class="label" for="<%= name %>"><%= label %></label><% end %>
+  <div class="control">
+    <%= tag.input id: name, name: name, type: type, value: value, placeholder: placeholder,
+          required: required, disabled: disabled, **html.except(:class), class: input_class %>
+  </div>
+  <% if error.present? %>
+    <p class="help is-danger"><%= error %></p>
+  <% elsif helper.present? %>
+    <p class="help"><%= helper %></p>
+  <% end %>
+</div>

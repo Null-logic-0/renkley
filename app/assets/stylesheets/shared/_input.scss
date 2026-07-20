@@ -1,0 +1,59 @@
+// Text input — skins Bulma's own .field/.label/.control/.input/.help rather
+// than introducing a parallel set of form classes.
+.label {
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: color-mix(in srgb, var(--bulma-text) 70%, transparent);
+}
+.input, .textarea {
+  background: var(--bulma-background);
+  border-color: var(--rk-line);
+  color: var(--bulma-text);
+  box-shadow: none;
+}
+.input:hover, .textarea:hover {
+  border-color: color-mix(in srgb, var(--bulma-text) 45%, transparent);
+}
+.input:focus, .input:focus-visible,
+.textarea:focus, .textarea:focus-visible {
+  border-color: var(--rk-accent);
+  box-shadow: none;
+}
+.input.is-danger, .textarea.is-danger {
+  border-color: var(--rk-error);
+}
+.input.is-danger:focus, .input.is-danger:focus-visible {
+  box-shadow: 0 0 0 1px var(--rk-error);
+}
+
+.help {
+  font-size: 12px;
+  color: var(--rk-muted);
+}
+.help.is-danger {
+  color: var(--rk-error);
+}
+
+// Prefix icon (e.g. the topbar search field, the onboarding URL field)
+.rk-input-affix {
+  display: flex;
+  border: 1.5px solid var(--rk-line);
+  background: var(--bulma-background);
+}
+.rk-input-affix .input {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  height: 40px;
+}
+.rk-input-affix .input:focus, .rk-input-affix .input:focus-visible {
+  box-shadow: none;
+}
+.rk-input-affix-icon {
+  display: grid;
+  place-items: center;
+  padding: 0 12px;
+  color: var(--rk-faint);
+  border-right: 1.5px solid var(--rk-line);
+  flex: none;
+}

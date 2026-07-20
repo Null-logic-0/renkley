@@ -1,0 +1,42 @@
+<%
+  # Loading / error / empty state block — same shell, swapped per variant.
+  # Use wherever a section is waiting on data, failed to load it, or has
+  # nothing to show yet.
+  #
+  # Locals:
+  #   variant:        :loading | :error | :empty (required)
+  #   title:          heading text (optional — sensible default per variant)
+  #   description:    supporting copy (optional)
+  #   action_label:   optional button label (e.g. "Try again", "Add competitor")
+  #   action_href:    href for the action button
+  #   action_variant: :primary (default) | :secondary | :ghost | :destructive | :destructive_outline
+  #   action_html:    {} — extra attributes merged onto the action button (data-action, etc.)
+  variant = local_assigns.fetch(:variant)
+
+  variant_class = { loading: "is-loading", error: "is-error", empty: "is-empty" }.fetch(variant.to_sym)
+  default_title = { loading: "Loading…", error: "Something went wrong", empty: "Nothing here yet" }.fetch(variant.to_sym)
+  default_icon  = { error: :alert_triangle, empty: :inbox }
+
+  title          = local_assigns.fetch(:title, default_title)
+  description    = local_assigns[:description]
+  action_label   = local_assigns[:action_label]
+  action_href    = local_assigns.fetch(:action_href, "#")
+  action_variant = local_assigns.fetch(:action_variant, :primary)
+  action_html    = local_assigns.fetch(:action_html, {})
+
+  css_class = ["rk-state", variant_class].join(" ")
+%>
+<div class="<%= css_class %>">
+  <% if variant.to_sym == :loading %>
+    <div class="rk-state-loader" role="status" aria-label="Loading">
+      <%= shared_icon(:sparkles, size: 32, stroke_width: 1.5) %>
+    </div>
+  <% else %>
+    <div class="rk-state-icon"><%= shared_icon(default_icon.fetch(variant.to_sym), size: 26) %></div>
+  <% end %>
+  <h2 class="rk-state-title"><%= title %></h2>
+  <% if description.present? %><p class="rk-state-desc"><%= description %></p><% end %>
+  <% if action_label.present? %>
+    <%= render "shared/button", label: action_label, variant: action_variant, href: action_href, html: action_html %>
+  <% end %>
+</div>

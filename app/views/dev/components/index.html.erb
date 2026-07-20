@@ -1,0 +1,301 @@
+<% content_for :title, "Component style guide (dev)" %>
+
+<div class="container py-6 px-4">
+  <h1 class="title">Renkley component library</h1>
+  <p class="subtitle is-6 has-text-grey">Every shared UI primitive in one place —
+    <code>app/views/shared/</code>
+    +
+    <code>app/assets/stylesheets/shared/</code>. Dev-only, not linked from the app.</p>
+
+  <hr>
+
+  <%# ── Flash message ────────────────────────────────────────────────── %>
+  <h2 class="title is-4">Flash message</h2>
+  <p class="mb-3 has-text-grey">Rendered automatically for every request from
+    <code>layouts/application.html.erb</code>
+    via
+    <code>shared/_flash</code>, which loops over
+    <code>flash</code>.
+    <code>notice</code>
+    → success,
+    <code>alert</code>
+    → danger.</p>
+  <div class="rk-flash-stack" style="max-width:480px">
+    <%= render "shared/flash_message", message: "Settings saved.", variant: :success %>
+    <%= render "shared/flash_message",
+    message: "Something went wrong. Please try again.",
+    variant: :danger %>
+    <%= render "shared/flash_message",
+    message: "Your plan renews in 3 days.",
+    variant: :info %>
+  </div>
+
+  <hr>
+
+  <%# ── Buttons ─────────────────────────────────────────────────────── %>
+  <h2 class="title is-4">Button</h2>
+  <p class="mb-3 has-text-grey">Variants: primary, secondary (outline), ghost, destructive. Plus
+    full-width, loading and disabled states.</p>
+  <div class="is-flex is-flex-wrap-wrap" style="gap:12px">
+    <%= render "shared/button", label: "Primary", variant: :primary %>
+    <%= render "shared/button", label: "Secondary", variant: :secondary %>
+    <%= render "shared/button", label: "Ghost", variant: :ghost %>
+    <%= render "shared/button", label: "Destructive", variant: :destructive %>
+    <%= render "shared/button",
+    label: "Destructive outline",
+    variant: :destructive_outline %>
+    <%= render "shared/button", label: "Loading…", variant: :primary, loading: true %>
+    <%= render "shared/button", label: "Disabled", variant: :primary, disabled: true %>
+    <%= render "shared/button",
+    label: "Link styled as button",
+    variant: :secondary,
+    href: "#" %>
+  </div>
+  <div class="mt-3" style="max-width:320px">
+    <%= render "shared/button",
+    label: "Full-width primary",
+    variant: :primary,
+    full_width: true %>
+  </div>
+
+  <hr>
+
+  <%# ── Text input ──────────────────────────────────────────────────── %>
+  <h2 class="title is-4">Text input</h2>
+  <div class="columns is-multiline">
+    <div class="column is-4">
+      <%= render "shared/input",
+      name: "example_name",
+      label: "Full name",
+      placeholder: "Kestrel Voss" %>
+    </div>
+    <div class="column is-4">
+      <%= render "shared/input",
+      name: "example_email",
+      type: "email",
+      label: "Work email",
+      placeholder: "you@company.com" %>
+    </div>
+    <div class="column is-4">
+      <%= render "shared/input",
+      name: "example_password",
+      type: "password",
+      label: "Password",
+      placeholder: "Enter your password" %>
+    </div>
+    <div class="column is-4">
+      <%= render "shared/input",
+      name: "example_helper",
+      label: "Workspace name",
+      value: "Kestrel",
+      helper: "Shown across your dashboard and reports." %>
+    </div>
+    <div class="column is-4">
+      <%= render "shared/input",
+      name: "example_error",
+      type: "password",
+      label: "New password",
+      value: "abc",
+      error: "Must be at least 8 characters." %>
+    </div>
+    <div class="column is-4">
+      <%= render "shared/input",
+      name: "example_disabled",
+      label: "Primary AI platform",
+      value: "All platforms",
+      disabled: true %>
+    </div>
+  </div>
+
+  <hr>
+
+  <%# ── Toggle switch ───────────────────────────────────────────────── %>
+  <h2 class="title is-4">Toggle switch</h2>
+  <div class="rk-card" style="max-width:420px">
+    <%= render "shared/toggle",
+    label: "Weekly summary email",
+    description: "A recap of your AI visibility every Monday.",
+    checked: true %>
+    <%= render "shared/toggle",
+    label: "Competitor alerts",
+    description: "Notify me when a competitor overtakes me.",
+    checked: false %>
+  </div>
+
+  <hr>
+
+  <%# ── Segmented control ───────────────────────────────────────────── %>
+  <h2 class="title is-4">Segmented control</h2>
+  <p class="mb-3 has-text-grey">Used for scan frequency and similar exclusive choices.</p>
+  <%= render "shared/segmented",
+  name: "example_freq",
+  options: [
+    { label: "Hourly", value: "hourly" },
+    { label: "Daily", value: "daily", selected: true },
+    { label: "Weekly", value: "weekly" },
+  ] %>
+
+  <hr>
+
+  <%# ── Tag / pill ───────────────────────────────────────────────────── %>
+  <h2 class="title is-4">Tag / pill</h2>
+  <div class="is-flex is-flex-wrap-wrap is-align-items-center" style="gap:10px">
+    <%= render "shared/tag", label: "Accent", variant: :accent_soft %>
+    <%= render "shared/tag", label: "Neutral", variant: :neutral_soft %>
+    <%= render "shared/tag", label: "Outline", variant: :accent_outline %>
+    <%= render "shared/tag", label: "12", variant: :counter %>
+    <%= render "shared/tag", label: "Kestrel", variant: :accent_soft, removable: true %>
+    <%= render "shared/tag",
+    label: "kestrel.io",
+    variant: :neutral_soft,
+    removable: true %>
+    <%= render "shared/button", label: "+ Add", variant: :ghost %>
+  </div>
+
+  <hr>
+
+  <%# ── Card / section container ────────────────────────────────────── %>
+  <h2 class="title is-4">Card / section container</h2>
+  <div style="max-width:520px">
+    <%= render layout: "shared/card", locals: { title: "Workspace", subtitle: "Basic details about your workspace." } do %>
+      <%= render "shared/input",
+      name: "example_card_name",
+      label: "Workspace name",
+      value: "Kestrel" %>
+    <% end %>
+  </div>
+
+  <hr>
+
+  <%# ── Avatar ───────────────────────────────────────────────────────── %>
+  <h2 class="title is-4">Avatar</h2>
+  <div class="is-flex is-align-items-center" style="gap:14px">
+    <%= render "shared/avatar", initials: "KV", size: :sm %>
+    <%= render "shared/avatar", initials: "KV", size: :md %>
+    <%= render "shared/avatar", initials: "KV", size: :lg %>
+    <%= render "shared/avatar", initials: "ML", variant: :neutral %>
+    <span style="background:var(--rk-accent);padding:14px;display:inline-flex">
+      <%= render "shared/avatar", initials: "ML", variant: :on_accent %>
+    </span>
+  </div>
+
+  <hr>
+
+  <%# ── Dropdown / popover ───────────────────────────────────────────── %>
+  <h2 class="title is-4">Dropdown / popover</h2>
+  <p class="mb-3 has-text-grey">Shares one Stimulus controller (open/close, outside-click, Escape) for both
+    the account menu and a date-range filter.</p>
+  <div class="is-flex" style="gap:40px">
+    <div>
+      <p class="help mb-2">Account menu</p>
+      <% account_trigger = capture do %>
+        <%= render "shared/avatar", initials: "KV", size: :sm %>
+      <% end %>
+      <% account_menu = capture do %>
+        <%= render "shared/dropdown_item", label: "Settings", icon: :gear, href: "#" %>
+        <%= render "shared/dropdown_item", label: "Profile", icon: :user, href: "#" %>
+        <hr class="dropdown-divider">
+        <%= render "shared/dropdown_item", label: "Log out", icon: :logout, variant: :danger %>
+      <% end %>
+      <%= render "shared/dropdown", trigger: account_trigger, menu: account_menu %>
+    </div>
+    <div>
+      <p class="help mb-2">Date-range filter</p>
+      <% date_trigger = capture do %>
+        <%= render "shared/button", label: "Last 30 days ⌄", variant: :secondary %>
+      <% end %>
+      <% date_menu = capture do %>
+        <%= render "shared/dropdown_item", label: "Last 7 days", href: "#" %>
+        <%= render "shared/dropdown_item", label: "Last 30 days", href: "#" %>
+        <%= render "shared/dropdown_item", label: "Last 90 days", href: "#" %>
+      <% end %>
+      <%= render "shared/dropdown", trigger: date_trigger, menu: date_menu %>
+    </div>
+  </div>
+
+  <hr>
+
+  <%# ── Checklist / validation indicator ────────────────────────────── %>
+  <h2 class="title is-4">Checklist / validation indicator</h2>
+  <div class="is-flex is-flex-direction-column" style="gap:7px">
+    <%= render "shared/checklist_item", label: "At least 8 characters", satisfied: true %>
+    <%= render "shared/checklist_item",
+    label: "Contains a letter and a number",
+    satisfied: true %>
+    <%= render "shared/checklist_item", label: "Passwords match", satisfied: false %>
+  </div>
+
+  <hr>
+
+  <%# ── Danger / warning banner ─────────────────────────────────────── %>
+  <h2 class="title is-4">Danger / warning banner</h2>
+  <div class="is-flex is-flex-direction-column" style="gap:16px">
+    <%= render "shared/banner",
+    variant: :danger,
+    title: "Delete workspace",
+    description:
+      "Permanently remove Kestrel and all tracking data. This cannot be undone.",
+    action_label: "Delete workspace" %>
+    <%= render "shared/banner",
+    variant: :warning,
+    title: "Usage approaching limit",
+    description: "You've used 92% of this cycle's tracked prompts." %>
+  </div>
+
+  <hr>
+
+  <%# ── Loading / error / empty state ───────────────────────────────── %>
+  <h2 class="title is-4">Loading / error / empty state</h2>
+  <p class="mb-3 has-text-grey">One shared shell for a section that's waiting on data, failed to load it,
+    or has nothing to show yet.</p>
+  <div class="columns">
+    <div class="column is-4 rk-border">
+      <%= render "shared/state", variant: :loading %>
+    </div>
+    <div class="column is-4 rk-border">
+      <%= render "shared/state",
+      variant: :error,
+      description:
+        "We couldn't load your competitors. Check your connection and try again.",
+      action_label: "Try again",
+      action_variant: :secondary %>
+    </div>
+    <div class="column is-4 rk-border">
+      <%= render "shared/state",
+      variant: :empty,
+      title: "No competitors yet",
+      description: "Add a competitor to start comparing your AI visibility.",
+      action_label: "Add competitor" %>
+    </div>
+  </div>
+
+  <hr>
+
+  <%# ── Modal ────────────────────────────────────────────────────────── %>
+  <h2 class="title is-4">Modal</h2>
+  <p class="mb-3 has-text-grey">Wraps Bulma's own
+    <code>.modal</code>/<code>.modal-card</code>, shares one Stimulus controller (Escape key, backdrop click, body scroll
+    lock).</p>
+  <% delete_trigger = capture { render "shared/button", label: "Delete workspace", variant: :destructive }
+    delete_actions = capture do %>
+    <%= render "shared/button",
+    label: "Cancel",
+    variant: :secondary,
+    html: {
+      data: {
+        action: "click->modal#close",
+      },
+    } %>
+    <%= render "shared/button",
+    label: "Delete workspace",
+    variant: :destructive,
+    html: {
+      data: {
+        action: "click->modal#close",
+      },
+    } %>
+  <% end %>
+  <%= render layout: "shared/modal", locals: { title: "Delete workspace", trigger: delete_trigger, actions: delete_actions } do %>
+    Permanently remove Kestrel and all tracking data. This cannot be undone.
+  <% end %>
+</div>
