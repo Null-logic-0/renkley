@@ -18,6 +18,19 @@
 @use "base/layout";
 @use "base/buttons";
 
+// ── Shared component library — reused across auth/app-shell/settings ───
+@use "shared/input";
+@use "shared/toggle";
+@use "shared/segmented";
+@use "shared/tag";
+@use "shared/card";
+@use "shared/avatar";
+@use "shared/dropdown";
+@use "shared/checklist";
+@use "shared/banner";
+@use "shared/state";
+@use "shared/modal";
+
 // ── Landing page — one file per section/component ──────────────────────
 @use "landing/shared";
 @use "landing/header";

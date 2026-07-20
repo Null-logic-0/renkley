@@ -1,0 +1,24 @@
+<%
+  # Bordered section container with a title + optional subtitle, used
+  # throughout Settings. Render this one with Rails' render(layout:) form
+  # (locals: title/subtitle, block content becomes this partial's `yield`)
+  # rather than a plain `render partial:` call, since the body is a block.
+  #
+  # Locals:
+  #   title:     header title (required)
+  #   subtitle:  header subtitle (optional)
+  #   flush:     false — pass true when the block renders its own rows/padding
+  #              (e.g. a list of toggle rows) instead of using the default body padding
+  title    = local_assigns.fetch(:title)
+  subtitle = local_assigns[:subtitle]
+  flush    = local_assigns.fetch(:flush, false)
+%>
+<section class="rk-card">
+  <div class="rk-card-head">
+    <h3 class="rk-card-title"><%= title %></h3>
+    <% if subtitle.present? %><p class="rk-card-subtitle"><%= subtitle %></p><% end %>
+  </div>
+  <div class="rk-card-body<%= ' is-flush' if flush %>">
+    <%= yield %>
+  </div>
+</section>

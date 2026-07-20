@@ -1,0 +1,45 @@
+<%
+  # Reusable modal dialog — wraps Bulma's own .modal/.modal-card family.
+  # Bundles the trigger and the modal in one data-controller="modal" scope
+  # so a single controller instance can open/close both. Render with the
+  # `layout:` form so the block becomes the modal body:
+  #
+  #   trigger = capture { render "shared/button", label: "Delete workspace", variant: :destructive }
+  #   actions = capture do
+  #     render "shared/button", label: "Cancel", variant: :secondary, html: { data: { action: "click->modal#close" } }
+  #     render "shared/button", label: "Delete", variant: :destructive, html: { data: { action: "click->modal#close" } }
+  #   end
+  #   render layout: "shared/modal", locals: { title: "Delete workspace", trigger: trigger, actions: actions } do
+  #     "Permanently remove this workspace and all its tracking data. This cannot be undone."
+  #   end
+  #
+  # Locals:
+  #   title:   modal header title (required)
+  #   trigger: captured HTML for the element that opens the modal (required)
+  #   actions: captured HTML for the footer button row (optional)
+  #   id:      DOM id for the modal (optional, auto-generated if omitted)
+  title   = local_assigns.fetch(:title)
+  trigger = local_assigns.fetch(:trigger)
+  actions = local_assigns[:actions]
+  modal_id = local_assigns.fetch(:id) { "modal-#{SecureRandom.hex(4)}" }
+  title_id = "#{modal_id}-title"
+%>
+<div data-controller="modal">
+  <%= tag.div trigger, data: { action: "click->modal#open" } %>
+
+  <div id="<%= modal_id %>" class="modal" data-modal-target="modal" role="dialog" aria-modal="true" aria-labelledby="<%= title_id %>">
+    <div class="modal-background" data-action="click->modal#close"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title" id="<%= title_id %>"><%= title %></p>
+        <button class="delete" aria-label="Close" data-action="click->modal#close"></button>
+      </header>
+      <section class="modal-card-body">
+        <%= yield %>
+      </section>
+      <% if actions.present? %>
+        <footer class="modal-card-foot"><%= actions %></footer>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<%
+  # Renders every entry in Rails' `flash` as a dismissible shared/_flash_message.
+  # The two standard keys map to a tone; any other custom key (e.g.
+  # flash[:warning]) is looked up the same way and falls back to :info.
+  #
+  #   flash[:notice] = "Settings saved."
+  #   flash[:alert]  = "Something went wrong."
+  #
+  # Include once near the top of the layout — see layouts/application.html.erb.
+  flash_variants = { notice: :success, alert: :danger, success: :success, error: :danger, warning: :warning, info: :info }
+%>
+<% if flash.any? %>
+  <div class="rk-flash-stack">
+    <% flash.each do |type, message| %>
+      <% next if message.blank? %>
+      <%= render "shared/flash_message", message: message, variant: flash_variants.fetch(type.to_sym, :info) %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,36 @@
+// Modal dialog — skins Bulma's own .modal/.modal-card family rather than a
+// parallel dialog/backdrop convention. Open/close comes from the one shared
+// javascript/controllers/modal_controller.js — this file is visuals only.
+.modal-background {
+  background: color-mix(in srgb, #000 45%, transparent);
+}
+.modal-card {
+  border: 1.5px solid var(--rk-line);
+  box-shadow: var(--rk-shadow-lg);
+  background: var(--bulma-scheme-main);
+}
+.modal-card-head {
+  background: var(--bulma-scheme-main);
+  border-bottom: 2px solid var(--rk-line);
+  box-shadow: none;
+  padding: 16px 20px;
+}
+.modal-card-title {
+  font-size: 17px;
+  letter-spacing: -0.015em;
+}
+.modal-card-body {
+  background: var(--bulma-scheme-main);
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--rk-muted);
+}
+.modal-card-foot {
+  background: var(--bulma-scheme-main);
+  border-top: 1px solid var(--rk-line-soft);
+  box-shadow: none;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px 20px;
+}

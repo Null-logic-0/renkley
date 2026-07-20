@@ -1,0 +1,29 @@
+<%
+  # Danger/warning callout, e.g. Settings → "Delete workspace".
+  #
+  # Locals:
+  #   title:        bold title (required)
+  #   description:  supporting copy (required)
+  #   variant:      :danger (default) | :warning
+  #   action_label: optional button label rendered on the right (e.g. "Delete workspace")
+  #   action_html:  {} — extra attributes merged onto the action button (data-action, etc.)
+  title        = local_assigns.fetch(:title)
+  description  = local_assigns.fetch(:description)
+  variant      = local_assigns.fetch(:variant, :danger)
+  action_label = local_assigns[:action_label]
+  action_html  = local_assigns.fetch(:action_html, {})
+
+  variant_class = { danger: "is-danger", warning: "is-warning" }.fetch(variant.to_sym)
+  css_class = ["notification", variant_class].join(" ")
+%>
+<div class="<%= css_class %>">
+  <div class="rk-banner-row">
+    <div>
+      <div class="rk-banner-title"><%= title %></div>
+      <div class="rk-banner-desc"><%= description %></div>
+    </div>
+    <% if action_label.present? %>
+      <%= render "shared/button", label: action_label, variant: :destructive_outline, html: action_html %>
+    <% end %>
+  </div>
+</div>

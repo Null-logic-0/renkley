@@ -1,0 +1,75 @@
+// Loading / error / empty state — one shared shell (spinner or icon, title,
+// description, optional action) used wherever a section is waiting on data,
+// failed to load it, or has nothing to show yet.
+.rk-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 48px 20px;
+}
+.rk-state-icon {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 18px;
+}
+.rk-state.is-empty .rk-state-icon {
+  background: var(--rk-accent-100);
+  color: var(--rk-accent-800);
+}
+.rk-state.is-error .rk-state-icon {
+  background: var(--rk-error-bg);
+  color: var(--rk-error);
+}
+.rk-state-title {
+  font-size: 19px;
+  letter-spacing: -0.015em;
+  margin: 0 0 8px;
+}
+.rk-state-desc {
+  font-size: 13.5px;
+  color: var(--rk-muted);
+  line-height: 1.55;
+  max-width: 380px;
+  margin: 0 0 20px;
+}
+
+// A pulsing sparkle with a soft glow behind it, rather than a generic spinner
+// — this is an AI product, so "working on it" gets to look like that instead
+// of a plain loading wheel.
+.rk-state-loader {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 14px;
+  color: var(--rk-accent);
+}
+.rk-state-loader::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--rk-accent) 45%, transparent) 0%, transparent 72%);
+  animation: rk-sparkle-glow 2.2s ease-in-out infinite;
+}
+.rk-state-loader svg {
+  position: relative;
+  animation: rk-sparkle-pulse 2.2s ease-in-out infinite;
+}
+// Fully hidden at the ends of the cycle, blooms to a bright glow at the
+// midpoint, then fades away again — a twinkle rather than a steady breathe.
+@keyframes rk-sparkle-pulse {
+  0%, 100% { transform: scale(0.5) rotate(-8deg); opacity: 0; }
+  50% { transform: scale(1.1) rotate(4deg); opacity: 1; }
+}
+@keyframes rk-sparkle-glow {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 0.65; transform: scale(1.2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rk-state-loader svg, .rk-state-loader::before { animation-duration: 3.5s; }
+}

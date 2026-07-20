@@ -1,0 +1,34 @@
+<%
+  # A labeled on/off row, e.g. one line of Settings → Notifications.
+  # Visual state only — see javascript/controllers/toggle_controller.js.
+  #
+  # Locals:
+  #   label:       row label (required)
+  #   description: secondary line under the label (optional)
+  #   checked:     false — initial on/off state
+  #   name:        optional id/name hook for the switch button
+  #   disabled:    false
+  #   html:        {} — extra attributes merged onto the switch button
+  label       = local_assigns.fetch(:label)
+  description = local_assigns[:description]
+  checked     = local_assigns.fetch(:checked, false)
+  name        = local_assigns[:name]
+  disabled    = local_assigns.fetch(:disabled, false)
+  html        = local_assigns.fetch(:html, {})
+%>
+<div class="rk-toggle-row">
+  <div>
+    <div class="rk-toggle-row-label"><%= label %></div>
+    <% if description.present? %><div class="rk-toggle-row-desc"><%= description %></div><% end %>
+  </div>
+  <%
+    html_data = html.fetch(:data, {})
+    html_rest = html.except(:data)
+  %>
+  <%= tag.button type: "button", role: "switch", "aria-checked": checked, disabled: disabled,
+        id: name, name: name, class: "rk-switch",
+        data: { controller: "toggle", action: "click->toggle#flip" }.merge(html_data),
+        **html_rest do %>
+    <span class="rk-switch-knob"></span>
+  <% end %>
+</div>

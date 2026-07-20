@@ -1,0 +1,40 @@
+<%
+  # Renders a Bulma <button>/<a class="button"> in one of the brand variants.
+  #
+  # Locals:
+  #   label:       button text (required)
+  #   variant:     :primary (default) | :secondary | :ghost | :destructive | :destructive_outline
+  #   href:        renders an <a> instead of a <button> when present
+  #   type:        "button" (default) | "submit" — ignored when href is given
+  #   full_width:  false
+  #   loading:     false — shows Bulma's built-in button spinner
+  #   disabled:    false
+  #   html:        {} — extra attributes merged onto the tag (data-*, id, etc.)
+  label      = local_assigns.fetch(:label)
+  variant    = local_assigns.fetch(:variant, :primary)
+  href       = local_assigns[:href]
+  type       = local_assigns.fetch(:type, "button")
+  full_width = local_assigns.fetch(:full_width, false)
+  loading    = local_assigns.fetch(:loading, false)
+  disabled   = local_assigns.fetch(:disabled, false)
+  html       = local_assigns.fetch(:html, {})
+
+  variant_class = {
+    primary: "is-primary",
+    secondary: "rk-btn-outline",
+    ghost: "is-ghost",
+    destructive: "is-danger",
+    destructive_outline: "is-danger is-outlined"
+  }.fetch(variant.to_sym)
+
+  classes = ["button", variant_class]
+  classes << "is-fullwidth" if full_width
+  classes << "is-loading" if loading
+  css_class = [*classes, html[:class]].compact.join(" ")
+  tag_options = html.except(:class).merge(class: css_class)
+%>
+<% if href %>
+  <%= link_to label, href, **tag_options %>
+<% else %>
+  <%= content_tag :button, label, type: type, disabled: disabled, **tag_options %>
+<% end %>

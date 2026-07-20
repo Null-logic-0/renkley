@@ -1,0 +1,26 @@
+<%
+  # One row inside a shared/dropdown's menu content.
+  #
+  # Locals:
+  #   label:    row text (required)
+  #   icon:     SharedComponentsHelper icon name (optional)
+  #   href:     link target — renders <a>; omit for a <button type="button"> (e.g. "Log out")
+  #   variant:  nil (default) | :danger
+  #   html:     {} — extra attributes merged onto the row (data-action, etc.)
+  label   = local_assigns.fetch(:label)
+  icon    = local_assigns[:icon]
+  href    = local_assigns[:href]
+  variant = local_assigns[:variant]
+  html    = local_assigns.fetch(:html, {})
+
+  css_class = ["dropdown-item", ("is-danger" if variant.to_s == "danger"), html[:class]].compact.join(" ")
+  html_rest = html.except(:class)
+%>
+<% content = capture do %>
+  <% if icon.present? %><%= shared_icon(icon, size: 16) %><% end %><%= label %>
+<% end %>
+<% if href %>
+  <%= link_to content, href, class: css_class, **html_rest %>
+<% else %>
+  <%= content_tag :button, content, type: "button", class: css_class, **html_rest %>
+<% end %>

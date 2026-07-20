@@ -1,0 +1,17 @@
+<%
+  # One dismissible flash line. Closing is purely visual — see
+  # javascript/controllers/dismiss_controller.js.
+  #
+  # Locals:
+  #   message: the flash text (required)
+  #   variant: :success (default) | :danger | :warning | :info
+  message = local_assigns.fetch(:message)
+  variant = local_assigns.fetch(:variant, :success)
+
+  variant_class = { success: "is-success", danger: "is-danger", warning: "is-warning", info: "is-info" }.fetch(variant.to_sym)
+  css_class = ["notification", variant_class, "rk-flash"].join(" ")
+%>
+<div class="<%= css_class %>" data-controller="dismiss" role="alert">
+  <button class="delete" aria-label="Dismiss" data-action="click->dismiss#close"></button>
+  <%= message %>
+</div>

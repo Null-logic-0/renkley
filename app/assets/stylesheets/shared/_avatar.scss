@@ -1,0 +1,38 @@
+// Avatar — initials in a square. Used in the topbar, the account dropdown,
+// and (on-accent variant) the auth page testimonial.
+.rk-avatar {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  background: var(--rk-accent-100);
+  border: 1px solid var(--rk-accent-200);
+  color: var(--rk-accent-800);
+  cursor: pointer;
+}
+.rk-avatar.is-sm {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+.rk-avatar.is-lg {
+  width: 46px;
+  height: 46px;
+  font-size: 15px;
+}
+// Sits on the brand-accent-colored aside of the auth screen, so it needs a
+// translucent-white treatment instead of the light accent tint.
+.rk-avatar.is-on-accent {
+  background: rgba(255, 255, 255, 0.18);
+  border: 0;
+  color: #fff;
+}
+.rk-avatar.is-neutral {
+  background: var(--rk-neutral-200);
+  border: 0;
+  color: var(--rk-neutral-800);
+}

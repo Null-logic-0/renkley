@@ -1,0 +1,23 @@
+// Tag/pill — skins Bulma's own .tag/.tags/.is-delete rather than a parallel
+// pill class. Bulma supplies the shape (padding, radius, delete cross);
+// these are just the brand color variants the design calls for.
+.tag.is-accent-soft { background: var(--rk-accent-100); color: var(--rk-accent-800); }
+.tag.is-neutral-soft { background: var(--rk-neutral-200); color: var(--rk-neutral-800); }
+.tag.is-accent-outline { background: transparent; border: 1px solid var(--rk-accent); color: var(--rk-accent); }
+
+// Solid counter badge, e.g. the sidebar nav's "12" unread-prompts pill
+.tag.is-counter {
+  background: var(--rk-accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 10px;
+  padding: 1px 6px;
+  min-width: 0;
+  height: auto;
+}
+
+// Removable pill: <div class="tags has-addons"><span class="tag ...">Label</span><button class="tag is-delete"></button></div>
+.tags.has-addons .tag.is-delete {
+  cursor: pointer;
+  border: 0;
+}

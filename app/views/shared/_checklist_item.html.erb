@@ -1,0 +1,13 @@
+<%
+  # One row of a validation checklist, e.g. password requirements.
+  #
+  # Locals:
+  #   label:     row text (required)
+  #   satisfied: false — shows a checkmark in the success color instead of an outline circle
+  label     = local_assigns.fetch(:label)
+  satisfied = local_assigns.fetch(:satisfied, false)
+%>
+<div class="rk-check-item<%= ' is-satisfied' if satisfied %>">
+  <span class="rk-check-item-icon"><%= shared_icon(satisfied ? :check : :circle, size: 14, stroke_width: satisfied ? 2 : 1.5) %></span>
+  <%= label %>
+</div>

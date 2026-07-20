@@ -1,0 +1,70 @@
+// Danger/warning/success/info banner — skins Bulma's own .notification
+// rather than a parallel callout class. Bulma's default color variants are
+// solid/dark; this reshapes them into the bordered, lightly-tinted callout
+// the design calls for. Used for both the Settings "Delete workspace" style
+// banner (title + description + action) and the flash message partial
+// (shared/_flash_message.html.erb), which is just a message + dismiss button.
+.notification {
+  border-radius: 0;
+  padding: 16px 20px;
+}
+.notification.is-danger {
+  background: var(--rk-error-bg);
+  color: var(--bulma-text);
+  border: 1.5px solid var(--rk-error);
+}
+.notification.is-warning {
+  background: color-mix(in srgb, var(--rk-warning) 12%, transparent);
+  color: var(--bulma-text);
+  border: 1.5px solid var(--rk-warning);
+}
+.notification.is-success {
+  background: var(--rk-success-bg);
+  color: var(--bulma-text);
+  border: 1.5px solid var(--rk-success);
+}
+.notification.is-info {
+  background: color-mix(in srgb, var(--rk-info) 12%, transparent);
+  color: var(--bulma-text);
+  border: 1.5px solid var(--rk-info);
+}
+// Bulma positions .delete absolutely in the notification's top-right corner
+// already; just recolor it to a plain muted "x" instead of the dark circle,
+// since these banners are light-tinted rather than solid-colored.
+.notification .delete {
+  background: transparent;
+  &::before, &::after { background-color: var(--rk-muted); }
+}
+.notification .delete:hover {
+  background: color-mix(in srgb, var(--bulma-text) 8%, transparent);
+}
+
+.rk-banner-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.rk-banner-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+.notification.is-danger .rk-banner-title { color: var(--rk-error); }
+.notification.is-warning .rk-banner-title { color: var(--rk-warning); }
+.rk-banner-desc {
+  font-size: 12.5px;
+  color: var(--rk-muted);
+}
+
+// Flash messages — a single dismissible line, stacked at the top of the page
+.rk-flash-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.rk-flash {
+  padding-right: 44px;
+  font-size: 13.5px;
+  transition: opacity 150ms ease;
+}

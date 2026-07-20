@@ -1,0 +1,27 @@
+<%
+  # Exclusive-choice segmented control, e.g. Settings → Scan frequency.
+  # Visual selected-state is plain CSS (:has()); the controller only
+  # dispatches "segmented:change" — see javascript/controllers/segmented_controller.js.
+  #
+  # Locals:
+  #   name:        radio group name (required)
+  #   options:     [{ label:, value:, selected: false }, ...] (required)
+  #   full_width:  false — options share the row equally
+  #   html:        {} — extra attributes merged onto the wrapping .seg
+  name       = local_assigns.fetch(:name)
+  options    = local_assigns.fetch(:options)
+  full_width = local_assigns.fetch(:full_width, false)
+  html       = local_assigns.fetch(:html, {})
+
+  css_class = ["seg", ("is-fullwidth" if full_width), html[:class]].compact.join(" ")
+  html_data = { controller: "segmented", action: "change->segmented#select" }.merge(html.fetch(:data, {}))
+  html_rest = html.except(:class, :data)
+%>
+<%= tag.div class: css_class, data: html_data, **html_rest do %>
+  <% options.each do |opt| %>
+    <label class="seg-opt">
+      <%= radio_button_tag name, opt.fetch(:value), opt.fetch(:selected, false) %>
+      <span><%= opt.fetch(:label) %></span>
+    </label>
+  <% end %>
+<% end %>

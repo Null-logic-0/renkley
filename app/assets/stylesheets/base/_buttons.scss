@@ -16,3 +16,47 @@
 .rk-btn-lg { height: 46px; font-size: 15px; padding: 0 22px; }
 .rk-btn-xl { height: 48px; font-size: 15px; padding: 0 24px; }
 .rk-btn-outline { border-color: var(--rk-line); }
+
+// Ghost — text-only, no border/background (Bulma's own .is-ghost variant,
+// recolored to the brand accent instead of Bulma's default link color).
+.button.is-ghost {
+  color: var(--rk-accent);
+}
+.button.is-ghost:hover {
+  background: color-mix(in srgb, var(--rk-accent) 10%, transparent);
+}
+.button.is-ghost:active {
+  background: color-mix(in srgb, var(--rk-accent) 18%, transparent);
+}
+
+// Destructive — Bulma's own .is-danger variant, recolored to the brand's
+// error red instead of Bulma's default danger color.
+.button.is-danger {
+  background-color: var(--rk-error);
+  color: #fff;
+}
+.button.is-danger:hover {
+  background-color: color-mix(in srgb, var(--rk-error) 85%, black);
+}
+.button.is-danger:active {
+  background-color: color-mix(in srgb, var(--rk-error) 70%, black);
+}
+// Destructive-outline — used for things like "Delete workspace" where the
+// button sits inside an already-red danger banner and shouldn't be solid red.
+.button.is-danger.is-outlined {
+  background: transparent;
+  border-color: var(--rk-error);
+  color: var(--rk-error);
+}
+.button.is-danger.is-outlined:hover {
+  background: color-mix(in srgb, var(--rk-error) 8%, transparent);
+}
+
+// Bulma's is-loading spinner is a border box with two transparent sides,
+// rounded via --bulma-radius-rounded — which this app sets to 0 everywhere
+// else for the brand's sharp-corner look. A spinner specifically needs to
+// stay circular to read as a spinner, so it gets its own scoped override
+// rather than changing the global rounded-radius token.
+.button.is-loading::after {
+  border-radius: 9999px;
+}

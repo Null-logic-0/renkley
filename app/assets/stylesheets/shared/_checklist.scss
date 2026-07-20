@@ -1,0 +1,16 @@
+// Checklist/validation indicator — the radio-style "satisfied" row used in
+// password validation (e.g. "At least 8 characters").
+.rk-check-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12.5px;
+  color: var(--rk-muted);
+}
+.rk-check-item.is-satisfied {
+  color: var(--rk-success);
+}
+.rk-check-item-icon {
+  display: flex;
+  flex: none;
+}
