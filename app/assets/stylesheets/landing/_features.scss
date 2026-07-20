@@ -1,36 +1,52 @@
-.rk-feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
-
-// Feature grid cell dividers (outer border comes from .rk-border on the wrapper).
-// Every cell always carries its own border-right/bottom; at the true grid
-// edges that coincides with the wrapper's own border rather than doubling
-// it, so this stays correct at 3, 2, or 1 columns with no per-breakpoint logic.
-.rk-feat-cell {
-  padding: 26px 24px;
-  border-right: 1.5px solid var(--rk-line);
-  border-bottom: 1.5px solid var(--rk-line);
-  transition: background 120ms ease;
+.rk-feat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
-.rk-feat-cell:hover { background: color-mix(in srgb, var(--bulma-text) 3%, transparent); }
+
+.rk-feat-cell {
+    padding: 26px 24px;
+    border-right: 1.5px solid var(--rk-line);
+    border-bottom: 1.5px solid var(--rk-line);
+    transition: background 120ms ease;
+}
+.rk-feat-cell:hover {
+    background: color-mix(in srgb, var(--bulma-text) 3%, transparent);
+}
 
 .rk-icon-tile {
-  width: 42px;
-  height: 42px;
-  background: var(--rk-accent-100);
-  color: var(--rk-accent-800);
-  display: grid;
-  place-items: center;
-  margin-bottom: 16px;
+    width: 42px;
+    height: 42px;
+    background: var(--rk-accent-100);
+    color: var(--rk-accent-800);
+    display: grid;
+    place-items: center;
+    margin-bottom: 16px;
 }
 
-.rk-feat-title { font-size: 17px; letter-spacing: -0.015em; margin: 0 0 7px; }
-.rk-feat-desc { font-size: 14px; line-height: 1.55; color: var(--rk-muted); margin: 0; }
+.rk-feat-title {
+    font-size: 17px;
+    letter-spacing: -0.015em;
+    margin: 0 0 7px;
+}
+.rk-feat-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--rk-muted);
+    margin: 0;
+}
 
 // See landing/_hero.scss for why grid items need an explicit min-width: 0.
-.rk-feat-grid > * { min-width: 0; }
+.rk-feat-grid > * {
+    min-width: 0;
+}
 
 @media (max-width: 900px) {
-  .rk-feat-grid { grid-template-columns: 1fr 1fr !important; }
+    .rk-feat-grid {
+        grid-template-columns: 1fr 1fr !important;
+    }
 }
 @media (max-width: 560px) {
-  .rk-feat-grid { grid-template-columns: 1fr !important; }
+    .rk-feat-grid {
+        grid-template-columns: 1fr !important;
+    }
 }

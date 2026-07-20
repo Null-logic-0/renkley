@@ -9,6 +9,7 @@
   #   full_width:  false
   #   loading:     false — shows Bulma's built-in button spinner
   #   disabled:    false
+  #   icon:        raw SVG markup rendered before the label, e.g. a brand mark
   #   html:        {} — extra attributes merged onto the tag (data-*, id, etc.)
   label      = local_assigns.fetch(:label)
   variant    = local_assigns.fetch(:variant, :primary)
@@ -17,6 +18,7 @@
   full_width = local_assigns.fetch(:full_width, false)
   loading    = local_assigns.fetch(:loading, false)
   disabled   = local_assigns.fetch(:disabled, false)
+  icon       = local_assigns[:icon]
   html       = local_assigns.fetch(:html, {})
 
   variant_class = {
@@ -32,9 +34,11 @@
   classes << "is-loading" if loading
   css_class = [*classes, html[:class]].compact.join(" ")
   tag_options = html.except(:class).merge(class: css_class)
+
+  content = icon.present? ? content_tag(:span, safe_join([icon.html_safe, label]), class: "rk-btn-content") : label
 %>
 <% if href %>
-  <%= link_to label, href, **tag_options %>
+  <%= link_to content, href, **tag_options %>
 <% else %>
-  <%= content_tag :button, label, type: type, disabled: disabled, **tag_options %>
+  <%= content_tag :button, content, type: type, disabled: disabled, **tag_options %>
 <% end %>

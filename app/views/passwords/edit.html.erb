@@ -1,0 +1,16 @@
+<% content_for :title, "Set a new password — Renkley" %>
+
+<h1 class="rk-auth-title">Set a new password</h1>
+<p class="rk-auth-subtitle">Choose a new password for your account.</p>
+
+<%= form_with url: password_path(params[:token]), method: :put do %>
+  <%= render "shared/input", label: "New password", name: "password", type: "password",
+        placeholder: "Enter new password", required: true,
+        html: { autofocus: true, autocomplete: "new-password", maxlength: 72 } %>
+
+  <%= render "shared/input", label: "Confirm password", name: "password_confirmation", type: "password",
+        placeholder: "Repeat new password", required: true,
+        html: { autocomplete: "new-password", maxlength: 72 } %>
+
+  <%= render "shared/button", label: "Save", variant: :primary, full_width: true, type: "submit" %>
+<% end %>

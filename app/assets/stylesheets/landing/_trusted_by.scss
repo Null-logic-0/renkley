@@ -1,4 +1,22 @@
-.rk-trusted-section { padding-top: 26px; padding-bottom: 26px; }
-.rk-trusted-row { gap: 30px; }
-.rk-trusted-label { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--rk-faint); font-weight: 600; }
-.rk-logo-item { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.02em; color: var(--rk-faint); opacity: .75; }
+.rk-trusted-section {
+    padding-top: 26px;
+    padding-bottom: 26px;
+}
+.rk-trusted-row {
+    gap: 30px;
+}
+.rk-trusted-label {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--rk-faint);
+    font-weight: 600;
+}
+.rk-logo-item {
+    font-family: "Archivo", sans-serif;
+    font-weight: 800;
+    font-size: 19px;
+    letter-spacing: -0.02em;
+    color: var(--rk-faint);
+    opacity: 0.75;
+}
