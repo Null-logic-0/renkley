@@ -27,7 +27,7 @@ module Landing
 
 
   PREVIEW_TABS = [ "Overview", "Competitors", "Prompts", "Reports" ]
-  
+
   PREVIEW_STATS = [
     { label: "AI mentions", value: "1,248", delta: "+18%" },
     { label: "Citations earned", value: "448", delta: "+9%" },
@@ -63,5 +63,4 @@ module Landing
     { q: "Do you offer enterprise plans?",
       a: "Yes — Enterprise includes SSO, a dedicated success manager, custom integrations and unlimited tracking. Contact sales for a tailored quote." }
   ]
-
 end

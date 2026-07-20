@@ -13,6 +13,5 @@ class LandingController < ApplicationController
 
     @pricing_plans = Landing::PRICING_PLANS
     @faqs = Landing::FAQS
-
   end
 end

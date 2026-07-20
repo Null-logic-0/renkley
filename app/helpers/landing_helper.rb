@@ -87,6 +87,6 @@ module LandingHelper
   DEFAULT_LEGAL_LINKS = [
     { label: "Privacy", href: "/privacy" },
     { label: "Terms",   href: "/terms" },
-    { label: "Security",href: "/security" }
+    { label: "Security", href: "/security" }
   ].freeze
 end
