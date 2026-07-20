@@ -1,0 +1,65 @@
+<% content_for :title, "Sign up — Renkley" %>
+
+<h1 class="rk-auth-title">Create your account</h1>
+<p class="rk-auth-subtitle">Start tracking your AI visibility in minutes.</p>
+
+<%= render "auth/oauth" %>
+
+<%= form_with url: registration_path do %>
+  <%= render "shared/input",
+  label: "Full name",
+  name: "user[full_name]",
+  placeholder: "John Doe",
+  value: @user.full_name,
+  required: true,
+  error: @user.errors[:full_name].first,
+  html: {
+    autofocus: true,
+  } %>
+
+  <%= render "shared/input",
+  label: "Work email",
+  name: "user[email_address]",
+  type: "email",
+  placeholder: "you@company.com",
+  value: @user.email_address,
+  required: true,
+  error: @user.errors[:email_address].first,
+  html: {
+    autocomplete: "username",
+  } %>
+
+  <%= render "shared/input",
+  label: "Password",
+  name: "user[password]",
+  type: "password",
+  placeholder: "Create a password",
+  required: true,
+  error: @user.errors[:password].first,
+  helper: (@user.errors[:password].present? ? nil : "At least 8 characters."),
+  html: {
+    autocomplete: "new-password",
+    maxlength: 72,
+  } %>
+
+  <label class="checkbox rk-auth-row">
+    <%= tag.input type: "checkbox", required: true %>
+    <span>I agree to Renkley&rsquo;s
+      <%= link_to "Terms of Service", "/terms" %>
+      and
+      <%= link_to "Privacy Policy", "/privacy" %>.</span>
+  </label>
+
+  <%= render "shared/button",
+  label: "Start free trial",
+  variant: :primary,
+  full_width: true,
+  type: "submit" %>
+<% end %>
+
+<p class="rk-auth-switch">Already have an account?
+  <%= link_to "Sign in", sign_in_path %></p>
+
+<div class="rk-auth-trial">
+  <span class="rk-auth-trial-item"><%= shared_icon(:check, size: 14) %>7-day free trial</span>
+</div>

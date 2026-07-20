@@ -1,25 +1,36 @@
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+    html {
+        scroll-behavior: auto;
+    }
 }
 
 body {
-  -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
 }
 
 // Offsets anchor-jump targets so content doesn't land under the fixed header
-#features, #pricing, #faq {
-  scroll-margin-top: var(--rk-header-height);
+#features,
+#pricing,
+#faq {
+    scroll-margin-top: var(--rk-header-height);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  letter-spacing: -0.02em;
-  font-weight: 800;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    letter-spacing: -0.02em;
+    font-weight: 800;
 }
 
 // A width:100% SVG can't always resolve that percentage against an
 // auto-sized flex/grid ancestor and falls back to its viewBox's intrinsic
 // size — cap it so a decorative icon or chart can't blow out the layout.
-svg { max-width: 100%; }
+svg {
+    max-width: 100%;
+}

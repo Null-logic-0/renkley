@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Renkley — AI visibility & SEO for the age of AI search" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Renkley">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/favicon" type="image/png">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/favicon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <%= render "shared/flash" %>
+
+    <div class="rk-auth">
+      <aside class="rk-auth-aside">
+        <a href="<%= root_path %>" class="rk-auth-aside-brand">
+          <div class="rk-logomark"><span>R</span></div>
+          <span class="rk-brand-name">Renkley</span>
+        </a>
+
+        <div>
+          <h2 class="rk-auth-headline">See exactly where you stand in AI search.</h2>
+          <p class="rk-auth-lead">Track your visibility across ChatGPT, Claude, Google AI and know precisely what to fix next.</p>
+        </div>
+
+        <div class="rk-auth-testimonial">
+          <p class="rk-auth-testimonial-quote">&ldquo;Renkley showed us we were invisible in ChatGPT while a competitor owned every buying prompt. Six weeks later we lead the category.&rdquo;</p>
+          <div class="rk-auth-testimonial-who">
+            <%= render "shared/avatar", initials: "ML", variant: :on_accent %>
+            <div>
+              <div class="rk-auth-testimonial-name">Mara Lindqvist</div>
+              <div class="rk-auth-testimonial-role">Head of Growth, Northwind</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rk-auth-stats">
+          <span><span class="rk-dot"></span>2,400+ brands tracked</span>
+          <span>5 AI platforms</span>
+        </div>
+      </aside>
+
+      <main class="rk-auth-main">
+        <div class="rk-auth-form-wrap">
+          <a href="<%= root_path %>" class="rk-auth-brand">
+            <div class="rk-logomark"><span>R</span></div>
+            <span class="rk-brand-name">Renkley</span>
+          </a>
+
+          <%= yield %>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

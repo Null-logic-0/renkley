@@ -1,43 +1,43 @@
 // Brand + surface tokens — reskins Bulma's generated CSS variables and adds
 // the Renkley-specific custom properties every component below draws from.
 :root {
-  --bulma-scheme-main: #f3f2f2;
-  --bulma-scheme-main-bis: #eae9e9;
-  --bulma-scheme-main-ter: #eae9e9;
-  --bulma-background: #eae9e9;
-  --bulma-text: #201e1d;
-  --bulma-text-strong: #201e1d;
-  --bulma-text-weak: #605d5d;
-  --bulma-border: color-mix(in srgb, #201e1d 40%, transparent);
-  --bulma-border-weak: color-mix(in srgb, #201e1d 14%, transparent);
-  --bulma-link: #5b41f0;
-  --bulma-link-text: #5b41f0;
-  --bulma-link-text-hover: #4a30d8;
+    --bulma-scheme-main: #f3f2f2;
+    --bulma-scheme-main-bis: #eae9e9;
+    --bulma-scheme-main-ter: #eae9e9;
+    --bulma-background: #eae9e9;
+    --bulma-text: #201e1d;
+    --bulma-text-strong: #201e1d;
+    --bulma-text-weak: #605d5d;
+    --bulma-border: color-mix(in srgb, #201e1d 40%, transparent);
+    --bulma-border-weak: color-mix(in srgb, #201e1d 14%, transparent);
+    --bulma-link: #5b41f0;
+    --bulma-link-text: #5b41f0;
+    --bulma-link-text-hover: #4a30d8;
 
-  --rk-accent: #5b41f0;
-  --rk-accent-hover: #4a30d8;
-  --rk-accent-active: #3a24b0;
-  --rk-accent-100: #eeeafe;
-  --rk-accent-200: #ddd4fc;
-  --rk-accent-800: #281a72;
-  --rk-neutral-200: #eae7e7;
-  --rk-neutral-400: #bab6b6;
-  --rk-neutral-800: #444141;
-  --rk-success: #0e9c8e;
-  --rk-success-bg: #dcf3f0;
-  --rk-info: #2c7fc0;
-  --rk-warning: #c07d0a;
-  --rk-error: #d83450;
-  --rk-error-bg: #fbe4e8;
-  --rk-line: color-mix(in srgb, #201e1d 40%, transparent);
-  --rk-line-soft: color-mix(in srgb, #201e1d 8%, transparent);
-  --rk-muted: color-mix(in srgb, #201e1d 55%, transparent);
-  --rk-faint: color-mix(in srgb, #201e1d 38%, transparent);
-  --rk-shadow-lg: 0 12px 32px color-mix(in srgb, #2d2b2b 22%, transparent);
+    --rk-accent: #5b41f0;
+    --rk-accent-hover: #4a30d8;
+    --rk-accent-active: #3a24b0;
+    --rk-accent-100: #eeeafe;
+    --rk-accent-200: #ddd4fc;
+    --rk-accent-800: #281a72;
+    --rk-neutral-200: #eae7e7;
+    --rk-neutral-400: #bab6b6;
+    --rk-neutral-800: #444141;
+    --rk-success: #0e9c8e;
+    --rk-success-bg: #dcf3f0;
+    --rk-info: #2c7fc0;
+    --rk-warning: #c07d0a;
+    --rk-error: #d83450;
+    --rk-error-bg: #fbe4e8;
+    --rk-line: color-mix(in srgb, #201e1d 40%, transparent);
+    --rk-line-soft: color-mix(in srgb, #201e1d 8%, transparent);
+    --rk-muted: color-mix(in srgb, #201e1d 55%, transparent);
+    --rk-faint: color-mix(in srgb, #201e1d 38%, transparent);
+    --rk-shadow-lg: 0 12px 32px color-mix(in srgb, #2d2b2b 22%, transparent);
 
-  // Rendered height of .rk-header (14px padding + content + 2px border).
-  // Since the header is position: fixed, it no longer reserves space in
-  // normal flow — anything that needs to sit clear of it (body padding,
-  // anchor scroll offsets) reads this one value instead of a guessed number.
-  --rk-header-height: 68px;
+    // Rendered height of .rk-header (14px padding + content + 2px border).
+    // Since the header is position: fixed, it no longer reserves space in
+    // normal flow — anything that needs to sit clear of it (body padding,
+    // anchor scroll offsets) reads this one value instead of a guessed number.
+    --rk-header-height: 68px;
 }

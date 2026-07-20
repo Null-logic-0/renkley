@@ -1,0 +1,51 @@
+<% content_for :title, "Sign in — Renkley" %>
+
+<h1 class="rk-auth-title">Welcome back</h1>
+<p class="rk-auth-subtitle">Sign in to your Renkley workspace.</p>
+
+<%= render "auth/oauth" %>
+
+<%= form_with url: session_path do %>
+  <%= render "shared/input",
+  label: "Work email",
+  name: "email_address",
+  type: "email",
+  placeholder: "you@company.com",
+  value: params[:email_address],
+  required: true,
+  html: {
+    autofocus: true,
+    autocomplete: "username",
+  } %>
+
+  <div class="field">
+    <div class="rk-auth-label-row">
+      <label class="label" for="password">Password</label>
+      <%= link_to "Forgot password?", new_password_path, class: "rk-auth-forgot" %>
+    </div>
+    <div class="control">
+      <%= tag.input id: "password",
+                name: "password",
+                type: "password",
+                class: "input",
+                placeholder: "Enter your password",
+                required: true,
+                autocomplete: "current-password",
+                maxlength: 72 %>
+    </div>
+  </div>
+
+  <label class="checkbox rk-auth-row">
+    <%= tag.input type: "checkbox", name: "remember_me", value: "1" %>
+    Keep me signed in
+  </label>
+
+  <%= render "shared/button",
+  label: "Sign in",
+  variant: :primary,
+  full_width: true,
+  type: "submit" %>
+<% end %>
+
+<p class="rk-auth-switch">Don&rsquo;t have an account?
+  <%= link_to "Sign up", sign_up_path %></p>

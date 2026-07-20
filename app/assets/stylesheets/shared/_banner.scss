@@ -1,12 +1,10 @@
-// Danger/warning/success/info banner — skins Bulma's own .notification
-// rather than a parallel callout class. Bulma's default color variants are
-// solid/dark; this reshapes them into the bordered, lightly-tinted callout
-// the design calls for. Used for both the Settings "Delete workspace" style
-// banner (title + description + action) and the flash message partial
-// (shared/_flash_message.html.erb), which is just a message + dismiss button.
 .notification {
   border-radius: 0;
   padding: 16px 20px;
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 1000;
 }
 .notification.is-danger {
   background: var(--rk-error-bg);
