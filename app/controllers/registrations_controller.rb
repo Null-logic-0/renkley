@@ -1,6 +1,7 @@
 class RegistrationsController < ApplicationController
   layout "auth"
   allow_unauthenticated_access only: %i[new create]
+  before_action :redirect_if_logged_in
 
   def new
     @user = User.new
