@@ -83,6 +83,10 @@ module LandingHelper
       { label: "Sign in",  href: "/sign_in" }
     ].freeze
 
+  def self.nav_links(authenticated)
+    authenticated ? DEFAULT_NAV_LINKS.reject { |l| l[:href] == "/sign_in" } : DEFAULT_NAV_LINKS
+  end
+
   # Helper for rendering legal links.
   DEFAULT_LEGAL_LINKS = [
     { label: "Privacy", href: "/privacy" },
