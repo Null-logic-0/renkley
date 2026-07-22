@@ -36,6 +36,12 @@
 .rk-nav-link:hover {
     color: var(--rk-accent);
 }
+.rk-nav-user {
+    color: var(--bulma-text);
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 14px;
+}
 .rk-header-cta {
     height: 38px;
 }

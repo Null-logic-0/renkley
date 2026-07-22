@@ -15,9 +15,18 @@
 
       <nav class="rk-navlinks">
         <%= render "landing/nav_links", nav_links: nav_links %>
+        <% unless authenticated? %>
+          <%= link_to "Sign in", sign_in_path, class: "rk-nav-link" %>
+        <% end %>
       </nav>
 
-      <%= link_to cta_label, cta_href, class: "button is-primary rk-header-cta" %>
+      <% if authenticated? %>
+        <span class="rk-nav-user"><%= Current.user.full_name %></span>
+        <%= render "shared/button", label: "Sign out", variant: :secondary,
+              to: session_path, method: :delete, html: { class: "rk-header-cta" } %>
+      <% else %>
+        <%= link_to cta_label, cta_href, class: "button is-primary rk-header-cta" %>
+      <% end %>
 
       <button class="rk-burger" data-navbar-target="burger" data-action="navbar#toggle" aria-expanded="false" aria-controls="rk-mobile-menu" aria-label="Open menu">
         <span class="rk-burger-icon"></span>
@@ -36,7 +45,14 @@
     </div>
     <div class="rk-mobile-menu-inner">
       <%= render "landing/nav_links", nav_links: nav_links, link_class: "rk-mobile-nav-link", link_data: { action: "navbar#close" } %>
-      <%= link_to cta_label, cta_href, class: "button is-primary rk-mobile-menu-cta", data: { action: "navbar#close" } %>
+      <% if authenticated? %>
+        <span class="rk-mobile-nav-link rk-nav-user"><%= Current.user.full_name %></span>
+        <%= render "shared/button", label: "Sign out", variant: :secondary, full_width: true,
+              to: session_path, method: :delete, html: { class: "rk-mobile-menu-cta" } %>
+      <% else %>
+        <%= link_to "Sign in", sign_in_path, class: "rk-mobile-nav-link", data: { action: "navbar#close" } %>
+        <%= link_to cta_label, cta_href, class: "button is-primary rk-mobile-menu-cta", data: { action: "navbar#close" } %>
+      <% end %>
     </div>
   </nav>
 </div>
