@@ -3,6 +3,8 @@
 <h1 class="rk-auth-title">Welcome back</h1>
 <p class="rk-auth-subtitle">Sign in to your Renkley workspace.</p>
 
+<%= render "shared/dev_mailbox_preview" %>
+
 <%= render "auth/oauth" %>
 
 <%= form_with url: session_path do %>
