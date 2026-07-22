@@ -35,7 +35,7 @@
   <%# ── Buttons ─────────────────────────────────────────────────────── %>
   <h2 class="title is-4">Button</h2>
   <p class="mb-3 has-text-grey">Variants: primary, secondary (outline), ghost, destructive. Plus
-    full-width, loading and disabled states.</p>
+    full-width, loading and disabled states, and a <code>to:</code> form-posting mode.</p>
   <div class="is-flex is-flex-wrap-wrap" style="gap:12px">
     <%= render "shared/button", label: "Primary", variant: :primary %>
     <%= render "shared/button", label: "Secondary", variant: :secondary %>
@@ -50,6 +50,11 @@
     label: "Link styled as button",
     variant: :secondary,
     href: "#" %>
+    <%# `to:` wraps the button in a form — used for sign out and the Google hand-off. %>
+    <%= render "shared/button",
+    label: "Form post (to:)",
+    variant: :secondary,
+    to: "#" %>
   </div>
   <div class="mt-3" style="max-width:320px">
     <%= render "shared/button",

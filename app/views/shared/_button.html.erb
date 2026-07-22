@@ -5,7 +5,12 @@
   #   label:       button text (required)
   #   variant:     :primary (default) | :secondary | :ghost | :destructive | :destructive_outline
   #   href:        renders an <a> instead of a <button> when present
-  #   type:        "button" (default) | "submit" — ignored when href is given
+  #   to:          renders a button_to form posting to this path (takes precedence
+  #                over href); type: and disabled: do not apply in this mode
+  #   method:      HTTP verb for `to:` — :post (default) | :delete | ...
+  #   turbo:       true (default) — pass false for `to:` forms that redirect off-site,
+  #                since Turbo cannot follow a cross-origin redirect
+  #   type:        "button" (default) | "submit" — ignored when href or to is given
   #   full_width:  false
   #   loading:     false — shows Bulma's built-in button spinner
   #   disabled:    false
@@ -14,6 +19,9 @@
   label      = local_assigns.fetch(:label)
   variant    = local_assigns.fetch(:variant, :primary)
   href       = local_assigns[:href]
+  to         = local_assigns[:to]
+  method     = local_assigns.fetch(:method, :post)
+  turbo      = local_assigns.fetch(:turbo, true)
   type       = local_assigns.fetch(:type, "button")
   full_width = local_assigns.fetch(:full_width, false)
   loading    = local_assigns.fetch(:loading, false)
@@ -37,7 +45,11 @@
 
   content = icon.present? ? content_tag(:span, safe_join([icon.html_safe, label]), class: "rk-btn-content") : label
 %>
-<% if href %>
+<% if to %>
+  <%= button_to content, to, method: method,
+        form: { data: turbo ? nil : { turbo: false } },
+        **tag_options %>
+<% elsif href %>
   <%= link_to content, href, **tag_options %>
 <% else %>
   <%= content_tag :button, content, type: type, disabled: disabled, **tag_options %>
