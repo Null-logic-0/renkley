@@ -9,8 +9,12 @@ class SessionsController < ApplicationController
 
   def create
     if user = User.authenticate_by(params.permit(:email_address, :password))
-      start_new_session_for user, remember: params[:remember_me].present?
-      redirect_to after_authentication_url, notice: "Welcome back #{user.full_name}!"
+      if user.confirmed?
+        start_new_session_for user, remember: params[:remember_me].present?
+        redirect_to after_authentication_url, notice: "Welcome back #{user.full_name}!"
+      else
+        redirect_to new_session_path, alert: "Please confirm your email before signing in."
+      end
     else
       redirect_to new_session_path, alert: "Try another email address or password."
     end

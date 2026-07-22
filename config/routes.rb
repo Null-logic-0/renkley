@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root "landing#index"
   resource :session
   resources :passwords, param: :token
+  resources :confirmations, param: :token, only: %i[new create show]
   resource :registration, only: %i[new create]
 
   get "sign_in" => "sessions#new", as: :sign_in

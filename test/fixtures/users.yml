@@ -2,8 +2,10 @@ one:
   email_address: one@example.com
   full_name: One Example
   password_digest: <%= BCrypt::Password.create("password") %>
+  confirmed_at: <%= Time.current %>
 
 two:
   email_address: two@example.com
   full_name: Two Example
   password_digest: <%= BCrypt::Password.create("password") %>
+  confirmed_at: <%= Time.current %>

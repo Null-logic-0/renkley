@@ -22,6 +22,18 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_nil cookies[:session_id]
   end
 
+  test "create with unconfirmed email" do
+    @user.update!(confirmed_at: nil)
+
+    post session_path, params: { email_address: @user.email_address, password: "password" }
+
+    assert_redirected_to new_session_path
+    assert_nil cookies[:session_id]
+
+    follow_redirect!
+    assert_notice "confirm your email"
+  end
+
   test "destroy" do
     sign_in_as(User.take)
 

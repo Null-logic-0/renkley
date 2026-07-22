@@ -59,9 +59,4 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_notice "Passwords did not match"
   end
-
-  private
-    def assert_notice(text)
-      assert_select "div", /#{text}/
-    end
 end

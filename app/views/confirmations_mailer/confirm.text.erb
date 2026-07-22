@@ -1,0 +1,11 @@
+Welcome to Renkley!
+
+Thanks for signing up!
+
+Confirm your email by visiting the link below:
+
+<%= confirmation_url(@user.generate_token_for(:confirmation)) %>
+
+This confirmation link will expire in 24 hours.
+
+If you didn't create a Renkley account, you can safely ignore this email.
