@@ -3,7 +3,74 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <style>
-      /* Email styles need to be inline */
+      /* premailer-rails inlines these into style="..." attributes before
+         delivery — email clients don't load linked/external stylesheets,
+         and most (Outlook especially) don't support CSS custom properties,
+         so colors here are literal instead of var(--rk-*) tokens. */
+      .rk-email {
+        display: flex;
+        justify-content: center;
+        padding: 4rem 1.5rem;
+        background: #f3f2f2;
+      }
+
+      .rk-email-card {
+        width: 100%;
+        max-width: 560px;
+        background: #ffffff;
+        border: 1px solid rgba(32, 30, 29, 0.08);
+        border-radius: 1rem;
+        padding: 2.5rem;
+        box-shadow: 0 12px 32px rgba(45, 43, 43, 0.22);
+      }
+
+      .rk-email-title {
+        margin: 0 0 1rem;
+        color: #201e1d;
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .rk-email-text {
+        margin: 0 0 1.5rem;
+        color: rgba(32, 30, 29, 0.55);
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .rk-email-text strong {
+        color: #201e1d;
+      }
+
+      .rk-email-actions {
+        margin: 2rem 0;
+      }
+
+      .rk-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.875rem 1.5rem;
+        border-radius: 0.75rem;
+        background: #5b41f0;
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .rk-email-divider {
+        margin: 2rem 0;
+        border: 0;
+        border-top: 1px solid rgba(32, 30, 29, 0.08);
+      }
+
+      .rk-email-muted {
+        margin: 0;
+        color: rgba(32, 30, 29, 0.55);
+        font-size: 0.875rem;
+        line-height: 1.6;
+      }
     </style>
   </head>
 

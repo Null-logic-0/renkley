@@ -10,7 +10,8 @@ class RegistrationsController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to sign_in_path, notice: "Welcome to Renkley, let's get started!"
+      ConfirmationsMailer.confirm(@user).deliver_later
+      redirect_to sign_in_path, notice: "Welcome to Renkley! Check your email to confirm your account before signing in."
     else
       render :new, status: :unprocessable_entity
     end

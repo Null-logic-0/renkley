@@ -1,7 +1,31 @@
-<p>
-  You can reset your password on
-  <%= link_to "this password reset page",
-  edit_password_url(@user.password_reset_token),
-  target: "_blank" %>. This link will expire in
-  <%= distance_of_time_in_words(0, @user.password_reset_token_expires_in) %>.
-</p>
+<div class="rk-email">
+  <div class="rk-email-card">
+    <h1 class="rk-email-title">Reset your password</h1>
+
+    <p class="rk-email-text">
+      We received a request to reset your password. Click the button below to
+      choose a new password.
+    </p>
+
+    <div class="rk-email-actions">
+      <%= link_to "Reset Password",
+      edit_password_url(@user.password_reset_token),
+      class: "rk-button",
+      target: "_blank" %>
+    </div>
+
+    <p class="rk-email-text">
+      This link will expire in
+      <strong>
+        <%= distance_of_time_in_words(0, @user.password_reset_token_expires_in) %>
+      </strong>.
+    </p>
+
+    <hr class="rk-email-divider">
+
+    <p class="rk-email-muted">
+      If you didn't request a password reset, you can safely ignore this email.
+      Your password won't change until you create a new one.
+    </p>
+  </div>
+</div>
