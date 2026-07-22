@@ -67,3 +67,5 @@ end
 
 gem "bulma-rails"
 gem "dartsass-rails"
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
