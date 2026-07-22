@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   if Rails.env.development?
     get "dev/components" => "dev/components#index"
+    mount MailboxGem::Engine, at: "/mailbox", as: "mailbox_gem"
   end
 
   get "up" => "rails/health#show", as: :rails_health_check
