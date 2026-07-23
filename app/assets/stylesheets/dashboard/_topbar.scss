@@ -1,0 +1,104 @@
+// Topbar — sticky header shown on authenticated/dashboard pages. Built from
+// existing primitives (logomark/brand-name, .input, shared/_button,
+// shared/_dropdown, shared/_avatar) rather than new one-off components.
+.rk-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 22px;
+    background: color-mix(in srgb, var(--bulma-scheme-main) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 2px solid var(--rk-line);
+}
+
+.rk-topbar-spacer {
+    flex: 1;
+}
+
+// Search — icon floats inside a single .input rather than the bordered
+// icon column shared/_input's affix pattern uses, since there's no visible
+// split between icon and field here.
+.rk-topsearch {
+    position: relative;
+    flex: 1;
+    max-width: 320px;
+}
+.rk-topsearch .input {
+    height: 38px;
+    padding-left: 34px;
+}
+.rk-topsearch-icon {
+    position: absolute;
+    z-index: 5;
+    top: 50%;
+    left: 11px;
+    transform: translateY(-50%);
+    color: var(--rk-faint);
+    display: flex;
+    pointer-events: none;
+}
+
+// Date-range filter trigger (menu items reuse shared/_dropdown + dropdown-item)
+.rk-topdate-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 38px;
+    padding: 0 12px;
+    background: var(--bulma-scheme-main);
+    border: 1px solid var(--rk-line);
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--bulma-text);
+}
+.rk-topdate-trigger:hover {
+    border-color: var(--rk-faint);
+}
+.rk-topdate-icon {
+    display: flex;
+    color: var(--rk-muted);
+}
+.rk-topdate-label {
+    font-weight: 600;
+}
+.rk-topdate-chevron {
+    display: flex;
+    color: var(--rk-faint);
+}
+
+// Notification bell
+.rk-topbar-icon-btn {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    flex: none;
+    display: grid;
+    place-items: center;
+    background: var(--bulma-scheme-main);
+    border: 1px solid var(--rk-line);
+    cursor: pointer;
+    color: var(--bulma-text);
+}
+.rk-topbar-icon-btn:hover {
+    border-color: var(--rk-faint);
+}
+.rk-notif-dot {
+    position: absolute;
+    top: 7px;
+    right: 8px;
+    width: 7px;
+    height: 7px;
+    background: var(--rk-error);
+    border: 1.5px solid var(--bulma-scheme-main);
+    border-radius: 50%;
+}
+
+@media (max-width: 860px) {
+    .rk-topsearch,
+    .rk-topdate-label {
+        display: none;
+    }
+}

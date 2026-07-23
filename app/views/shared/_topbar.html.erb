@@ -1,0 +1,97 @@
+<% date_ranges = local_assigns.fetch(:date_ranges, ["Last 7 days", "Last 30 days", "Last 90 days", "Last 12 months"])
+  date_range  = local_assigns.fetch(:date_range, "Last 30 days")
+
+  date_trigger = capture do %>
+  <span class="rk-topdate-trigger">
+    <span class="rk-topdate-icon"><%= shared_icon(:calendar, size: 16) %></span>
+    <span class="rk-topdate-label"><%= date_range %></span>
+    <span class="rk-topdate-chevron"><%= shared_icon(:chevron_down, size: 14) %></span>
+  </span>
+<% end %>
+<% date_menu = capture do %>
+  <% date_ranges.each do |label| %>
+    <%= render "shared/dropdown_item", label: label %>
+  <% end %>
+<% end %>
+
+<% notifications =
+  local_assigns.fetch(
+    :notifications,
+    [
+      {
+        color: "var(--rk-error)",
+        title: "Cadence overtook you",
+        body: "on “best project management tools” in ChatGPT.",
+        time: "2h ago",
+      },
+      {
+        color: "var(--rk-success)",
+        title: "Visibility up 12%",
+        body: "— your monthly AI scan just completed.",
+        time: "2h ago",
+      },
+      {
+        color: "var(--rk-info)",
+        title: "New citation source",
+        body: "producthunt.com now cites Kestrel in Claude.",
+        time: "Yesterday",
+      },
+      {
+        color: "var(--rk-accent)",
+        title: "3 new recommendations",
+        body: "available in your SEO Opportunity report.",
+        time: "2 days ago",
+      },
+    ],
+  ) %>
+<% notif_trigger = capture do %>
+  <span class="rk-topbar-icon-btn" aria-label="Notifications">
+    <%= shared_icon(:bell, size: 18) %>
+    <span class="rk-notif-dot"></span>
+  </span>
+<% end %>
+<% notif_menu = capture do %>
+  <div class="rk-notif-head">
+    <span class="rk-notif-title">Notifications</span>
+    <%= link_to "Mark all read", " ", class: "rk-notif-mark-read" %>
+  </div>
+  <div class="rk-notif-list">
+    <% notifications.each do |n| %>
+      <div class="rk-notif-item">
+        <span class="rk-notif-item-dot" style="background:<%= n[:color] %>"></span>
+        <div class="rk-notif-text">
+          <strong><%= n[:title] %></strong>
+          <%= n[:body] %>
+          <div class="rk-notif-time"><%= n[:time] %></div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<header class="rk-topbar">
+
+  <div class="rk-topsearch">
+    <span class="rk-topsearch-icon"><%= shared_icon(:search, size: 16) %></span>
+    <%= tag.input type: "search",
+              class: "input",
+              placeholder: "Search prompts, competitors, sources…" %>
+  </div>
+
+  <div class="rk-topbar-spacer"></div>
+
+  <%= render "shared/dropdown", trigger: date_trigger, menu: date_menu, align: :right %>
+
+  <%= render "shared/dropdown",
+  trigger: notif_trigger,
+  menu: notif_menu,
+  align: :right,
+  wide: 340 %>
+
+  <%= render "shared/button",
+  label: "Export report",
+  variant: :primary,
+  icon: shared_icon(:download, size: 16) %>
+
+  <%= render "shared/account_dropdown" %>
+</header>
