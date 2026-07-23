@@ -32,6 +32,8 @@
 
 # Ignore key files for decrypting credentials and more.
 /config/*.key
+/config/master.key
+/config/credentials/*.key
 
 
 # Ignore key files for decrypting credentials and more.
@@ -43,5 +45,6 @@
 
 *credentials.yml
 *credentials.yml.t*
+*yml.enc
 
 .DS_Store
