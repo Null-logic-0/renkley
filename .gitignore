@@ -40,3 +40,8 @@
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+*credentials.yml
+*credentials.yml.t*
+
+.DS_Store

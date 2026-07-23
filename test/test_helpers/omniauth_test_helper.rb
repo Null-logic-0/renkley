@@ -27,7 +27,5 @@ end
 ActiveSupport.on_load(:active_support_test_case) do
   include OmniauthTestHelper
 
-  # OmniAuth's config is global, so a mock set by one test would otherwise stay
-  # in place for every test that runs after it.
   teardown { reset_omniauth }
 end

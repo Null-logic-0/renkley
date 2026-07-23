@@ -31,7 +31,6 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_empty cookies[:session_id]
   end
 
-  # Turbo cannot follow the cross-origin redirect to Google, hence data-turbo="false".
   test "new renders the Google button as a post form that opts out of Turbo" do
     get new_session_path
 
