@@ -1,0 +1,38 @@
+<% sections = local_assigns.fetch(:sections, SidebarHelper::NAV_SECTIONS) %>
+<aside class="rk-sidebar" data-controller="sidebar" data-navbar-target="menu">
+  <a href="<%= root_path %>" class="rk-sidebar-brand">
+    <div class="rk-logomark"><span>R</span></div>
+    <span class="rk-brand-name rk-sidebar-label">Renkley</span>
+  </a>
+
+  <nav class="rk-sidebar-nav">
+    <% sections.each do |section| %>
+      <div class="rk-sidebar-group">
+        <div class="rk-sidebar-group-label rk-sidebar-label"><%= section[:title] %></div>
+        <% section[:items].each do |item| %>
+          <%= link_to item[:href],
+                class: "rk-sidebar-link#{' is-active' if active_nav_item?(item)}",
+                title: item[:label],
+                data: { action: "navbar#close" } do %>
+            <span class="rk-sidebar-link-icon"><%= shared_icon(item[:icon], size: 18) %></span>
+            <span class="rk-sidebar-link-label rk-sidebar-label"><%= item[:label] %></span>
+            <% if item[:badge] %>
+              <span class="rk-sidebar-badge rk-sidebar-label"><%= prompts_badge_count %></span>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </nav>
+
+  <div class="rk-sidebar-footer">
+    <button
+      type="button"
+      class="rk-sidebar-collapse-btn"
+      data-action="sidebar#toggle"
+    >
+      <span class="rk-sidebar-link-icon"><%= shared_icon(:panel_collapse, size: 18) %></span>
+      <span class="rk-sidebar-label">Collapse sidebar</span>
+    </button>
+  </div>
+</aside>
