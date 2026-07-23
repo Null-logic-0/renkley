@@ -8,7 +8,7 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 12px 22px;
+    padding: 10px 20px;
     background: color-mix(in srgb, var(--bulma-scheme-main) 88%, transparent);
     backdrop-filter: blur(8px);
     border-bottom: 2px solid var(--rk-line);
@@ -24,7 +24,8 @@
 .rk-topsearch {
     position: relative;
     flex: 1;
-    max-width: 320px;
+    max-width: 380px;
+    min-width: 280px;
 }
 .rk-topsearch .input {
     height: 38px;
@@ -59,6 +60,7 @@
 }
 .rk-topdate-icon {
     display: flex;
+    flex-shrink: 0;
     color: var(--rk-muted);
 }
 .rk-topdate-label {
@@ -96,9 +98,13 @@
     border-radius: 50%;
 }
 
-@media (max-width: 860px) {
-    .rk-topsearch,
+@media (max-width: 1200px) {
     .rk-topdate-label {
+        display: none;
+    }
+}
+@media (max-width: 860px) {
+    .rk-topsearch {
         display: none;
     }
 }

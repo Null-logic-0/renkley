@@ -3,7 +3,7 @@
 
   date_trigger = capture do %>
   <span class="rk-topdate-trigger">
-    <span class="rk-topdate-icon"><%= shared_icon(:calendar, size: 16) %></span>
+    <span class="rk-topdate-icon"><%= shared_icon(:calendar, size: 14) %></span>
     <span class="rk-topdate-label"><%= date_range %></span>
     <span class="rk-topdate-chevron"><%= shared_icon(:chevron_down, size: 14) %></span>
   </span>
@@ -70,6 +70,16 @@
 <% end %>
 
 <header class="rk-topbar">
+
+  <button
+    type="button"
+    class="rk-topbar-icon-btn rk-sidebar-burger"
+    aria-label="Open sidebar"
+    data-navbar-target="burger"
+    data-action="click->navbar#toggle"
+  >
+    <%= shared_icon(:menu, size: 18) %>
+  </button>
 
   <div class="rk-topsearch">
     <span class="rk-topsearch-icon"><%= shared_icon(:search, size: 16) %></span>

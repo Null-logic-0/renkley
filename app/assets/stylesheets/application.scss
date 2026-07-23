@@ -35,7 +35,9 @@
 @use "auth/shell";
 
 // ── Dashboard — chrome shared by authenticated pages ────────────────────
+@use "dashboard/sidebar";
 @use "dashboard/topbar";
+@use "dashboard/scaffold";
 
 // ── Landing page — one file per section/component ──────────────────────
 @use "landing/shared";
