@@ -1,6 +1,7 @@
 class RegistrationsController < ApplicationController
   layout "auth"
   allow_unauthenticated_access only: %i[new create]
+  before_action :redirect_if_logged_in
 
   def new
     @user = User.new
@@ -9,7 +10,8 @@ class RegistrationsController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to sign_in_path, notice: "Welcome to Renkley, let's get started!"
+      ConfirmationsMailer.confirm(@user).deliver_later
+      redirect_to sign_in_path, notice: "Welcome to Renkley! Check your email to confirm your account before signing in."
     else
       render :new, status: :unprocessable_entity
     end

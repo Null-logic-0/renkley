@@ -3,6 +3,8 @@
 <h1 class="rk-auth-title">Welcome back</h1>
 <p class="rk-auth-subtitle">Sign in to your Renkley workspace.</p>
 
+<%= render "shared/dev_mailbox_preview" %>
+
 <%= render "auth/oauth" %>
 
 <%= form_with url: session_path do %>
@@ -49,3 +51,6 @@
 
 <p class="rk-auth-switch">Don&rsquo;t have an account?
   <%= link_to "Sign up", sign_up_path %></p>
+
+<p class="rk-auth-switch">Didn&rsquo;t get a confirmation email?
+  <%= link_to "Resend it", new_confirmation_path %></p>

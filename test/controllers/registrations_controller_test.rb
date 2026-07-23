@@ -17,6 +17,9 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
       }
     end
 
+    user = User.find_by(email_address: "new-person@example.com")
+    assert_not user.confirmed?
+    assert_enqueued_email_with ConfirmationsMailer, :confirm, args: [ user ]
     assert_redirected_to sign_in_path
   end
 

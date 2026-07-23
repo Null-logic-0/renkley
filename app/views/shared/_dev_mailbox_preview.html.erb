@@ -1,0 +1,12 @@
+<% if Rails.env.development? %>
+  <div class="rk-card rk-dev-mailbox-card">
+    <p class="rk-dev-mailbox-text">
+      Development only: Opens the
+      <%= link_to "mailbox",
+      mailbox_gem_path,
+      target: "_blank",
+      class: "rk-dev-mailbox-link" %>
+      preview UI
+    </p>
+  </div>
+<% end %>

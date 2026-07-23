@@ -3,29 +3,49 @@
 // .box is shadow-based elevation with a single padding region, which isn't
 // this shape, so this is a small purpose-built addition on the same tokens.
 .rk-card {
-  border: 1.5px solid var(--rk-line);
-  background: var(--bulma-scheme-main);
+    border: 1.5px solid var(--rk-line);
+    background: var(--bulma-scheme-main);
 }
 .rk-card-head {
-  padding: 16px 20px;
-  border-bottom: 2px solid var(--rk-line);
+    padding: 16px 20px;
+    border-bottom: 2px solid var(--rk-line);
 }
 .rk-card-title {
-  font-size: 17px;
-  letter-spacing: -0.015em;
-  margin: 0;
+    font-size: 17px;
+    letter-spacing: -0.015em;
+    margin: 0;
 }
 .rk-card-title + .rk-card-subtitle {
-  margin-top: 3px;
+    margin-top: 3px;
 }
 .rk-card-subtitle {
-  font-size: 12.5px;
-  color: var(--rk-muted);
-  margin: 0;
+    font-size: 12.5px;
+    color: var(--rk-muted);
+    margin: 0;
 }
 .rk-card-body {
-  padding: 20px;
+    padding: 20px;
 }
 .rk-card-body.is-flush {
-  padding: 0;
+    padding: 0;
+}
+
+// Dev mailbox card
+.rk-dev-mailbox-card {
+    background: var(--rk-accent-100);
+    border-color: var(--rk-accent-200);
+    padding: 6px 12px;
+    margin-bottom: 16px;
+}
+
+.rk-dev-mailbox-text {
+    font-size: 14px;
+    color: var(--rk-muted);
+    text-align: center;
+    font-weight: 500;
+}
+
+.rk-dev-mailbox-link {
+    text-decoration: underline;
+    font-weight: 600;
 }

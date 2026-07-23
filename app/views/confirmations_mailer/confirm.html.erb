@@ -1,0 +1,29 @@
+<div class="rk-email">
+  <div class="rk-email-card">
+    <h1 class="rk-email-title">Welcome to Renkley!</h1>
+
+    <p class="rk-email-text">
+      Thanks for signing up! To activate your account, please confirm your
+      email address by clicking the button below.
+    </p>
+
+    <div class="rk-email-actions">
+      <%= link_to "Confirm Email",
+      confirmation_url(@user.generate_token_for(:confirmation)),
+      class: "rk-button",
+      target: "_blank" %>
+    </div>
+
+    <p class="rk-email-text">
+      This confirmation link will expire in
+      <strong>24 hours</strong>.
+    </p>
+
+    <hr class="rk-email-divider">
+
+    <p class="rk-email-muted">
+      If you didn't create a Renkley account, you can safely ignore this
+      email.
+    </p>
+  </div>
+</div>

@@ -40,4 +40,16 @@ class User < ApplicationRecord
     ActiveModel::Type::Boolean.new.cast(verified) == true
   end
   private_class_method :email_verified?
+
+  generates_token_for :confirmation, expires_in: 1.day do
+    email_address
+  end
+
+  def confirmed?
+    confirmed_at.present?
+  end
+
+  def confirm!
+    update!(confirmed_at: Time.current)
+  end
 end
