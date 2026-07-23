@@ -1,0 +1,27 @@
+<% account_trigger = capture do %>
+  <%= render "shared/avatar", initials: initials(Current.user.full_name), size: :sm %>
+<% end %>
+<% account_menu = capture do %>
+  <div class="account-dropdown_header">
+    <%= render "shared/avatar", initials: initials(Current.user.full_name), size: :sm %>
+    <div class="account-dropdown_user">
+      <p class="account-dropdown_name"><%= Current.user.full_name %></p>
+      <p class="account-dropdown_email"><%= Current.user.email_address %></p>
+    </div>
+  </div>
+  <hr class="dropdown-divider">
+  <%= render "shared/dropdown_item", label: "Team", icon: :users, href: "/team" %>
+  <%= render "shared/dropdown_item",
+  label: "Billing",
+  icon: :credit_card,
+  href: "/billing" %>
+  <%= render "shared/dropdown_item", label: "Settings", icon: :gear, href: "/settings" %>
+  <hr class="dropdown-divider">
+  <%= render "shared/dropdown_item",
+  label: "Log out",
+  icon: :logout,
+  to: session_path,
+  method: :delete,
+  variant: :danger %>
+<% end %>
+<%= render "shared/dropdown", trigger: account_trigger, menu: account_menu %>

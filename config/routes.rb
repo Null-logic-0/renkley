@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   get "sign_up" => "registrations#new", as: :sign_up
 
 
-
   if Rails.env.development?
     get "dev/components" => "dev/components#index"
     mount MailboxGem::Engine, at: "/mailbox", as: "mailbox_gem"
@@ -22,4 +21,6 @@ Rails.application.routes.draw do
   get "auth/:provider/callback" => "sessions#omniauth",
       constraints: { provider: /google_oauth2/ }
   match "auth/failure" => "sessions#omniauth_failure", via: %i[get post]
+
+  get "overview" => "overview#index", as: :overview
 end

@@ -3,50 +3,74 @@
 // outside-click and Escape are handled by the one shared
 // javascript/controllers/dropdown_controller.js — this file is visuals only.
 .dropdown-content {
-  border: 1.5px solid var(--rk-line);
-  box-shadow: var(--rk-shadow-lg);
-  padding-top: 5px;
-  padding-bottom: 5px;
+    border: 1.5px solid var(--rk-line);
+    box-shadow: var(--rk-shadow-lg);
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 .dropdown-item {
-  padding: 9px 14px;
-  font-size: 13.5px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 11px;
+    padding: 9px 14px;
+    font-size: 13.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 11px;
 }
 .dropdown-item:hover {
-  background: color-mix(in srgb, var(--bulma-text) 6%, transparent);
+    background: color-mix(in srgb, var(--bulma-text) 6%, transparent);
 }
 .dropdown-item.is-danger {
-  color: var(--rk-error);
-  font-weight: 600;
+    color: var(--rk-error);
+    font-weight: 600;
 }
 .dropdown-item.is-danger:hover {
-  background: var(--rk-error-bg);
+    background: var(--rk-error-bg);
 }
 .dropdown-divider {
-  background: var(--rk-line-soft);
-  margin: 0;
+    background: var(--rk-line-soft);
+    margin: 0;
 }
 
 // Wider content variants for identity-style menus (account menu)
 .dropdown-menu.is-wide .dropdown-content {
-  width: 224px;
-  padding-top: 0;
-  padding-bottom: 0;
+    width: 224px;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 .rk-dropdown-head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 13px 14px;
-  border-bottom: 2px solid var(--rk-line);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 14px;
+    border-bottom: 2px solid var(--rk-line);
 }
 .rk-dropdown-items {
-  padding: 5px 0;
+    padding: 5px 0;
 }
 .rk-dropdown-items + .rk-dropdown-items {
-  border-top: 1px solid var(--rk-line-soft);
+    border-top: 1px solid var(--rk-line-soft);
+}
+
+.account-dropdown_header {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem;
+}
+
+.account-dropdown_user {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-dropdown_name {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.account-dropdown_email {
+    margin: 0;
+    font-size: 0.625rem;
+    opacity: 0.5;
 }
