@@ -16,4 +16,10 @@ Rails.application.routes.draw do
   end
 
   get "up" => "rails/health#show", as: :rails_health_check
+
+  post "auth/:provider" => "sessions#passthru", as: :omniauth_authorize,
+       constraints: { provider: /google_oauth2/ }
+  get "auth/:provider/callback" => "sessions#omniauth",
+      constraints: { provider: /google_oauth2/ }
+  match "auth/failure" => "sessions#omniauth_failure", via: %i[get post]
 end

@@ -79,8 +79,7 @@ module LandingHelper
   DEFAULT_NAV_LINKS = [
       { label: "Features", href: "#features" },
       { label: "Pricing",  href: "#pricing" },
-      { label: "FAQ",      href: "#faq" },
-      { label: "Sign in",  href: "/sign_in" }
+      { label: "FAQ",      href: "#faq" }
     ].freeze
 
   def self.nav_links(authenticated)

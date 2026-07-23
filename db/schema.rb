@@ -29,8 +29,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_22_104449) do
     t.string "email_address", null: false
     t.string "full_name", null: false
     t.string "password_digest", null: false
+    t.string "provider"
+    t.string "uid"
     t.datetime "updated_at", null: false
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
+    t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
   end
 
   add_foreign_key "sessions", "users"
