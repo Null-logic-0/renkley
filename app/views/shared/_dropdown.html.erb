@@ -9,19 +9,23 @@
   #   trigger: captured HTML for the clickable trigger (required)
   #   menu:    captured HTML for the dropdown content, typically shared/dropdown_item rows (required)
   #   align:   :left (default) | :right
-  #   wide:    false — use the wider identity-menu content width (e.g. account menu)
-  trigger = local_assigns.fetch(:trigger)
-  menu    = local_assigns.fetch(:menu)
-  align   = local_assigns.fetch(:align, :left)
-  wide    = local_assigns.fetch(:wide, false)
+  #   wide:    false (default) — widen the content beyond the default 12rem.
+  #            true uses the standard 224px identity-menu width (account menu);
+  #            pass a number of pixels (e.g. 340) for a custom width (notifications).
+  trigger    = local_assigns.fetch(:trigger)
+  menu       = local_assigns.fetch(:menu)
+  align      = local_assigns.fetch(:align, :left)
+  wide       = local_assigns.fetch(:wide, false)
+  wide_width = wide == true ? 224 : wide.presence&.to_i
 %>
 <div class="dropdown<%= ' is-right' if align.to_sym == :right %>" data-controller="dropdown">
   <div class="dropdown-trigger">
     <%= tag.div trigger, "aria-haspopup": "true", data: { action: "click->dropdown#toggle" } %>
   </div>
-  <div class="dropdown-menu<%= ' is-wide' if wide %>" role="menu">
+  <%= tag.div class: ["dropdown-menu", ("is-wide" if wide_width)], role: "menu",
+        style: (wide_width ? "--rk-dropdown-width:#{wide_width}px" : nil) do %>
     <div class="dropdown-content">
       <%= menu %>
     </div>
-  </div>
+  <% end %>
 </div>

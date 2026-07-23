@@ -34,6 +34,9 @@
 // ── Auth pages — reusable two-column layout for sign in / sign up ──────
 @use "auth/shell";
 
+// ── Dashboard — chrome shared by authenticated pages ────────────────────
+@use "dashboard/topbar";
+
 // ── Landing page — one file per section/component ──────────────────────
 @use "landing/shared";
 @use "landing/header";

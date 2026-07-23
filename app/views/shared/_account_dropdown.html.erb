@@ -1,5 +1,10 @@
 <% account_trigger = capture do %>
-  <%= render "shared/avatar", initials: initials(Current.user.full_name), size: :sm %>
+  <span class="rk-account-trigger">
+    <%= render "shared/avatar", initials: initials(Current.user.full_name), size: :sm %>
+    <span class="rk-account-trigger-identity">
+      <span class="rk-account-trigger-name"><%= Current.user.full_name %></span>
+    </span>
+  </span>
 <% end %>
 <% account_menu = capture do %>
   <div class="account-dropdown_header">
