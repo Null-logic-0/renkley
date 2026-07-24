@@ -26,7 +26,10 @@ module SharedComponentsHelper
     file_text: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/>',
     line_chart: '<path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/>',
     panel_collapse: '<rect x="3" y="3" width="18" height="18" rx="0"/><path d="M9 3v18"/><path d="m16 9-2 3 2 3"/>',
-    menu: '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>'
+    menu: '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>',
+    globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/>',
+    arrow_right: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+    loader: '<path d="M12 3v3M12 18v3M21 12h-3M6 12H3M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1M18.4 18.4l-2.1-2.1M7.7 7.7 5.6 5.6"/>'
   }.freeze
 
   # Renders one of ICONS as an inline stroke-style SVG (lucide-style).

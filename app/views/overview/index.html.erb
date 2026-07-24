@@ -1,1 +1,32 @@
 <%= content_for :title, "Overview - Renkley" %>
+
+<div class="rk-overview-grid">
+  <%= render layout: "shared/card", locals: { title: "Competitors", subtitle: "From onboarding — add or remove more anytime." } do %>
+    <% if @competitors.any? %>
+      <ul class="rk-overview-list">
+        <% @competitors.each do |competitor| %>
+          <li class="rk-overview-list-item">
+            <span class="rk-overview-list-name"><%= competitor.name %></span>
+            <span class="rk-overview-list-domain"><%= competitor.domain %></span>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="rk-overview-empty">No competitors yet.</p>
+    <% end %>
+  <% end %>
+
+  <%= render layout: "shared/card", locals: { title: "Prompts", subtitle: "What we're tracking across AI platforms." } do %>
+    <% if @prompts.any? %>
+      <ul class="rk-overview-list">
+        <% @prompts.each do |prompt| %>
+          <li class="rk-overview-list-item">
+            <span class="rk-overview-list-name"><%= prompt.body %></span>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="rk-overview-empty">No prompts yet.</p>
+    <% end %>
+  <% end %>
+</div>

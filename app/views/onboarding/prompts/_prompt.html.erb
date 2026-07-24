@@ -1,0 +1,8 @@
+<li id="<%= dom_id(prompt) %>" class="rk-onb-row rk-onb-row--prompt">
+  <span class="rk-onb-row-text"><%= prompt.body %></span>
+  <%= button_to onboarding_prompt_path(prompt), method: :delete,
+        class: "rk-onb-row-remove", form: { class: "rk-onb-row-remove-form" },
+        aria: { label: "Remove prompt" } do %>
+    <%= shared_icon(:x, size: 16) %>
+  <% end %>
+</li>

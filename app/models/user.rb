@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
+  belongs_to :organization
   has_many :sessions, dependent: :destroy
+
 
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
@@ -30,8 +32,17 @@ class User < ApplicationRecord
     user.provider  = provider
     user.uid       = uid
     user.full_name = auth.info.name if user.full_name.blank?
+    user.organization ||= Organization.new(name: default_organization_name(user.full_name, email)) if user.new_record?
     user.save!
     user
+  end
+
+  # Every user needs an Organization (belongs_to, required) — signup flows
+  # don't collect a company name up front, so derive a placeholder the user
+  # can rename later from the workspace they'll customize in onboarding.
+  def self.default_organization_name(full_name, email_address)
+    base = full_name.presence || email_address.to_s.split("@").first.presence || "New"
+    "#{base}'s Workspace"
   end
 
   def self.email_verified?(auth)

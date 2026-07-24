@@ -1,0 +1,23 @@
+<%= turbo_stream_from "organization_#{organization.id}_onboarding" %>
+
+<div class="rk-onb-setup">
+  <div class="rk-onb-indet"><div class="rk-onb-indet-bar"></div></div>
+  <h1 class="rk-onb-title rk-onb-setup-title">We're setting up your dashboard</h1>
+  <p class="rk-onb-lead rk-onb-setup-lead">Querying AI search engines across ChatGPT, Claude, Google AI…</p>
+
+  <div class="rk-onb-setup-card">
+    <div class="rk-onb-setup-card-title">What happens during setup?</div>
+    <p class="rk-onb-setup-card-desc">We're running your prompts across the top AI search engines to establish
+      a baseline for how you and your competitors rank. You can add more
+      competitors and prompts any time from your dashboard.</p>
+    <div class="rk-onb-checklist">
+      <% tasks.each do |task| %>
+        <%= render "onboarding_tasks/task", task: task %>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="onboarding_setup_status">
+    <%= render "onboarding/setup_status", organization: organization %>
+  </div>
+</div>

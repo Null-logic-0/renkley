@@ -1,0 +1,4 @@
+<%= content_for :title, "Get started - Renkley" %>
+
+<%= render "onboarding/#{@organization.onboarding_step_name}",
+      organization: @organization, competitors: @competitors, prompts: @prompts, tasks: @tasks %>

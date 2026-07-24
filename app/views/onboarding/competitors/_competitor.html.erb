@@ -1,0 +1,12 @@
+<li id="<%= dom_id(competitor) %>" class="rk-onb-row">
+  <span class="rk-onb-avatar <%= onboarding_avatar_class(index) %>"><%= competitor.name.first.upcase %></span>
+  <div class="rk-onb-row-main">
+    <div class="rk-onb-row-name"><%= competitor.name %></div>
+    <div class="rk-onb-row-domain"><%= competitor.domain %></div>
+  </div>
+  <%= button_to onboarding_competitor_path(competitor), method: :delete,
+        class: "rk-onb-row-remove", form: { class: "rk-onb-row-remove-form" },
+        aria: { label: "Remove #{competitor.name}" } do %>
+    <%= shared_icon(:x, size: 16) %>
+  <% end %>
+</li>

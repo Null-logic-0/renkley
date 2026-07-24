@@ -1,0 +1,48 @@
+// Minimal real-data view for the overview page — proves the onboarding
+// pipeline lands real competitors/prompts here. The full dashboard (charts,
+// metrics) is a separate epic.
+.rk-overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.rk-overview-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.rk-overview-list-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rk-line-soft);
+}
+.rk-overview-list-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.rk-overview-list-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+.rk-overview-list-domain {
+  font-size: 12.5px;
+  color: var(--rk-muted);
+}
+
+.rk-overview-empty {
+  font-size: 13.5px;
+  color: var(--rk-muted);
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .rk-overview-grid {
+    grid-template-columns: 1fr;
+  }
+}

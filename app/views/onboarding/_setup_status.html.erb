@@ -1,0 +1,5 @@
+<% if organization.completed? %>
+  <p class="rk-onb-setup-done"><%= shared_icon(:check, size: 14) %> All set — redirecting you to your dashboard…</p>
+  <%= link_to "Go to dashboard →", overview_path, class: "rk-onb-dashboard-link" %>
+  <div data-controller="auto-redirect" data-auto-redirect-url-value="<%= overview_path %>"></div>
+<% end %>

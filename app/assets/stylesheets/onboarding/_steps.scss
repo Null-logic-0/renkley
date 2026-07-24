@@ -1,0 +1,335 @@
+// Step 1 — website URL field ------------------------------------------------
+.rk-onb-field-label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: var(--rk-muted);
+}
+.rk-onb-urlfield {
+  display: flex;
+  border: 1.5px solid var(--rk-line);
+  background: var(--bulma-background);
+}
+.rk-onb-urlfield-icon {
+  display: grid;
+  place-items: center;
+  padding: 0 14px;
+  color: var(--rk-faint);
+  border-right: 1.5px solid var(--rk-line);
+}
+.rk-onb-urlfield-input {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  height: 52px;
+  padding: 0 14px;
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--bulma-text);
+  outline: none;
+}
+.rk-onb-urlfield-input:focus-visible {
+  outline: 2px solid var(--rk-accent);
+  outline-offset: -2px;
+}
+.rk-onb-urlfield-submit {
+  width: 56px;
+  border: 0;
+  background: var(--rk-accent);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.rk-onb-urlfield-submit:hover {
+  background: var(--rk-accent-hover);
+}
+
+.rk-onb-hints {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 22px;
+  font-size: 12.5px;
+  color: var(--rk-faint);
+}
+.rk-onb-hints span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+// Steps 2 & 3 — competitor/prompt list card ---------------------------------
+.rk-onb-card {
+  border: 1.5px solid var(--rk-line);
+  background: var(--bulma-background);
+}
+.rk-onb-card-head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 14px 18px;
+  border-bottom: 2px solid var(--rk-line);
+}
+.rk-onb-card-title {
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+}
+.rk-onb-count {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 8px;
+  background: var(--rk-accent-100);
+  color: var(--rk-accent-800);
+}
+
+.rk-onb-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.rk-onb-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--rk-line-soft);
+}
+.rk-onb-row--prompt {
+  padding: 14px 18px;
+}
+.rk-onb-row-main {
+  flex: 1;
+  min-width: 0;
+}
+.rk-onb-row-name {
+  font-size: 14.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rk-onb-row-domain {
+  font-size: 12.5px;
+  color: var(--rk-muted);
+}
+.rk-onb-row-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.rk-onb-avatar {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+}
+.rk-onb-avatar.is-c0 { background: var(--rk-accent-100); color: var(--rk-accent-800); }
+.rk-onb-avatar.is-c1 { background: var(--rk-success-bg); color: #0a6b60; }
+.rk-onb-avatar.is-c2 { background: #e6f0fa; color: #1e5a8c; }
+.rk-onb-avatar.is-c3 { background: #f7ecd6; color: #8a5a08; }
+.rk-onb-avatar.is-c4 { background: var(--rk-error-bg); color: #a8253c; }
+
+.rk-onb-row-remove-form {
+  display: flex;
+  flex: none;
+}
+.rk-onb-row-remove {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border: 0;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  color: var(--rk-faint);
+  cursor: pointer;
+}
+.rk-onb-row--prompt + .rk-onb-row--prompt .rk-onb-row-remove,
+.rk-onb-row--prompt .rk-onb-row-remove {
+  width: 32px;
+  height: 32px;
+}
+.rk-onb-row-remove:hover {
+  color: var(--rk-error);
+}
+
+.rk-onb-add {
+  padding: 16px 18px;
+}
+.rk-onb-add-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--rk-muted);
+}
+.rk-onb-add-optional {
+  color: var(--rk-faint);
+  font-weight: 400;
+}
+.rk-onb-add-controls {
+  display: flex;
+  gap: 8px;
+}
+.rk-onb-add-controls .input {
+  flex: 1;
+  height: 42px;
+}
+
+.rk-onb-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 26px;
+}
+.rk-onb-back-form {
+  display: flex;
+}
+.rk-onb-back {
+  height: 46px;
+  padding: 0 12px;
+  border: 0;
+  background: transparent;
+  color: var(--rk-accent);
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+}
+.rk-onb-back:hover {
+  background: color-mix(in srgb, var(--rk-accent) 10%, transparent);
+}
+.rk-onb-continue-form {
+  flex: 1;
+  display: flex;
+}
+
+// Step 4 — automated setup ---------------------------------------------------
+.rk-onb-setup {
+  text-align: center;
+  padding-top: 20px;
+}
+.rk-onb-indet {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto 34px;
+  height: 6px;
+  background: var(--rk-line-soft);
+  position: relative;
+  overflow: hidden;
+}
+.rk-onb-indet-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 30%;
+  background: var(--rk-accent);
+  animation: rk-onb-indet 1.1s ease-in-out infinite;
+}
+@keyframes rk-onb-indet {
+  0% { left: -30%; }
+  100% { left: 100%; }
+}
+
+.rk-onb-setup-title {
+  font-size: 32px;
+  margin: 0 0 8px;
+}
+.rk-onb-setup-lead {
+  margin: 0 0 40px;
+}
+.rk-onb-setup-card {
+  border: 1.5px solid var(--rk-line);
+  background: var(--bulma-background);
+  padding: 22px 24px;
+  text-align: left;
+  max-width: 460px;
+  margin: 0 auto;
+}
+.rk-onb-setup-card-title {
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+.rk-onb-setup-card-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--rk-muted);
+  margin: 0;
+}
+
+.rk-onb-checklist {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.rk-onb-check-row {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 13.5px;
+  color: var(--rk-faint);
+}
+.rk-onb-check-icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  color: var(--rk-faint);
+}
+.rk-onb-check-row.is-in_progress {
+  color: var(--bulma-text);
+  font-weight: 600;
+}
+.rk-onb-check-row.is-in_progress .rk-onb-check-icon {
+  color: var(--rk-accent);
+  animation: rk-onb-spin 0.9s linear infinite;
+}
+.rk-onb-check-row.is-done {
+  color: var(--bulma-text);
+}
+.rk-onb-check-row.is-done .rk-onb-check-icon {
+  background: var(--rk-success);
+  color: #fff;
+  border-radius: 50%;
+}
+.rk-onb-check-row.is-failed {
+  color: var(--bulma-text);
+}
+.rk-onb-check-row.is-failed .rk-onb-check-icon {
+  background: var(--rk-error);
+  color: #fff;
+  border-radius: 50%;
+}
+@keyframes rk-onb-spin {
+  to { transform: rotate(360deg); }
+}
+
+.rk-onb-dashboard-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.rk-onb-setup-done {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin: 34px 0 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--rk-success);
+}

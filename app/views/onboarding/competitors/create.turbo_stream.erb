@@ -1,0 +1,14 @@
+<% if @competitor.persisted? %>
+  <%= turbo_stream.append "onboarding_competitors_list" do %>
+    <%= render "onboarding/competitors/competitor", competitor: @competitor, index: @organization.companies.competitor.count - 1 %>
+  <% end %>
+  <%= turbo_stream.replace "onboarding_competitor_count" do %>
+    <span id="onboarding_competitor_count" class="rk-onb-count"><%= @organization.companies.competitor.count %></span>
+  <% end %>
+  <%= turbo_stream.replace "company_domain" do %>
+    <%= text_field_tag "company[domain]", nil, id: "company_domain", class: "input", placeholder: "https://competitor.com", autocomplete: "off" %>
+  <% end %>
+<% end %>
+<%= turbo_stream.update "flash" do %>
+  <%= render "shared/flash" %>
+<% end %>

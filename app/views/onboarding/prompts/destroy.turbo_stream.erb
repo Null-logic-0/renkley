@@ -1,0 +1,4 @@
+<%= turbo_stream.remove @prompt %>
+<%= turbo_stream.replace "onboarding_prompt_count" do %>
+  <span id="onboarding_prompt_count" class="rk-onb-count"><%= @organization.prompts.count %></span>
+<% end %>

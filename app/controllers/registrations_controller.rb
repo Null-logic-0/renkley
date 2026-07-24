@@ -9,6 +9,9 @@ class RegistrationsController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.organization = Organization.new(
+      name: User.default_organization_name(@user.full_name, @user.email_address)
+    )
     if @user.save
       ConfirmationsMailer.confirm(@user).deliver_later
       redirect_to sign_in_path, notice: "Welcome to Renkley! Check your email to confirm your account before signing in."

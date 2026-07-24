@@ -1,0 +1,31 @@
+<span class="tag rk-onb-tag">Step 3 of 4</span>
+<h1 class="rk-onb-title">Some prompts to get you started</h1>
+<p class="rk-onb-lead">We'll use these to compare how you and your competitors rank in AI search.</p>
+
+<div class="rk-onb-card">
+  <div class="rk-onb-card-head">
+    <span class="rk-onb-card-title">Prompt list</span>
+    <span id="onboarding_prompt_count" class="rk-onb-count"><%= prompts.size %></span>
+  </div>
+
+  <ul id="onboarding_prompts_list" class="rk-onb-list">
+    <% prompts.each do |prompt| %>
+      <%= render "onboarding/prompts/prompt", prompt: prompt %>
+    <% end %>
+  </ul>
+
+  <div class="rk-onb-add">
+    <label class="rk-onb-add-label" for="prompt_body">Add prompt <span class="rk-onb-add-optional">(optional — can do later)</span></label>
+    <%= form_with url: onboarding_prompts_path, method: :post, html: { class: "rk-onb-add-controls" } do %>
+      <%= text_field_tag "prompt[body]", nil, id: "prompt_body", class: "input", placeholder: "e.g. best project management tool for agencies?", autocomplete: "off" %>
+      <%= render "shared/button", label: "Add", variant: :secondary, type: "submit" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="rk-onb-actions">
+  <%= button_to "← Back", back_onboarding_path, method: :post, class: "rk-onb-back", form: { class: "rk-onb-back-form" } %>
+  <%= form_with url: finish_onboarding_path, method: :post, html: { class: "rk-onb-continue-form" } do %>
+    <%= render "shared/button", label: "Finish onboarding", variant: :primary, type: "submit", full_width: true, html: { class: "rk-btn-lg" } %>
+  <% end %>
+</div>

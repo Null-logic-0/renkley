@@ -59,7 +59,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
       follow_redirect!
     end
 
-    assert_redirected_to root_url
+    assert_redirected_to onboarding_url
     assert cookies[:session_id].present?
     assert_equal 1, User.find_by(uid: "abc").sessions.count
     assert_equal "Welcome to Renkley, let's get started!", flash[:notice]
