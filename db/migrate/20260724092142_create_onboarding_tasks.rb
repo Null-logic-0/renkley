@@ -10,6 +10,6 @@ class CreateOnboardingTasks < ActiveRecord::Migration[8.1]
       t.datetime :finished_at
       t.timestamps
     end
-    add_index :onboarding_tasks, [:organization_id, :key], unique: true
+    add_index :onboarding_tasks, :organization_id, :key, unique: true
   end
 end

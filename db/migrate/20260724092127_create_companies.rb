@@ -9,7 +9,6 @@ class CreateCompanies < ActiveRecord::Migration[8.1]
       t.integer :position, null: false, default: 0
       t.timestamps
     end
-    add_index :companies, [:organization_id, :domain], unique: true
-
+    add_index :companies, :organization_id, :domain, unique: true
   end
 end
