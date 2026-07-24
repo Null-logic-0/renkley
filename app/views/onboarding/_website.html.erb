@@ -1,0 +1,18 @@
+<span class="tag rk-onb-tag">Step 1 of 4</span>
+<h1 class="rk-onb-title">Welcome — let's find your competitors</h1>
+<p class="rk-onb-lead">Add your website below and we'll run a quick scan to find who you compete with in AI search.</p>
+
+<%= form_with url: scan_onboarding_path, method: :post, html: { class: "rk-onb-field" } do %>
+  <label class="rk-onb-field-label" for="website_url">Your website URL</label>
+  <div class="rk-onb-urlfield">
+    <span class="rk-onb-urlfield-icon"><%= shared_icon(:globe, size: 18) %></span>
+    <%= text_field_tag :website_url, organization.website_url, id: "website_url",
+          placeholder: "e.g. kestrel.io", class: "rk-onb-urlfield-input", autofocus: true, autocomplete: "off" %>
+    <button type="submit" class="rk-onb-urlfield-submit" title="Run scan"><%= shared_icon(:arrow_right, size: 18) %></button>
+  </div>
+<% end %>
+
+<div class="rk-onb-hints">
+  <span><%= shared_icon(:check, size: 14) %>Takes about 10 seconds</span>
+  <span><%= shared_icon(:check, size: 14) %>Nothing is published</span>
+</div>

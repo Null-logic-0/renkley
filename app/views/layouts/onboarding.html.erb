@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Get started - Renkley" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Renkley">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/favicon" type="image/png">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/favicon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div class="rk-onboarding">
+      <header class="rk-onboarding-header">
+        <div class="rk-onboarding-header-inner">
+          <div class="rk-onboarding-brand">
+            <div class="rk-logomark"><span>R</span></div>
+            <span class="rk-brand-name">Renkley</span>
+          </div>
+          <span class="rk-onboarding-counter"><%= onboarding_step_counter(@organization) %></span>
+          <%= button_to "Skip setup", skip_onboarding_path, method: :post,
+                class: "rk-onboarding-skip", form: { class: "rk-onboarding-skip-form" } %>
+        </div>
+        <div class="rk-onboarding-rail">
+          <div class="rk-onboarding-rail-fill" style="width: <%= onboarding_progress_percent(@organization) %>%"></div>
+        </div>
+      </header>
+
+      <main class="rk-onboarding-main">
+        <div class="rk-onboarding-container">
+          <div id="flash"><%= render "shared/flash" %></div>
+          <%= yield %>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+<%= turbo_stream.remove @competitor %>
+<%= turbo_stream.replace "onboarding_competitor_count" do %>
+  <span id="onboarding_competitor_count" class="rk-onb-count"><%= @organization.companies.competitor.count %></span>
+<% end %>

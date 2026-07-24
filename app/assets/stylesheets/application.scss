@@ -38,6 +38,11 @@
 @use "dashboard/sidebar";
 @use "dashboard/topbar";
 @use "dashboard/scaffold";
+@use "dashboard/overview";
+
+// ── Onboarding — post-signup wizard shell + steps ───────────────────────
+@use "onboarding/wizard_shell";
+@use "onboarding/steps";
 
 // ── Landing page — one file per section/component ──────────────────────
 @use "landing/shared";

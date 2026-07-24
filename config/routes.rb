@@ -8,6 +8,27 @@ Rails.application.routes.draw do
   get "sign_in" => "sessions#new", as: :sign_in
   get "sign_up" => "registrations#new", as: :sign_up
 
+  post "auth/:provider" => "sessions#passthru", as: :omniauth_authorize,
+       constraints: { provider: /google_oauth2/ }
+  get "auth/:provider/callback" => "sessions#omniauth",
+      constraints: { provider: /google_oauth2/ }
+  match "auth/failure" => "sessions#omniauth_failure", via: %i[get post]
+
+  resource :onboarding, only: [ :show ], controller: "onboarding" do
+    post :scan
+    post :next_step
+    post :back
+    post :finish
+    post :skip
+  end
+
+  namespace :onboarding do
+    resources :competitors, only: [ :create, :destroy ]
+    resources :prompts, only: [ :create, :destroy ]
+  end
+
+  get "overview" => "overview#index", as: :overview
+
 
   if Rails.env.development?
     get "dev/components" => "dev/components#index"
@@ -15,12 +36,4 @@ Rails.application.routes.draw do
   end
 
   get "up" => "rails/health#show", as: :rails_health_check
-
-  post "auth/:provider" => "sessions#passthru", as: :omniauth_authorize,
-       constraints: { provider: /google_oauth2/ }
-  get "auth/:provider/callback" => "sessions#omniauth",
-      constraints: { provider: /google_oauth2/ }
-  match "auth/failure" => "sessions#omniauth_failure", via: %i[get post]
-
-  get "overview" => "overview#index", as: :overview
 end

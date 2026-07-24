@@ -10,9 +10,67 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_22_104449) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_24_092142) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "ai_platforms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "key", null: false
+    t.string "name", null: false
+    t.integer "position", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["key"], name: "index_ai_platforms_on_key", unique: true
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "domain", null: false
+    t.integer "kind", default: 0, null: false
+    t.string "name", null: false
+    t.bigint "organization_id", null: false
+    t.integer "position", default: 0, null: false
+    t.integer "source", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id", "domain"], name: "index_companies_on_organization_id_and_domain", unique: true
+    t.index ["organization_id"], name: "index_companies_on_organization_id"
+  end
+
+  create_table "onboarding_tasks", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "finished_at"
+    t.string "key", null: false
+    t.string "label", null: false
+    t.bigint "organization_id", null: false
+    t.integer "position", default: 0, null: false
+    t.datetime "started_at"
+    t.integer "status", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id", "key"], name: "index_onboarding_tasks_on_organization_id_and_key", unique: true
+    t.index ["organization_id"], name: "index_onboarding_tasks_on_organization_id"
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.integer "onboarding_status", default: 0, null: false
+    t.integer "onboarding_step", default: 1, null: false
+    t.string "slug", null: false
+    t.string "time_zone", default: "UTC", null: false
+    t.datetime "updated_at", null: false
+    t.string "website_url"
+    t.index ["slug"], name: "index_organizations_on_slug", unique: true
+  end
+
+  create_table "prompts", force: :cascade do |t|
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.bigint "organization_id", null: false
+    t.integer "position", default: 0, null: false
+    t.integer "source", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_prompts_on_organization_id"
+  end
 
   create_table "sessions", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -28,13 +86,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_22_104449) do
     t.datetime "created_at", null: false
     t.string "email_address", null: false
     t.string "full_name", null: false
+    t.bigint "organization_id", null: false
     t.string "password_digest", null: false
     t.string "provider"
     t.string "uid"
     t.datetime "updated_at", null: false
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
+    t.index ["organization_id"], name: "index_users_on_organization_id"
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
   end
 
+  add_foreign_key "companies", "organizations"
+  add_foreign_key "onboarding_tasks", "organizations"
+  add_foreign_key "prompts", "organizations"
   add_foreign_key "sessions", "users"
+  add_foreign_key "users", "organizations"
 end

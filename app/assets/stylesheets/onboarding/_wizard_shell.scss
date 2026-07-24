@@ -1,0 +1,86 @@
+// Wizard shell — header (brand, step counter, skip link, progress rail)
+// plus the centered single-column container shared by all 4 steps.
+.rk-onboarding {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bulma-scheme-main);
+}
+
+.rk-onboarding-header {
+  border-bottom: 2px solid var(--rk-line);
+}
+.rk-onboarding-header-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.rk-onboarding-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-right: auto;
+}
+.rk-onboarding-counter {
+  font-size: 12.5px;
+  color: var(--rk-muted);
+}
+
+.rk-onboarding-skip {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  height: auto;
+  padding: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--rk-muted);
+}
+.rk-onboarding-skip:hover {
+  color: var(--rk-accent);
+}
+.rk-onboarding-skip-form {
+  display: flex;
+}
+
+.rk-onboarding-rail {
+  height: 3px;
+  background: var(--rk-line-soft);
+}
+.rk-onboarding-rail-fill {
+  height: 100%;
+  background: var(--rk-accent);
+  transition: width 0.3s ease;
+}
+
+.rk-onboarding-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 56px 24px 72px;
+}
+.rk-onboarding-container {
+  width: 100%;
+  max-width: 560px;
+}
+
+.rk-onb-tag {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.rk-onb-title {
+  font-size: 34px;
+  letter-spacing: -0.025em;
+  margin: 16px 0 8px;
+  line-height: 1.08;
+}
+.rk-onb-lead {
+  font-size: 15px;
+  color: var(--rk-muted);
+  margin: 0 0 34px;
+  line-height: 1.55;
+}

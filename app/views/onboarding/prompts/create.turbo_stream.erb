@@ -1,0 +1,14 @@
+<% if @prompt.persisted? %>
+  <%= turbo_stream.append "onboarding_prompts_list" do %>
+    <%= render "onboarding/prompts/prompt", prompt: @prompt %>
+  <% end %>
+  <%= turbo_stream.replace "onboarding_prompt_count" do %>
+    <span id="onboarding_prompt_count" class="rk-onb-count"><%= @organization.prompts.count %></span>
+  <% end %>
+  <%= turbo_stream.replace "prompt_body" do %>
+    <%= text_field_tag "prompt[body]", nil, id: "prompt_body", class: "input", placeholder: "e.g. best project management tool for agencies?", autocomplete: "off" %>
+  <% end %>
+<% end %>
+<%= turbo_stream.update "flash" do %>
+  <%= render "shared/flash" %>
+<% end %>

@@ -1,0 +1,11 @@
+one:
+  name: Acme Inc
+  slug: acme-inc
+  onboarding_status: completed
+  onboarding_step: 4
+
+two:
+  name: Widget Co
+  slug: widget-co
+  onboarding_status: completed
+  onboarding_step: 4

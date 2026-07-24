@@ -1,0 +1,31 @@
+<span class="tag rk-onb-tag">Step 2 of 4</span>
+<h1 class="rk-onb-title">We found some competitors</h1>
+<p class="rk-onb-lead">Add or remove competitors below — you can always change these later.</p>
+
+<div class="rk-onb-card">
+  <div class="rk-onb-card-head">
+    <span class="rk-onb-card-title">Competitor list</span>
+    <span id="onboarding_competitor_count" class="rk-onb-count"><%= competitors.size %></span>
+  </div>
+
+  <ul id="onboarding_competitors_list" class="rk-onb-list">
+    <% competitors.each_with_index do |competitor, index| %>
+      <%= render "onboarding/competitors/competitor", competitor: competitor, index: index %>
+    <% end %>
+  </ul>
+
+  <div class="rk-onb-add">
+    <label class="rk-onb-add-label" for="company_domain">Add competitor <span class="rk-onb-add-optional">(optional — can do later)</span></label>
+    <%= form_with url: onboarding_competitors_path, method: :post, html: { class: "rk-onb-add-controls" } do %>
+      <%= text_field_tag "company[domain]", nil, id: "company_domain", class: "input", placeholder: "https://competitor.com", autocomplete: "off" %>
+      <%= render "shared/button", label: "Add", variant: :secondary, type: "submit" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="rk-onb-actions">
+  <%= button_to "← Back", back_onboarding_path, method: :post, class: "rk-onb-back", form: { class: "rk-onb-back-form" } %>
+  <%= form_with url: next_step_onboarding_path, method: :post, html: { class: "rk-onb-continue-form" } do %>
+    <%= render "shared/button", label: "Continue to prompts", variant: :primary, type: "submit", full_width: true, html: { class: "rk-btn-lg" } %>
+  <% end %>
+</div>
