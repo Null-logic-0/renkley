@@ -1,0 +1,57 @@
+<div id="<%= dom_id(recommendation) %>" class="rk-ov-rec-card">
+  <div class="<%= recommendation_priority_bar_class(recommendation) %>"></div>
+  <div class="rk-ov-rec-body">
+    <span class="rk-ov-rec-num"><%= format("%02d", index + 1) %></span>
+    <div class="rk-ov-rec-main">
+      <div class="rk-ov-rec-title-row">
+        <h4 class="rk-ov-rec-title"><%= recommendation.title %></h4>
+        <span class="<%= recommendation_priority_tag_class(recommendation) %>"><%= recommendation.priority %></span>
+      </div>
+      <p class="rk-ov-rec-why"><%= recommendation.rationale %></p>
+      <div class="rk-ov-rec-meta">
+        <span class="rk-ov-rec-cat-tag"><%= recommendation.category %></span>
+        <span class="rk-ov-rec-effort">
+          <span class="<%= recommendation_effort_dot_class(recommendation) %>"></span>
+          <%= effort_label(recommendation.effort) %>
+          effort
+        </span>
+        <span class="rk-ov-rec-impact">
+          Impact
+          <span class="rk-ov-rec-impact-cells">
+            <% 10.times do |i| %>
+              <span
+                class="
+                  rk-ov-rec-impact-cell <%= recommendation_impact_cell_class(i, recommendation.impact_score_out_of_ten) %>
+                "
+              ></span>
+            <% end %>
+          </span>
+          <strong><%= number_with_precision(recommendation.impact_score_out_of_ten, precision: 1) %></strong>
+        </span>
+      </div>
+    </div>
+    <div class="rk-ov-rec-actions">
+      <%= render "shared/button",
+      label: "Apply fix",
+      variant: :primary,
+      to: apply_recommendation_path(recommendation),
+      html: {
+        data: {
+          turbo_stream: true,
+        },
+      } %>
+      <%= render "shared/button",
+      label: "",
+      variant: :secondary,
+      icon: shared_icon(:x, size: 15),
+      to: dismiss_recommendation_path(recommendation),
+      html: {
+        class: "rk-btn-icon-only",
+        title: "Dismiss",
+        data: {
+          turbo_stream: true,
+        },
+      } %>
+    </div>
+  </div>
+</div>

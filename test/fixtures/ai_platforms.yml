@@ -1,0 +1,24 @@
+chatgpt:
+  key: chatgpt
+  name: ChatGPT
+  position: 0
+
+claude:
+  key: claude
+  name: Claude
+  position: 1
+
+google_ai:
+  key: google_ai
+  name: Google AI
+  position: 2
+
+gemini:
+  key: gemini
+  name: Gemini
+  position: 3
+
+perplexity:
+  key: perplexity
+  name: Perplexity
+  position: 4

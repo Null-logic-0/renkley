@@ -3,6 +3,10 @@ class Organization < ApplicationRecord
   has_many :companies, dependent: :destroy
   has_many :prompts, dependent: :destroy
   has_many :onboarding_tasks, dependent: :destroy
+  has_many :scans, dependent: :destroy
+  has_many :citations, dependent: :destroy
+  has_many :recommendations, dependent: :destroy
+  has_many :reports, dependent: :destroy
 
   enum :onboarding_status, { in_progress: 0, completed: 1, skipped: 2 }, default: :in_progress
 

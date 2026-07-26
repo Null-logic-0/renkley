@@ -1,0 +1,28 @@
+<% content_for :title, "Reports - Renkley" %>
+
+<div class="rk-ov">
+  <section class="rk-ov-section-head">
+    <div>
+      <%= render "shared/tag", label: "REPORTS", variant: :accent_soft %>
+      <h1 class="rk-ov-hero-title">Reports</h1>
+      <p class="rk-ov-section-sub">Scheduled and on-demand exports for your team and stakeholders.</p>
+    </div>
+    <div class="rk-ov-report-header-actions">
+      <%= render "shared/button", label: "Download reports", variant: :secondary, icon: shared_icon(:download, size: 15),
+            href: download_all_reports_path %>
+      <%= render "shared/button", label: "New report", variant: :primary, icon: shared_icon(:plus, size: 15),
+            to: reports_path %>
+    </div>
+  </section>
+
+  <% if @reports.any? %>
+    <div class="rk-ov-report-grid">
+      <% @reports.each do |r| %>
+        <%= render "reports/card", report: r %>
+      <% end %>
+    </div>
+  <% else %>
+    <%= render "shared/state", variant: :empty, title: "No reports yet",
+          description: "Create your first report to get a downloadable export of your AI visibility data." %>
+  <% end %>
+</div>

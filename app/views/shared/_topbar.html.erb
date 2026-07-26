@@ -101,7 +101,8 @@
   <%= render "shared/button",
   label: "Export report",
   variant: :primary,
-  icon: shared_icon(:download, size: 16) %>
+  icon: shared_icon(:download, size: 16),
+  href: download_all_reports_path %>
 
   <%= render "shared/account_dropdown" %>
 </header>

@@ -1,0 +1,82 @@
+<section id="competitor-comparison" aria-labelledby="competitor-comparison-heading">
+  <div class="rk-ov-section-head">
+    <div>
+      <h2 id="competitor-comparison-heading" class="rk-ov-h2">Competitor comparison</h2>
+      <p class="rk-ov-section-sub">How <%= overview.organization.name %> stacks up against tracked competitors. Click a row for detail.</p>
+    </div>
+    <%= render "shared/button", label: "Manage competitors", variant: :secondary, icon: shared_icon(:users, size: 15) %>
+  </div>
+
+  <% if (rival = overview.leading_rival) %>
+    <div class="rk-ov-warning">
+      <span class="rk-ov-warning-icon"><%= shared_icon(:alert_triangle, size: 16) %></span>
+      <p class="rk-ov-warning-text">
+        <strong>You are losing visibility against <%= rival[:brand] %>.</strong>
+        <span>They lead by <%= rival[:gap] %> points<% if rival[:lost_prompts] > 0 %> and win <%= pluralize(rival[:lost_prompts], "high-volume prompt") %> you don't rank for<% end %>.</span>
+      </p>
+      <a href="#competitor-comparison" class="rk-ov-link">See why <%= shared_icon(:chevron_down, size: 14) %></a>
+    </div>
+  <% end %>
+
+  <% if overview.competitors.any? %>
+    <% grid_columns = "1.7fr 1.1fr #{"0.9fr " * overview.platform_count}0.9fr 1fr 34px" %>
+    <div class="rk-ov-scroll-x rk-ov-comp-table">
+      <div class="rk-ov-comp-row rk-ov-comp-head" style="grid-template-columns:<%= grid_columns %>">
+        <span>Brand</span><span>AI Score</span>
+        <% overview.integrated_platforms.each do |platform| %><span><%= platform.name %></span><% end %>
+        <span>Citations</span><span>Trend</span><span></span>
+      </div>
+      <% overview.competitors.each do |c| %>
+        <div class="rk-ov-comp-row-wrap" data-controller="disclosure">
+          <div class="rk-ov-comp-row<%= " is-you" if c[:you] %>" style="grid-template-columns:<%= grid_columns %>" role="button" tabindex="0" aria-expanded="false"
+               data-disclosure-target="trigger" data-action="click->disclosure#toggle keydown.enter->disclosure#toggle keydown.space->disclosure#toggle">
+            <span class="rk-ov-comp-brand">
+              <span class="rk-ov-comp-avatar<%= " is-you" if c[:you] %>"><%= c[:brand].first.upcase %></span>
+              <span class="rk-ov-comp-brand-name"><%= c[:brand] %></span>
+              <% if c[:you] %><span class="rk-ov-comp-you-tag">YOU</span><% end %>
+            </span>
+            <span class="rk-ov-comp-score">
+              <span class="rk-ov-comp-score-number"><%= c[:score] %></span>
+              <span class="rk-ov-comp-score-bar"><span style="width:<%= c[:score] %>%"></span></span>
+            </span>
+            <% c[:platform_mentions].each do |pm| %><span><%= pm[:value] %></span><% end %>
+            <span><%= c[:cites] %></span>
+            <span class="rk-ov-comp-trend">
+              <%= chart_sparkline(c[:history], color: c[:delta].to_i.negative? ? "var(--rk-error)" : "var(--rk-success)", width: 56, height: 22) %>
+              <%= delta_chip(c[:delta]) %>
+            </span>
+            <span class="rk-ov-comp-chevron" data-disclosure-target="chevron"><%= shared_icon(:chevron_down, size: 16) %></span>
+          </div>
+          <div class="rk-ov-comp-detail" data-disclosure-target="panel" hidden>
+            <div>
+              <div class="rk-ov-comp-detail-label">Assessment</div>
+              <p class="rk-ov-comp-detail-note"><%= c[:note] %></p>
+              <div class="rk-ov-comp-detail-actions">
+                <%= render "shared/button", label: "View profile", variant: :secondary %>
+                <%= render "shared/button", label: "Track prompts", variant: :ghost %>
+              </div>
+            </div>
+            <div>
+              <div class="rk-ov-comp-detail-label">Platform mentions</div>
+              <% max = [ c[:platform_mentions].map { |pm| pm[:value] }.max, 1 ].max %>
+              <% c[:platform_mentions].each do |pm| %>
+                <div class="rk-ov-comp-platform-bar-row">
+                  <div class="rk-ov-comp-platform-bar-head"><span><%= pm[:name] %></span><span><%= pm[:value] %></span></div>
+                  <div class="rk-ov-comp-platform-bar"><div style="width:<%= [ (pm[:value].to_f / max * 100), 100 ].min %>%"></div></div>
+                </div>
+              <% end %>
+            </div>
+            <div>
+              <div class="rk-ov-comp-detail-label">Scan-over-scan trend</div>
+              <%= chart_sparkline(c[:history], color: c[:you] ? "var(--rk-accent)" : (c[:delta].to_i.negative? ? "var(--rk-error)" : "var(--rk-success)"), width: 220, height: 60) %>
+              <div class="rk-ov-comp-detail-momentum">Momentum <%= delta_chip(c[:delta]) %> this period</div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <%= render "shared/state", variant: :empty, title: "No competitor data yet",
+          description: "Run your first AI visibility scan to compare against tracked competitors." %>
+  <% end %>
+</section>

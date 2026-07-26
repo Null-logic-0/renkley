@@ -1,0 +1,32 @@
+<section class="rk-ov-score" aria-label="AI visibility score">
+  <div class="rk-ov-score-primary">
+    <%= chart_score_ring(overview.score, grade: overview.score_grade) %>
+    <div class="rk-ov-score-primary-text">
+      <div class="rk-ov-score-label">AI Visibility Score</div>
+      <div class="rk-ov-score-value">
+        <span class="rk-ov-score-number"><%= overview.score %></span>
+        <span class="rk-ov-score-unit">/100</span>
+      </div>
+      <div class="rk-ov-score-delta">
+        <%= delta_chip(overview.score_delta_pct, size: 12) %>
+        <% if overview.score_previous %>
+          <span class="rk-ov-score-delta-note">vs. <%= overview.score_previous %> last scan</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% overview.hero_metrics.each do |m| %>
+    <div class="rk-ov-score-cell">
+      <div class="rk-ov-score-cell-head">
+        <span class="rk-ov-score-cell-label"><%= m[:label] %></span>
+        <%= delta_chip(m[:delta]) %>
+      </div>
+      <div class="rk-ov-score-cell-value">
+        <span class="rk-ov-score-cell-number"><%= m[:value] %></span>
+        <span class="rk-ov-score-cell-unit"><%= m[:unit] %></span>
+      </div>
+      <div class="rk-ov-score-cell-spark"><%= chart_sparkline(m[:history], color: m[:delta].to_i.negative? ? "var(--rk-error)" : "var(--rk-success)") %></div>
+      <div class="rk-ov-score-cell-sub"><%= m[:sub] %></div>
+    </div>
+  <% end %>
+</section>

@@ -1,0 +1,29 @@
+<div class="rk-ov-panel">
+  <div class="rk-ov-panel-head">
+    <div>
+      <h3 class="rk-ov-h3">Brand mentions timeline</h3>
+      <p class="rk-ov-panel-sub">Monthly AI mentions and citations for <%= overview.organization.name %>.</p>
+    </div>
+    <div class="rk-ov-legend">
+      <span class="rk-ov-legend-item"><span class="rk-ov-legend-swatch is-solid"></span>Mentions</span>
+      <span class="rk-ov-legend-item"><span class="rk-ov-legend-swatch is-dashed"></span>Citations</span>
+    </div>
+  </div>
+
+  <% timeline = overview.mentions_timeline %>
+  <% if timeline[:mentions].compact.size >= 2 %>
+    <%= chart_dual_area_line(labels: timeline[:labels], series_a: timeline[:mentions], series_a_color: "var(--rk-accent)",
+          series_b: timeline[:citations], series_b_color: "var(--rk-success)") %>
+    <table class="sr-only">
+      <caption>Brand mentions and citations by month</caption>
+      <thead><tr><th scope="col">Month</th><th scope="col">Mentions</th><th scope="col">Citations</th></tr></thead>
+      <tbody>
+        <% timeline[:labels].each_with_index do |label, i| %>
+          <tr><th scope="row"><%= label %></th><td><%= timeline[:mentions][i] %></td><td><%= timeline[:citations][i] %></td></tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="rk-chart-empty">Not enough scan history yet.</p>
+  <% end %>
+</div>

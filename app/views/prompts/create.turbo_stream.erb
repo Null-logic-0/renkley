@@ -1,0 +1,4 @@
+<%= turbo_stream.replace "prompt_tracking_section", partial: "overview/prompt_tracking", locals: { overview: OverviewPresenter.new(Current.organization) } %>
+<%= turbo_stream.update "flash" do %>
+  <%= render "shared/flash" %>
+<% end %>

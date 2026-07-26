@@ -1,0 +1,20 @@
+<section aria-labelledby="recommendations-heading">
+  <div class="rk-ov-section-head">
+    <div>
+      <div class="rk-ov-section-kicker"><%= shared_icon(:sparkles, size: 16) %><h2 id="recommendations-heading" class="rk-ov-h2">Optimization recommendations</h2></div>
+      <p class="rk-ov-section-sub">AI-generated actions ranked by projected visibility impact.</p>
+    </div>
+    <%= render "shared/button", label: "Regenerate", variant: :secondary, icon: shared_icon(:sparkles, size: 15),
+          to: regenerate_recommendations_path, html: { data: { turbo_stream: true } } %>
+  </div>
+
+  <div id="recommendations_list" class="rk-ov-rec-list">
+    <% overview.recommendations.each_with_index do |r, i| %>
+      <%= render "overview/recommendation", recommendation: r, index: i %>
+    <% end %>
+    <% if overview.recommendations.empty? %>
+      <%= render "shared/state", variant: :empty, title: "No recommendations right now",
+            description: "Run a scan or hit Regenerate to get fresh optimization ideas." %>
+    <% end %>
+  </div>
+</section>

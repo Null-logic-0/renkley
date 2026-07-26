@@ -1,0 +1,38 @@
+<div class="rk-ov-panel rk-ov-panel-flush">
+  <div class="rk-ov-panel-head rk-ov-panel-head-bordered">
+    <div>
+      <h3 class="rk-ov-h3">Citation analysis</h3>
+      <p class="rk-ov-panel-sub">Top sources AI models cite. Bar shows your share vs competitors.</p>
+    </div>
+  </div>
+
+  <% if overview.citations.any? %>
+    <div class="rk-ov-citation-scroll" data-controller="infinite-scroll">
+      <div class="rk-ov-citation-list" data-infinite-scroll-target="list">
+        <% overview.citations.each do |c| %>
+          <div class="rk-ov-citation-row">
+            <div class="rk-ov-citation-head">
+              <span class="rk-ov-citation-domain"><%= c.domain %></span>
+              <span class="rk-ov-citation-authority<%= " is-high" if c.authority_score >= 85 %>">DA <%= c.authority_score %></span>
+              <span class="rk-ov-citation-mentions"><%= c.mentions_count %> cites</span>
+              <span class="rk-ov-citation-dir <%= c.up? ? "is-up" : "is-down" %>"><%= shared_icon(c.up? ? :trend_up : :trend_down, size: 11) %></span>
+            </div>
+            <div class="rk-ov-citation-bar">
+              <div class="rk-ov-citation-bar-yours" style="width:<%= c.your_share_pct %>%"></div>
+              <div class="rk-ov-citation-bar-comp" style="width:<%= c.competitor_share_pct %>%"></div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="rk-ov-citation-foot">
+      <span class="rk-ov-legend">
+        <span class="rk-ov-legend-item"><span class="rk-ov-legend-dot is-yours"></span>You</span>
+        <span class="rk-ov-legend-item"><span class="rk-ov-legend-dot is-comp"></span>Competitors</span>
+      </span>
+    </div>
+  <% else %>
+    <%= render "shared/state", variant: :empty, title: "No citation data yet",
+          description: "Run your first AI visibility scan to see who AI models cite." %>
+  <% end %>
+</div>

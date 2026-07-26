@@ -28,7 +28,7 @@
       <div class="rk-dashboard-main">
         <%= render "shared/topbar" %>
         <main class="rk-dashboard-content">
-          <%= render "shared/flash" %>
+          <div id="flash"><%= render "shared/flash" %></div>
           <%= yield %>
         </main>
       </div>

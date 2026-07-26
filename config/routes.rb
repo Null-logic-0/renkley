@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => "/cable"
+
   root "landing#index"
   resource :session
   resources :passwords, param: :token
@@ -28,6 +30,22 @@ Rails.application.routes.draw do
   end
 
   get "overview" => "overview#index", as: :overview
+
+  resources :scans, only: [ :create ]
+  resources :reports, only: [ :index, :create ] do
+    member { get :download }
+    collection { get :download_all }
+  end
+  resources :prompts, only: [ :create, :update, :destroy ]
+  resources :recommendations, only: [] do
+    member do
+      post :apply
+      post :dismiss
+    end
+    collection do
+      post :regenerate
+    end
+  end
 
 
   if Rails.env.development?

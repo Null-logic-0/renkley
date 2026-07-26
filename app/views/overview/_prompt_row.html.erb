@@ -1,0 +1,23 @@
+<div id="prompt_row_<%= p[:prompt_id] %>" class="rk-ov-prompt-row" data-prompt-tabs-target="row" data-category="<%= p[:category] %>">
+  <span class="rk-ov-prompt-text"><%= p[:prompt] %></span>
+  <span class="rk-ov-prompt-you<%= " is-none" if p[:you] == "—" %>"><%= p[:you] %></span>
+  <span class="rk-ov-prompt-comp"><%= p[:comp] %></span>
+  <span>
+    <span class="<%= prompt_winner_class(p[:category]) %>">
+      <% if p[:category] == "win" %><%= shared_icon(:check, size: 12) %><% end %>
+      <%= p[:category] == "none" ? "Not ranking" : p[:winner] %>
+    </span>
+  </span>
+  <span class="rk-ov-prompt-platform"><%= p[:platform] %></span>
+  <span class="rk-ov-prompt-volume">
+    <span class="<%= volume_dot_class(p[:volume]) %>"></span><%= p[:volume].to_s.capitalize %>
+  </span>
+  <span class="rk-ov-prompt-actions">
+    <%= render "prompts/edit_modal", p: p %>
+    <%= button_to prompt_path(p[:prompt_id]), method: :delete,
+          class: "rk-ov-row-action-btn", form: { class: "rk-ov-row-action-form", data: { turbo_stream: true, turbo_confirm: "Remove this tracked prompt?" } },
+          title: "Delete prompt", aria: { label: "Delete prompt" } do %>
+      <%= shared_icon(:trash, size: 14) %>
+    <% end %>
+  </span>
+</div>

@@ -1,0 +1,5 @@
+<%= turbo_stream.update "recommendations_list" do %>
+  <% Current.organization.recommendations.pending.ordered.each_with_index do |r, i| %>
+    <%= render "overview/recommendation", recommendation: r, index: i %>
+  <% end %>
+<% end %>

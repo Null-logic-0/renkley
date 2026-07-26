@@ -44,6 +44,9 @@ gem "image_processing", "~> 1.2"
 # since email clients don't load linked/external stylesheets.
 gem "premailer-rails"
 
+# No longer bundled with Ruby by default as of 3.4 — used to export reports.
+gem "csv"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

@@ -1,0 +1,33 @@
+<section id="prompt_tracking_section" aria-labelledby="prompt-tracking-heading">
+  <div class="rk-ov-section-head">
+    <div>
+      <h2 id="prompt-tracking-heading" class="rk-ov-h2">Prompt tracking</h2>
+      <p class="rk-ov-section-sub">Which brand wins the prompts your buyers ask AI assistants.</p>
+    </div>
+    <%= render "prompts/add_modal" %>
+  </div>
+
+  <% if overview.prompts.any? %>
+    <div class="rk-ov-scroll-x rk-ov-prompt-table" data-controller="prompt-tabs">
+      <div class="rk-ov-prompt-tabs" role="tablist">
+        <% [ %w[all All], %w[win You\ win], %w[lose Losing], %w[none Not\ ranking] ].each_with_index do |(key, label), i| %>
+          <button type="button" role="tab" aria-selected="<%= i.zero? %>" class="rk-ov-prompt-tab<%= " is-active" if i.zero? %>"
+                  data-prompt-tabs-target="tab" data-category="<%= key %>" data-action="click->prompt-tabs#select">
+            <span><%= label %></span><span class="rk-ov-prompt-tab-count"><%= overview.prompt_tabs[key] %></span>
+          </button>
+        <% end %>
+      </div>
+      <div class="rk-ov-prompt-row rk-ov-prompt-head">
+        <span>Tracked prompt</span><span>Your rank</span><span>Top competitor</span><span>Winner</span><span>Platform</span><span>Volume</span><span></span>
+      </div>
+      <div id="prompt_rows">
+        <% overview.prompts.each do |p| %>
+          <%= render "overview/prompt_row", p: p %>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <%= render "shared/state", variant: :empty, title: "No tracked prompts yet",
+          description: "Add prompts from onboarding or the dashboard to start tracking rankings." %>
+  <% end %>
+</section>

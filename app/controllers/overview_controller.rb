@@ -3,7 +3,7 @@ class OverviewController < ApplicationController
   layout "dashboard"
 
   def index
-    @competitors = Current.organization.companies.competitor.ordered
-    @prompts = Current.organization.prompts.ordered
+    VisibilityBackfillService.call(Current.organization)
+    @overview = OverviewPresenter.new(Current.organization)
   end
 end

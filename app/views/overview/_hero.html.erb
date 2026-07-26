@@ -1,0 +1,19 @@
+<section class="rk-ov-hero">
+  <div class="rk-ov-hero-main">
+    <div class="rk-ov-hero-meta">
+      <%= render "shared/tag", label: "OVERVIEW", variant: :accent_soft %>
+      <span id="overview_scan_status" class="rk-ov-hero-status">
+        <%= render "overview/scan_status", overview: overview %>
+      </span>
+    </div>
+    <h1 class="rk-ov-hero-title">Your AI visibility score</h1>
+    <p class="rk-ov-hero-lead">Track how often <%= overview.organization.name %> appears in ChatGPT, Claude, Google AI, and other AI search platforms — and what to fix to climb.</p>
+  </div>
+  <div class="rk-ov-hero-actions">
+    <%= render "shared/button", label: "Compare competitors", variant: :secondary,
+          icon: shared_icon(:users, size: 16), href: "#competitor-comparison", html: { class: "rk-btn-lg" } %>
+    <%= render "shared/button", label: overview.scanning? ? "Scanning…" : "Run AI visibility scan", variant: :primary,
+          icon: shared_icon(:scan, size: 16), to: scans_path,
+          html: { class: "rk-btn-lg", data: { turbo_stream: true }, disabled: overview.scanning? } %>
+  </div>
+</section>

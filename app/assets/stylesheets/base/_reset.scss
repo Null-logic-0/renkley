@@ -14,8 +14,23 @@ body {
 // Offsets anchor-jump targets so content doesn't land under the fixed header
 #features,
 #pricing,
-#faq {
+#faq,
+#competitor-comparison {
     scroll-margin-top: var(--rk-header-height);
+}
+
+// Visually hidden but present for screen readers/assistive tech — used to
+// pair a chart with its equivalent data in table form.
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 h1,

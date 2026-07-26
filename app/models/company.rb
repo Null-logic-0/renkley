@@ -1,5 +1,6 @@
 class Company < ApplicationRecord
   belongs_to :organization
+  has_many :competitor_snapshots, dependent: :destroy
 
   enum :kind, { competitor: 0, owned: 1 }, default: :competitor
   enum :source, { manual: 0, discovered: 1 }, default: :manual
