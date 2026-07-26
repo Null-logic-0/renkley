@@ -8,10 +8,13 @@
   #   options:     [{ label:, value:, selected: false }, ...] (required)
   #   full_width:  false — options share the row equally
   #   html:        {} — extra attributes merged onto the wrapping .seg
+  #   id_prefix:   nil — disambiguates radio ids when the same control renders
+  #                more than once on a page (e.g. one segmented per modal)
   name       = local_assigns.fetch(:name)
   options    = local_assigns.fetch(:options)
   full_width = local_assigns.fetch(:full_width, false)
   html       = local_assigns.fetch(:html, {})
+  id_prefix  = local_assigns.fetch(:id_prefix, nil)
 
   css_class = ["seg", ("is-fullwidth" if full_width), html[:class]].compact.join(" ")
   html_data = { controller: "segmented", action: "change->segmented#select" }.merge(html.fetch(:data, {}))
@@ -20,7 +23,8 @@
 <%= tag.div class: css_class, data: html_data, **html_rest do %>
   <% options.each do |opt| %>
     <label class="seg-opt">
-      <%= radio_button_tag name, opt.fetch(:value), opt.fetch(:selected, false) %>
+      <%= radio_button_tag name, opt.fetch(:value), opt.fetch(:selected, false),
+            id_prefix ? { id: "#{id_prefix}_#{opt.fetch(:value)}" } : {} %>
       <span><%= opt.fetch(:label) %></span>
     </label>
   <% end %>

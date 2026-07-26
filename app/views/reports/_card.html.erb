@@ -1,0 +1,24 @@
+<div class="rk-ov-report-card">
+  <div class="rk-ov-report-card-head">
+    <div class="rk-ov-report-icon"><%= shared_icon(report.report_kind.to_sym, size: 20) %></div>
+    <span class="<%= report_tag_class(report) %>"><%= report.tag %></span>
+  </div>
+  <div class="rk-ov-report-body">
+    <h4 class="rk-ov-report-name"><%= report.name %></h4>
+    <p class="rk-ov-report-desc"><%= report.description %></p>
+  </div>
+  <div class="rk-ov-report-foot">
+    <span class="rk-ov-report-freq"><%= shared_icon(:calendar, size: 14) %><%= report.frequency %></span>
+    <div class="rk-ov-report-actions">
+      <%= render "shared/button",
+      label: "",
+      variant: :secondary,
+      icon: shared_icon(:download, size: 15),
+      href: download_report_path(report),
+      html: {
+        class: "rk-btn-icon-only",
+        title: "Download",
+      } %>
+    </div>
+  </div>
+</div>

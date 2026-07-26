@@ -1,0 +1,36 @@
+<section aria-labelledby="platform-breakdown-heading">
+  <div class="rk-ov-section-head">
+    <h2 id="platform-breakdown-heading" class="rk-ov-h2">AI platform breakdown</h2>
+    <p class="rk-ov-section-sub">Visibility, mentions and rank across every AI search surface.</p>
+  </div>
+
+  <% if overview.platforms.any? %>
+    <div class="rk-ov-platform-grid">
+      <% overview.platforms.each do |p| %>
+        <div class="rk-ov-platform-card">
+          <div class="rk-ov-platform-card-head">
+            <span class="rk-ov-platform-dot" style="background:<%= p[:color] %>"></span>
+            <span class="rk-ov-platform-name"><%= p[:name] %></span>
+            <span class="rk-ov-platform-rank"><%= p[:rank] %></span>
+          </div>
+          <div class="rk-ov-platform-value">
+            <span class="rk-ov-platform-number"><%= p[:vis] %></span>
+            <span class="rk-ov-platform-unit">% visible</span>
+            <%= delta_chip(p[:delta]) %>
+          </div>
+          <div class="rk-ov-platform-bar"><div style="width:<%= p[:vis] %>%;background:<%= p[:color] %>"></div></div>
+          <div class="rk-ov-platform-foot">
+            <span><strong><%= p[:mentions] %></strong>
+              mentions</span>
+            <div class="rk-ov-platform-trend"><%= chart_sparkline(p[:history], color: p[:color], width: 88, height: 26) %></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <%= render "shared/state",
+    variant: :empty,
+    title: "No scans yet",
+    description: "Run your first AI visibility scan to see platform breakdown." %>
+  <% end %>
+</section>

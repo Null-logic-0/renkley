@@ -14,7 +14,7 @@ module SidebarHelper
       { id: "audit", label: "SEO Audit", icon: :clipboard_check, href: "#" }
     ] },
     { title: "Insights", items: [
-      { id: "reports", label: "Reports", icon: :file_text, href: "#" },
+      { id: "reports", label: "Reports", icon: :file_text, href: "/reports" },
       { id: "analytics", label: "Analytics", icon: :line_chart, href: "#" }
     ] }
   ].freeze
@@ -23,9 +23,7 @@ module SidebarHelper
     item[:href].present? && item[:href] != "#" && current_page?(item[:href])
   end
 
-  # Placeholder until a Prompt model exists — swap for the real unread/active
-  # count for the current account once that lands.
   def prompts_badge_count
-    12
+    Current.organization&.prompts&.count || 0
   end
 end

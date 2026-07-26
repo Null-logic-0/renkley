@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   stale_when_importmap_changes
 
 
+
   private
 
   def redirect_if_logged_in

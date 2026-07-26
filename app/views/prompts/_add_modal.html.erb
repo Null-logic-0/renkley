@@ -1,0 +1,14 @@
+<%
+  trigger = capture do
+    render "shared/button", label: "Track a prompt", variant: :secondary, icon: shared_icon(:plus, size: 15)
+  end
+  actions = capture do %>
+    <%= render "shared/button", label: "Cancel", variant: :secondary, html: { data: { action: "click->modal#close" } } %>
+    <%= render "shared/button", label: "Add prompt", variant: :primary, type: "submit", html: { form: "new_prompt_form" } %>
+  <% end
+%>
+<%= render layout: "shared/modal", locals: { title: "Track a new prompt", trigger: trigger, actions: actions, id: "new-prompt-modal" } do %>
+  <%= form_with url: prompts_path, method: :post, id: "new_prompt_form", data: { turbo_stream: true } do %>
+    <%= render "prompts/form_fields", field_id: "new" %>
+  <% end %>
+<% end %>

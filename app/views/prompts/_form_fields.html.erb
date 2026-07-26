@@ -1,0 +1,22 @@
+<%
+  # Shared body + search-volume fields for the add/edit prompt modals.
+  #
+  # Locals:
+  #   body:          current prompt body (blank for a new prompt)
+  #   search_volume: current search_volume value ("medium" default)
+  #   field_id:      unique id suffix so add/edit forms on the same page don't collide
+  body          = local_assigns.fetch(:body, "")
+  search_volume = local_assigns.fetch(:search_volume, "medium")
+  field_id      = local_assigns.fetch(:field_id)
+%>
+<%= render "shared/input", label: "Prompt", name: "prompt[body]", value: body, required: true,
+      placeholder: "e.g. best project management tool for agencies?", html: { id: "prompt_body_#{field_id}" } %>
+
+<div class="field">
+  <label class="label">Search volume</label>
+  <%= render "shared/segmented", name: "prompt[search_volume]", full_width: true, id_prefix: "prompt_search_volume_#{field_id}", options: [
+        { label: "High", value: "high", selected: search_volume == "high" },
+        { label: "Medium", value: "medium", selected: search_volume == "medium" },
+        { label: "Low", value: "low", selected: search_volume == "low" }
+      ] %>
+</div>

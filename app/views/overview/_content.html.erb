@@ -1,0 +1,14 @@
+<div id="overview_content" class="rk-ov">
+  <%= render "overview/hero", overview: overview %>
+  <div class="rk-hr"></div>
+  <%= render "overview/score_strip", overview: overview %>
+  <%= render "overview/platform_breakdown", overview: overview %>
+  <%= render "overview/competitor_comparison", overview: overview %>
+  <%= render "overview/prompt_tracking", overview: overview %>
+  <section class="rk-ov-two-col" aria-label="Mentions timeline and citation analysis">
+    <%= render "overview/mentions_timeline", overview: overview %>
+    <%= render "overview/citations", overview: overview %>
+  </section>
+  <%= render "overview/recommendations", overview: overview %>
+  <%= render "overview/reports_strip", overview: overview %>
+</div>

@@ -1,0 +1,21 @@
+<section aria-labelledby="reports-heading">
+  <div class="rk-ov-section-head">
+    <div>
+      <h2 id="reports-heading" class="rk-ov-h2">Reports</h2>
+      <p class="rk-ov-section-sub">Scheduled and on-demand exports for your team and stakeholders.</p>
+    </div>
+    <%= render "shared/button", label: "New report", variant: :secondary, icon: shared_icon(:plus, size: 15),
+          href: reports_path %>
+  </div>
+
+  <div class="rk-ov-report-grid">
+    <% overview.reports.each do |r| %>
+      <%= render "reports/card", report: r %>
+    <% end %>
+  </div>
+
+  <div class="rk-ov-footer-status">
+    <span><%= overview.footer_status %></span>
+    <span>Data refreshes every 24h</span>
+  </div>
+</section>
