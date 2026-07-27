@@ -68,18 +68,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:16
-        env:
-          POSTGRES_PASSWORD: postgres
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd "pg_isready -U postgres"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
     #  redis:
     #    image: valkey/valkey:8
     #    ports:
@@ -96,6 +84,21 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+
+      - name: Start PostgreSQL
+        run: |
+          for attempt in 1 2 3 4 5; do
+            docker run -d --name postgres \
+              -e POSTGRES_PASSWORD=postgres \
+              -p 5432:5432 \
+              postgres:16 && break
+            echo "docker run failed (attempt $attempt/5), retrying in 10s..."
+            sleep 10
+          done
+          for i in $(seq 1 30); do
+            docker exec postgres pg_isready -U postgres && break
+            sleep 2
+          done
 
       - name: Run tests
         env:
@@ -107,18 +110,6 @@ jobs:
   system-test:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:16
-        env:
-          POSTGRES_PASSWORD: postgres
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd "pg_isready -U postgres"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
     #  redis:
     #    image: valkey/valkey:8
     #    ports:
@@ -135,6 +126,21 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+
+      - name: Start PostgreSQL
+        run: |
+          for attempt in 1 2 3 4 5; do
+            docker run -d --name postgres \
+              -e POSTGRES_PASSWORD=postgres \
+              -p 5432:5432 \
+              postgres:16 && break
+            echo "docker run failed (attempt $attempt/5), retrying in 10s..."
+            sleep 10
+          done
+          for i in $(seq 1 30); do
+            docker exec postgres pg_isready -U postgres && break
+            sleep 2
+          done
 
       - name: Run System Tests
         env:
