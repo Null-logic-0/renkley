@@ -1,7 +1,6 @@
 [
   { key: "chatgpt", name: "ChatGPT" },
   { key: "claude", name: "Claude" },
-  { key: "google_ai", name: "Google AI" },
   { key: "gemini", name: "Gemini" },
   { key: "perplexity", name: "Perplexity" }
 ].each_with_index do |attrs, index|
