@@ -7,14 +7,23 @@
   #   variant:      :danger (default) | :warning
   #   action_label: optional button label rendered on the right (e.g. "Delete workspace")
   #   action_html:  {} — extra attributes merged onto the action button (data-action, etc.)
+  #   action:       captured HTML rendered on the right instead of a plain button —
+  #                 use this when the action needs to be a modal trigger (the modal's own
+  #                 trigger button becomes this slot's content, since it must share the
+  #                 modal's own data-controller scope)
+  #   inline:       false — this component defaults to a fixed bottom-right toast (its
+  #                 other use, for flash messages); pass true to render in normal page
+  #                 flow instead, e.g. Settings → "Delete workspace"
   title        = local_assigns.fetch(:title)
   description  = local_assigns.fetch(:description)
   variant      = local_assigns.fetch(:variant, :danger)
   action_label = local_assigns[:action_label]
   action_html  = local_assigns.fetch(:action_html, {})
+  action       = local_assigns[:action]
+  inline       = local_assigns.fetch(:inline, false)
 
   variant_class = { danger: "is-danger", warning: "is-warning" }.fetch(variant.to_sym)
-  css_class = ["notification", variant_class].join(" ")
+  css_class = ["notification", variant_class, ("is-inline" if inline)].compact.join(" ")
 %>
 <div class="<%= css_class %>">
   <div class="rk-banner-row">
@@ -22,7 +31,9 @@
       <div class="rk-banner-title"><%= title %></div>
       <div class="rk-banner-desc"><%= description %></div>
     </div>
-    <% if action_label.present? %>
+    <% if action.present? %>
+      <%= action %>
+    <% elsif action_label.present? %>
       <%= render "shared/button", label: action_label, variant: :destructive_outline, html: action_html %>
     <% end %>
   </div>

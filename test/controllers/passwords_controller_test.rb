@@ -41,7 +41,7 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
 
   test "update" do
     assert_changes -> { @user.reload.password_digest } do
-      put password_path(@user.password_reset_token), params: { password: "newpassword", password_confirmation: "newpassword" }
+      put password_path(@user.password_reset_token), params: { password: "newpassword1", password_confirmation: "newpassword1" }
       assert_redirected_to new_session_path
     end
 

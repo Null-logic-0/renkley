@@ -4,10 +4,17 @@
   # Locals:
   #   label:     row text (required)
   #   satisfied: false — shows a checkmark in the success color instead of an outline circle
+  #   html:      {} — extra attributes merged onto the row (e.g. a Stimulus target,
+  #              for a checklist a controller toggles live as the user types)
   label     = local_assigns.fetch(:label)
   satisfied = local_assigns.fetch(:satisfied, false)
+  html      = local_assigns.fetch(:html, {})
+
+  css_class = ["rk-check-item", ("is-satisfied" if satisfied), html[:class]].compact.join(" ")
+  html_rest = html.except(:class)
 %>
-<div class="rk-check-item<%= ' is-satisfied' if satisfied %>">
-  <span class="rk-check-item-icon"><%= shared_icon(satisfied ? :check : :circle, size: 14, stroke_width: satisfied ? 2 : 1.5) %></span>
+<div class="<%= css_class %>" <%= tag.attributes(html_rest) %>>
+  <span class="rk-check-item-icon rk-check-item-icon-off"><%= shared_icon(:circle, size: 14, stroke_width: 1.5) %></span>
+  <span class="rk-check-item-icon rk-check-item-icon-on"><%= shared_icon(:check, size: 14, stroke_width: 2) %></span>
   <%= label %>
 </div>

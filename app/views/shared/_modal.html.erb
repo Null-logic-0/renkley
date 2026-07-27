@@ -18,13 +18,24 @@
   #   trigger: captured HTML for the element that opens the modal (required)
   #   actions: captured HTML for the footer button row (optional)
   #   id:      DOM id for the modal (optional, auto-generated if omitted)
+  #   html:    {} — extra attributes merged onto the outer wrapper; html[:data][:controller]
+  #            is appended alongside "modal" (space-joined) so a body/footer element can
+  #            share one extra controller instance (e.g. a type-to-confirm delete gate)
   title   = local_assigns.fetch(:title)
   trigger = local_assigns.fetch(:trigger)
   actions = local_assigns[:actions]
   modal_id = local_assigns.fetch(:id) { "modal-#{SecureRandom.hex(4)}" }
   title_id = "#{modal_id}-title"
+  html = local_assigns.fetch(:html, {})
+  extra_controller = html.dig(:data, :controller)
+  wrapper_data = html.fetch(:data, {}).merge(controller: [ "modal", extra_controller ].compact.join(" "))
+  wrapper_rest = html.except(:data)
+  # A plain tag, not tag.div(&block) — that block form runs its own capture
+  # around whatever's inside, and nesting that around this partial's own
+  # `yield` (the caller's modal-body block) corrupts the output buffer.
+  wrapper_attrs = tag.attributes(**wrapper_rest, data: wrapper_data)
 %>
-<div data-controller="modal">
+<div <%= wrapper_attrs %>>
   <%= tag.div trigger, data: { action: "click->modal#open" } %>
 
   <div id="<%= modal_id %>" class="modal" data-modal-target="modal" role="dialog" aria-modal="true" aria-labelledby="<%= title_id %>">

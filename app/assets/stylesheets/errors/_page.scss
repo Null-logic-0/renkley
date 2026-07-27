@@ -1,0 +1,64 @@
+// Full-page centered state for error/unbuilt routes (404, etc). Single
+// column, reuses the auth shell's brand row shape and the shared card
+// border/shadow rather than introducing new primitives.
+.rk-error-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 56px 24px;
+}
+
+.rk-error-wrap {
+    width: 100%;
+    max-width: 560px;
+}
+
+.rk-error-panel {
+    padding: 44px 40px;
+}
+
+.rk-error-meta {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--rk-faint);
+    margin: 14px 0 0;
+}
+
+.rk-error-title {
+    font-size: 28px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    margin: 18px 0 22px;
+}
+
+.rk-error-panel p {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--rk-muted);
+    margin: 0 0 16px;
+}
+.rk-error-panel p:last-of-type {
+    margin-bottom: 0;
+}
+
+.rk-error-divider {
+    height: 1px;
+    background: var(--rk-line-soft);
+    margin: 28px 0;
+}
+
+.rk-error-footer {
+    margin-top: 28px;
+    font-size: 12.5px;
+    color: var(--rk-faint);
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .rk-error-panel {
+        padding: 32px 24px;
+    }
+}

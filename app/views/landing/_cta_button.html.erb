@@ -1,0 +1,25 @@
+<% variant = local_assigns.fetch(:variant, :lg) # :lg, :header, or :mobile
+cta_label =
+  local_assigns.fetch(
+    :cta_label,
+    authenticated? ? "Go to dashboard" : "Start free trial",
+  )
+cta_href =
+  local_assigns.fetch(:cta_href, authenticated? ? "/overview" : "/sign_up")
+
+variant_class = {
+  lg: "rk-btn-lg",
+  header: "rk-header-cta",
+  mobile: "rk-mobile-menu-cta",
+}.fetch(variant, "rk-btn-lg")
+
+link_data =
+  local_assigns.fetch(
+    :data,
+    variant == :mobile ? { action: "navbar#close" } : {},
+  ) %>
+
+<%= link_to cta_label,
+cta_href,
+class: "button is-primary #{variant_class}",
+data: link_data %>

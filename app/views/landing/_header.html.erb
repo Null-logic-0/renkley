@@ -1,13 +1,6 @@
 <% brand_name = local_assigns.fetch(:brand_name, "Renkley")
 nav_links =
-  local_assigns.fetch(:nav_links, LandingHelper.nav_links(authenticated?))
-cta_label =
-  local_assigns.fetch(
-    :cta_label,
-    authenticated? ? "Go to dashboard" : "Start free trial",
-  )
-cta_href =
-  local_assigns.fetch(:cta_href, authenticated? ? "/overview" : "/sign_up") %>
+  local_assigns.fetch(:nav_links, LandingHelper.nav_links(authenticated?)) %>
 <div data-controller="navbar">
   <header class="rk-header">
     <div class="rk-container rk-header-bar">
@@ -24,7 +17,7 @@ cta_href =
 
       </nav>
 
-      <%= link_to cta_label, cta_href, class: "button is-primary rk-header-cta" %>
+      <%= render "landing/cta_button", variant: :header %>
 
       <button
         class="rk-burger"
@@ -77,12 +70,7 @@ cta_href =
           action: "navbar#close",
         }
       end %>
-      <%= link_to cta_label,
-      cta_href,
-      class: "button is-primary rk-mobile-menu-cta",
-      data: {
-        action: "navbar#close",
-      } %>
+      <%= render "landing/cta_button", variant: :mobile %>
     </div>
   </nav>
 </div>

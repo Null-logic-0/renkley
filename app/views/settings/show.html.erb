@@ -1,0 +1,27 @@
+<% content_for :title, "Settings - Renkley" %>
+
+<div class="rk-ov">
+  <section class="rk-ov-section-head">
+    <div>
+      <div class="rk-settings-crumb">
+        <%= render "shared/tag", label: "SETTINGS", variant: :accent_soft %>
+        <span><%= @organization.name %> · Growth workspace</span>
+      </div>
+      <h1 class="rk-ov-hero-title">Settings</h1>
+      <p class="rk-ov-section-sub">Configure your workspace, brand tracking and notifications.</p>
+    </div>
+  </section>
+
+  <%= form_with url: settings_path, method: :patch, id: "settings_form", html: { class: "rk-settings-form" } do %>
+    <%= render "settings/workspace", organization: @organization %>
+    <%= render "settings/brand_tracking", organization: @organization %>
+    <%= render "settings/password" %>
+
+    <div class="rk-settings-savebar">
+      <%= render "shared/button", label: "Discard", variant: :secondary, href: overview_path %>
+      <%= render "shared/button", label: "Save changes", variant: :primary, type: "submit" %>
+    </div>
+  <% end %>
+
+  <%= render "settings/delete_workspace", organization: @organization %>
+</div>

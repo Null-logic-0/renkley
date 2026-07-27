@@ -1,0 +1,14 @@
+<%= render layout: "shared/card", locals: { title: "Brand tracking", subtitle: "Terms Renkley watches for across AI platforms." } do %>
+  <div class="field">
+    <label class="label">Brand names &amp; aliases</label>
+    <%= render "settings/brand_alias_pills", organization: organization %>
+  </div>
+
+  <div class="rk-settings-freq-row">
+    <div>
+      <div class="rk-card-title-sm">Scan frequency</div>
+      <p class="rk-card-subtitle">How often Renkley queries AI platforms.</p>
+    </div>
+    <%= render "shared/segmented", name: "organization[scan_frequency]", options: scan_frequency_options(organization) %>
+  </div>
+<% end %>

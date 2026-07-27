@@ -14,3 +14,8 @@
   display: flex;
   flex: none;
 }
+// Both icons render server-side; only one shows at a time so a controller
+// can toggle "is-satisfied" live (input events) without touching markup.
+.rk-check-item-icon-on { display: none; }
+.rk-check-item.is-satisfied .rk-check-item-icon-off { display: none; }
+.rk-check-item.is-satisfied .rk-check-item-icon-on { display: flex; }

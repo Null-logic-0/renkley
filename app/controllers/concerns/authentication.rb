@@ -36,7 +36,7 @@ module Authentication
 
     def after_authentication_url
       session.delete(:return_to_after_authenticating) ||
-        (Current.organization&.in_progress? ? onboarding_url : root_url)
+        (Current.organization&.in_progress? ? onboarding_url : overview_url)
     end
 
     def start_new_session_for(user, remember: true)
