@@ -1,3 +1,6 @@
+
+
+
 # Renkley
 
 **Your competitors are showing up in ChatGPT. Are you?**
@@ -8,7 +11,7 @@ visibility into actionable recommendations. Built with Rails 8.
 
 ## Demo
 
-<video src="public/renkley_design_screens/overview.mp4" controls width="100%"></video>
+https://github.com/user-attachments/assets/d53d7b2c-4fe7-4522-bb1d-6c41b3632f9d
 
 A walkthrough of the Overview dashboard. If the player above doesn't render,
 open [`public/renkley_design_screens/overview.mp4`](public/renkley_design_screens/overview.mp4)
