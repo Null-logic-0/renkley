@@ -1,0 +1,37 @@
+<div class="rk-error-page">
+  <div class="rk-error-wrap">
+    <div class="rk-auth-brand">
+      <div class="rk-logomark"><span>R</span></div>
+      <span class="rk-brand-name">Renkley</span>
+    </div>
+
+    <div class="rk-card rk-border rk-shadow rk-error-panel">
+      <span class="rk-kicker">Unbuilt</span>
+      <p class="rk-error-meta">File No. 404 — Unassigned</p>
+
+      <h1 class="rk-error-title">You have reached a door that was never built.</h1>
+
+      <p>You followed the sign correctly. The corridor exists, the light switch
+        works, and the floor is solid beneath you — and yet the room behind this
+        door was never furnished. No architect finished the plans, and it is
+        doubtful now that one will.</p>
+
+      <p>This is not a punishment, and no application will change it. It is simply
+        the truth of the building, stated plainly, so that you need not wonder
+        any further, or file an appeal with an office that would only misplace
+        it.</p>
+
+      <p>You are welcome to try the handle again later. Buildings do, on occasion,
+        grow new rooms.</p>
+
+      <div class="rk-error-divider"></div>
+
+      <%= render "landing/cta_button",
+      variant: :lg,
+      cta_label: "Return to the rooms that are finished →",
+      cta_href: overview_path %>
+    </div>
+
+    <footer class="rk-error-footer">Renkley Registry of Incomplete Rooms · recorded, not resolved</footer>
+  </div>
+</div>

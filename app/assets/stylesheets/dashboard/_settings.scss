@@ -1,0 +1,59 @@
+// ── Settings page — reuses the overview screen's header/card primitives,
+// this file only covers what's specific to Settings itself.
+
+.rk-settings-crumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: var(--rk-muted);
+}
+
+.rk-settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rk-settings-savebar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.rk-settings-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.rk-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.rk-settings-freq-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rk-line-soft);
+}
+
+.rk-card-title-sm {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.rk-check-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+}

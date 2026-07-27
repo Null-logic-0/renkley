@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "errors/not_found"
   mount ActionCable.server => "/cable"
 
   root "landing#index"
@@ -47,6 +48,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :settings, only: [ :show, :update, :destroy ]
+
+  namespace :settings do
+    resources :brand_aliases, only: [ :create, :destroy ]
+  end
+
 
   if Rails.env.development?
     get "dev/components" => "dev/components#index"
@@ -54,4 +61,7 @@ Rails.application.routes.draw do
   end
 
   get "up" => "rails/health#show", as: :rails_health_check
+
+
+  match "*unmatched", to: "errors#not_found", via: :all
 end

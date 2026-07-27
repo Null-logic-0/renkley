@@ -1,0 +1,15 @@
+<%
+  trigger = capture { render "shared/button", label: "+ Add", variant: :ghost }
+  actions = capture do %>
+    <%= render "shared/button", label: "Cancel", variant: :secondary, html: { data: { action: "click->modal#close" } } %>
+    <%= render "shared/button", label: "Add", variant: :primary, type: "button",
+          html: { data: { action: "click->brand-alias#add" } } %>
+  <% end
+%>
+<%= render layout: "shared/modal", locals: {
+      title: "Add brand alias", trigger: trigger, actions: actions, id: "add-brand-alias-modal",
+      html: { data: { controller: "brand-alias", brand_alias_create_url_value: settings_brand_aliases_path } }
+    } do %>
+  <%= render "shared/input", name: "brand_alias[name]", label: "Alias", placeholder: "e.g. Kestrel PM",
+        html: { data: { brand_alias_target: "input" } } %>
+<% end %>

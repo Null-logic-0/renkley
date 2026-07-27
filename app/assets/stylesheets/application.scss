@@ -20,6 +20,7 @@
 
 // ── Shared component library — reused across auth/app-shell/settings ───
 @use "shared/input";
+@use "shared/select";
 @use "shared/toggle";
 @use "shared/segmented";
 @use "shared/tag";
@@ -39,10 +40,14 @@
 @use "dashboard/topbar";
 @use "dashboard/scaffold";
 @use "dashboard/overview";
+@use "dashboard/settings";
 
 // ── Onboarding — post-signup wizard shell + steps ───────────────────────
 @use "onboarding/wizard_shell";
 @use "onboarding/steps";
+
+// ── Errors — full-page states (404, unbuilt routes) ─────────────────────
+@use "errors/page";
 
 // ── Landing page — one file per section/component ──────────────────────
 @use "landing/shared";

@@ -1,0 +1,39 @@
+<%
+  # Native <select> with label and helper text — mirrors shared/_input's
+  # wrapper (.field/.label/.control), skinning Bulma's own .select rather
+  # than introducing a parallel dropdown-for-forms component.
+  #
+  # Locals:
+  #   label:    label text (optional)
+  #   name:     select name/id (required)
+  #   options:  [[display_label, value], ...] (required)
+  #   selected: currently selected value (optional)
+  #   helper:   helper text shown below the select (optional)
+  #   required: false
+  #   disabled: false
+  #   html:     {} — extra attributes merged onto the <select> (data-*, etc.)
+  label    = local_assigns[:label]
+  name     = local_assigns.fetch(:name)
+  options  = local_assigns.fetch(:options)
+  selected = local_assigns[:selected]
+  helper   = local_assigns[:helper]
+  required = local_assigns.fetch(:required, false)
+  disabled = local_assigns.fetch(:disabled, false)
+  html     = local_assigns.fetch(:html, {})
+
+  css_class = ["select", ("is-fullwidth"), html[:class]].compact.join(" ")
+  html_rest = html.except(:class)
+%>
+<div class="field">
+  <% if label.present? %><label class="label" for="<%= name %>"><%= label %></label><% end %>
+  <div class="control">
+    <div class="<%= css_class %>">
+      <%= tag.select id: name, name: name, required: required, disabled: disabled, **html_rest do %>
+        <% options.each do |option_label, value| %>
+          <%= tag.option option_label, value: value, selected: value.to_s == selected.to_s %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <% if helper.present? %><p class="help"><%= helper %></p><% end %>
+</div>

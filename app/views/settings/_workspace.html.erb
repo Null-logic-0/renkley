@@ -1,0 +1,20 @@
+<%= render layout: "shared/card", locals: { title: "Workspace" } do %>
+  <div class="columns is-multiline">
+    <div class="column is-6">
+      <%= render "shared/input", name: "organization[name]", label: "Workspace name",
+            value: organization.name, required: true %>
+    </div>
+    <div class="column is-6">
+      <%= render "shared/input", name: "organization[website_url]", label: "Primary domain",
+            value: organization.website_url, placeholder: "example.com" %>
+    </div>
+    <div class="column is-6">
+      <%= render "shared/input", name: "organization[category]", label: "Category",
+            value: organization.category, placeholder: "e.g. Project management software" %>
+    </div>
+    <div class="column is-6">
+      <%= render "shared/select", name: "organization[default_ai_platform]", label: "Default AI platform",
+            selected: organization.default_ai_platform || "all", options: default_ai_platform_options %>
+    </div>
+  </div>
+<% end %>

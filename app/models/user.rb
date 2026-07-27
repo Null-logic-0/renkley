@@ -14,6 +14,7 @@ class User < ApplicationRecord
   validates :full_name, presence: true
 
   validates :password, length: { minimum: 8 }, allow_nil: true
+  validates :password, format: { with: /\A(?=.*[A-Za-z])(?=.*\d).+\z/, message: "must contain a letter and a number" }, allow_nil: true
 
   def self.from_omniauth(auth)
     provider = auth.provider

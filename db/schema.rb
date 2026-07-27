@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_26_124300) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_27_031750) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -21,6 +21,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_26_124300) do
     t.integer "position", default: 0, null: false
     t.datetime "updated_at", null: false
     t.index ["key"], name: "index_ai_platforms_on_key", unique: true
+  end
+
+  create_table "brand_aliases", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.bigint "organization_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id", "name"], name: "index_brand_aliases_on_organization_id_and_name", unique: true
+    t.index ["organization_id"], name: "index_brand_aliases_on_organization_id"
   end
 
   create_table "citations", force: :cascade do |t|
@@ -79,10 +88,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_26_124300) do
   end
 
   create_table "organizations", force: :cascade do |t|
+    t.string "category"
     t.datetime "created_at", null: false
+    t.string "default_ai_platform"
     t.string "name", null: false
     t.integer "onboarding_status", default: 0, null: false
     t.integer "onboarding_step", default: 1, null: false
+    t.integer "scan_frequency", default: 1, null: false
     t.string "slug", null: false
     t.string "time_zone", default: "UTC", null: false
     t.datetime "updated_at", null: false
@@ -198,6 +210,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_26_124300) do
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
   end
 
+  add_foreign_key "brand_aliases", "organizations"
   add_foreign_key "citations", "organizations"
   add_foreign_key "citations", "scans", column: "last_scan_id"
   add_foreign_key "companies", "organizations"

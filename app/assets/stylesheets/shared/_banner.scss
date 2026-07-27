@@ -26,6 +26,13 @@
   color: var(--bulma-text);
   border: 1.5px solid var(--rk-info);
 }
+// Renders in normal page flow instead of the fixed bottom-right toast
+// position above — e.g. Settings → "Delete workspace".
+.notification.is-inline {
+  position: static;
+  right: auto;
+  bottom: auto;
+}
 // Bulma positions .delete absolutely in the notification's top-right corner
 // already; just recolor it to a plain muted "x" instead of the dark circle,
 // since these banners are light-tinted rather than solid-colored.

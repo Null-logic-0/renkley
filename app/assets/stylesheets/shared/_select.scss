@@ -1,0 +1,18 @@
+// Native select — skins Bulma's own .select/select rather than a parallel
+// dropdown-for-forms component, matching shared/_input's border/focus tokens.
+.select select {
+  background: var(--bulma-background);
+  border-color: var(--rk-line);
+  color: var(--bulma-text);
+  box-shadow: none;
+}
+.select select:hover {
+  border-color: color-mix(in srgb, var(--bulma-text) 45%, transparent);
+}
+.select select:focus, .select select:focus-visible {
+  border-color: var(--rk-accent);
+  box-shadow: none;
+}
+.select:not(.is-multiple):not(.is-loading)::after {
+  border-color: var(--rk-muted);
+}

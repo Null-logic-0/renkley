@@ -1,0 +1,26 @@
+<%
+  modal_trigger = capture { render "shared/button", label: "Delete workspace", variant: :destructive_outline }
+  modal_actions = capture do %>
+    <%= render "shared/button", label: "Cancel", variant: :secondary, html: { data: { action: "click->modal#close" } } %>
+    <%= render "shared/button", label: "Delete workspace", variant: :destructive, type: "submit",
+          html: { form: "delete_workspace_form", data: { type_to_confirm_target: "submit" }, disabled: true } %>
+  <% end
+  modal = capture do %>
+    <%= render layout: "shared/modal", locals: {
+          title: "Delete workspace", trigger: modal_trigger, actions: modal_actions, id: "delete-workspace-modal",
+          html: { data: { controller: "type-to-confirm", type_to_confirm_expected_value: organization.name } }
+        } do %>
+      <p class="rk-card-subtitle">
+        This will permanently delete <strong><%= organization.name %></strong> and all of its tracking
+        data — prompts, competitors, scans, reports. This cannot be undone.
+      </p>
+      <%= render "shared/input", name: "confirm_name", label: "Type “#{organization.name}” to confirm",
+            html: { data: { type_to_confirm_target: "input", action: "input->type-to-confirm#check" } } %>
+    <% end %>
+    <%= form_with url: settings_path, method: :delete, id: "delete_workspace_form", html: { style: "display:none" } do %><% end %>
+  <% end
+%>
+<%= render "shared/banner", variant: :danger, inline: true,
+      title: "Delete workspace",
+      description: "Permanently remove #{organization.name} and all tracking data. This cannot be undone.",
+      action: modal %>

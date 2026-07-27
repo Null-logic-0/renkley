@@ -1,0 +1,9 @@
+<div id="brand_aliases" class="rk-tag-row">
+  <%= render "shared/tag", label: organization.name, variant: :accent_soft %>
+  <% organization.brand_aliases.ordered.each do |brand_alias| %>
+    <%= render "shared/tag", label: brand_alias.name, variant: :neutral_soft, removable: true,
+          remove_html: { data: { controller: "brand-alias", action: "click->brand-alias#remove",
+                                  brand_alias_url_value: settings_brand_alias_path(brand_alias) } } %>
+  <% end %>
+  <%= render "settings/add_alias_modal" %>
+</div>
